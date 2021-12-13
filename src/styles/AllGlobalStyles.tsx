@@ -10,13 +10,13 @@ import ListsStyle from './lists.style';
 // License found here: https://github.com/dhg/Skeleton/blob/master/LICENSE.md
 
 const AllGlobalStyles = (): React.ReactElement => (
-    <>
-        <BaseStyle/>
-        <ButtonStyle/>
-        <ContainerStyle/>
-        <InputStyle/>
-        <ListsStyle/>
-    </>
+  <>
+    <BaseStyle />
+    <ButtonStyle />
+    <ContainerStyle />
+    <InputStyle />
+    <ListsStyle />
+  </>
 );
 
 export default AllGlobalStyles;

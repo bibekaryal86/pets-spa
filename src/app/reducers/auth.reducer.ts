@@ -1,12 +1,12 @@
-import {AuthAction, AuthState} from '../context/AuthContext';
+import { AuthAction, AuthState } from '../context/AuthContext';
 
 export default (state: AuthState, action: AuthAction): AuthState => {
-    const {authState} = action;
+  const { authState } = action;
 
-    return {
-        ...state,
-        isLoggedIn: authState?.isLoggedIn,
-        token: authState?.token,
-        userDetails: authState?.userDetails,
-    };
+  return {
+    ...state,
+    isLoggedIn: authState?.isLoggedIn,
+    token: authState?.token,
+    userDetails: authState?.userDetails,
+  };
 };

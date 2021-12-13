@@ -1,13 +1,13 @@
-import {useContext, useEffect, useState} from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PetsLogo from '/public/images/petslogo.gif';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import {AuthContext} from '../context/AuthContext';
-import {UserDetails} from '../../home/types/home.data.types';
-import {protectedRoutes} from '../config/routes';
+import { AuthContext } from '../context/AuthContext';
+import { UserDetails } from '../../home/types/home.data.types';
+import { protectedRoutes } from '../config/routes';
 
 const StyledHeader = styled.header.attrs({
-    className: 'styled-header',
+  className: 'styled-header',
 })`
   position: relative;
   z-index: 1;
@@ -15,7 +15,7 @@ const StyledHeader = styled.header.attrs({
 `;
 
 const StyledNav = styled.nav.attrs({
-    className: 'styled-nav',
+  className: 'styled-nav',
 })<StyledNavProps>`
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@ const StyledNavLinkDropdown = styled(StyledNavLink)`
 `;
 
 const StyledNavDropdownMenuContent = styled.div.attrs({
-    className: 'styled-nav-dropdown-menu-content',
+  className: 'styled-nav-dropdown-menu-content',
 })`
   display: none;
   position: absolute;
@@ -67,7 +67,7 @@ const StyledNavDropdownMenuContent = styled.div.attrs({
 `;
 
 const StyledNavDropdownMenu = styled.div.attrs({
-    className: 'styled-nav-dropdown-menu',
+  className: 'styled-nav-dropdown-menu',
 })`
   display: inline-block;
   &:hover ${StyledNavDropdownMenuContent} {
@@ -85,98 +85,98 @@ const StyledNavLinkButton = styled(StyledNavLink)<StyledNavProps>`
 // use all lowercase because of console error
 // use string instead of boolean because of console error
 interface StyledNavProps {
-    margin?: string;
-    padding?: string;
-    justifycontent?: string;
-    background?: string;
-    fontWeight?: string;
+  margin?: string;
+  padding?: string;
+  justifycontent?: string;
+  background?: string;
+  fontWeight?: string;
 }
 
 const getDisplayName = (userDetails: UserDetails): string =>
-    userDetails ? userDetails.firstName + ' ' + userDetails.lastName : '';
+  userDetails ? userDetails.firstName + ' ' + userDetails.lastName : '';
 
 const Header = (): React.ReactElement => {
-    const [displayName, setDisplayName] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [displayName, setDisplayName] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    const authContext = useContext(AuthContext);
-    useEffect(() => {
-        if (authContext.auth) {
-            setIsLoggedIn(authContext.auth.isLoggedIn);
-            setDisplayName(getDisplayName(authContext.auth.userDetails));
-        }
-    }, [authContext]);
+  const authContext = useContext(AuthContext);
+  useEffect(() => {
+    if (authContext.auth) {
+      setIsLoggedIn(authContext.auth.isLoggedIn);
+      setDisplayName(getDisplayName(authContext.auth.userDetails));
+    }
+  }, [authContext]);
 
-    return (
-        <StyledHeader>
-            <HeaderLinks displayName={displayName}/>
-            <Navigation isLoggedIn={isLoggedIn}/>
-        </StyledHeader>
-    );
+  return (
+    <StyledHeader>
+      <HeaderLinks displayName={displayName} />
+      <Navigation isLoggedIn={isLoggedIn} />
+    </StyledHeader>
+  );
 };
 
-const HeaderLinks = ({displayName = ''}): React.ReactElement => {
-    return (
-        <StyledNav
-            justifycontent={displayName ? 'space-between' : ''}
-            background="seagreen"
-            fontWeight="bold"
-        >
-            Personal Expenses Tracking System
-            {displayName.trim() ? (
-                <>
-                    <img src={PetsLogo} alt="pets-logo.gif"/>
-                    <div>
-                        {displayName} |
-                        <StyledNavLink to="/import" margin="0px 5px 0px 5px">
-                            Import
-                        </StyledNavLink>
-                        <StyledNavLinkButton to="/signout" margin="0px 5px 0px 5px">
-                            Sign Out
-                        </StyledNavLinkButton>
-                    </div>
-                </>
-            ) : (
-                <></>
-            )}
-        </StyledNav>
-    );
+const HeaderLinks = ({ displayName = '' }): React.ReactElement => {
+  return (
+    <StyledNav
+      justifycontent={displayName ? 'space-between' : ''}
+      background="seagreen"
+      fontWeight="bold"
+    >
+      Personal Expenses Tracking System
+      {displayName.trim() ? (
+        <>
+          <img src={PetsLogo} alt="pets-logo.gif" />
+          <div>
+            {displayName} |
+            <StyledNavLink to="/import" margin="0px 5px 0px 5px">
+              Import
+            </StyledNavLink>
+            <StyledNavLinkButton to="/signout" margin="0px 5px 0px 5px">
+              Sign Out
+            </StyledNavLinkButton>
+          </div>
+        </>
+      ) : (
+        <></>
+      )}
+    </StyledNav>
+  );
 };
 
 const getRoutePath = (route: string) => route.split('/:')[0];
 
-const Navigation = ({isLoggedIn = false}): React.ReactElement => {
-    return (
-        <StyledNav justifycontent="center">
-            {protectedRoutes.map((route) =>
-                route.display ? (
-                    route.submenu ? (
-                        <StyledNavDropdownMenu key={route.path}>
-                            <StyledNavLink to={getRoutePath(route.path)}>
-                                {route.display}
-                            </StyledNavLink>
-                            {isLoggedIn && (
-                                <StyledNavDropdownMenuContent>
-                                    {route.submenu.map((subroute) => (
-                                        <StyledNavLinkDropdown
-                                            key={subroute.path}
-                                            to={subroute.path}
-                                        >
-                                            {subroute.display}
-                                        </StyledNavLinkDropdown>
-                                    ))}
-                                </StyledNavDropdownMenuContent>
-                            )}
-                        </StyledNavDropdownMenu>
-                    ) : (
-                        <StyledNavLink key={route.path} to={route.path}>
-                            {route.display}
-                        </StyledNavLink>
-                    )
-                ) : null,
-            )}
-        </StyledNav>
-    );
+const Navigation = ({ isLoggedIn = false }): React.ReactElement => {
+  return (
+    <StyledNav justifycontent="center">
+      {protectedRoutes.map((route) =>
+        route.display ? (
+          route.submenu ? (
+            <StyledNavDropdownMenu key={route.path}>
+              <StyledNavLink to={getRoutePath(route.path)}>
+                {route.display}
+              </StyledNavLink>
+              {isLoggedIn && (
+                <StyledNavDropdownMenuContent>
+                  {route.submenu.map((subroute) => (
+                    <StyledNavLinkDropdown
+                      key={subroute.path}
+                      to={subroute.path}
+                    >
+                      {subroute.display}
+                    </StyledNavLinkDropdown>
+                  ))}
+                </StyledNavDropdownMenuContent>
+              )}
+            </StyledNavDropdownMenu>
+          ) : (
+            <StyledNavLink key={route.path} to={route.path}>
+              {route.display}
+            </StyledNavLink>
+          )
+        ) : null,
+      )}
+    </StyledNav>
+  );
 };
 
 export default Header;

@@ -1,11 +1,11 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ButtonWrapper = styled.button.attrs({
-    className: 'button-wrapper',
+  className: 'button-wrapper',
 })<ButtonWrapperProps>`
   ${(props) =>
     props.color
-        ? css`
+      ? css`
           background: ${props.color};
           color: whitesmoke;
           border: none;
@@ -14,13 +14,13 @@ const ButtonWrapper = styled.button.attrs({
             border: none;
           }
         `
-        : css``}
+      : css``}
   ${(props) =>
     props.includeBorder
-        ? css`
+      ? css`
           border: 1px solid;
         `
-        : css`
+      : css`
           border: none;
           &[disabled] {
             border: none;
@@ -29,45 +29,45 @@ const ButtonWrapper = styled.button.attrs({
 
   ${(props) =>
     props.noPaddingNoMargin
-        ? css`
+      ? css`
           padding: 0px;
           margin: 0px;
         `
-        : css``}
+      : css``}
 `;
 
 interface ButtonWrapperProps {
-    color?: string;
-    includeBorder?: boolean;
-    noPaddingNoMargin?: boolean;
+  color?: string;
+  includeBorder?: boolean;
+  noPaddingNoMargin?: boolean;
 }
 
 interface ButtonProps {
-    id: string;
-    title: string;
-    includeBorder?: boolean;
-    disabled?: boolean;
-    color?: string;
-    border?: string;
-    onClick?: () => void;
-    noPaddingNoMargin?: boolean;
+  id: string;
+  title: string;
+  includeBorder?: boolean;
+  disabled?: boolean;
+  color?: string;
+  border?: string;
+  onClick?: () => void;
+  noPaddingNoMargin?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => (
-    <>
-        <ButtonWrapper
-            type="button"
-            id={props.id}
-            name={props.id}
-            disabled={props.disabled}
-            onClick={props.onClick}
-            color={props.color}
-            includeBorder={props.includeBorder}
-            noPaddingNoMargin={props.noPaddingNoMargin}
-        >
-            {props.title}
-        </ButtonWrapper>
-    </>
+  <>
+    <ButtonWrapper
+      type="button"
+      id={props.id}
+      name={props.id}
+      disabled={props.disabled}
+      onClick={props.onClick}
+      color={props.color}
+      includeBorder={props.includeBorder}
+      noPaddingNoMargin={props.noPaddingNoMargin}
+    >
+      {props.title}
+    </ButtonWrapper>
+  </>
 );
 
 export default Button;

@@ -1,10 +1,10 @@
-import {useEffect} from 'react';
-import {createPortal} from 'react-dom';
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import Button from '../forms/Button';
 
 const ModalOverlay = styled.div.attrs({
-    className: 'modal-overlay',
+  className: 'modal-overlay',
 })`
   position: fixed;
   top: 0;
@@ -17,7 +17,7 @@ const ModalOverlay = styled.div.attrs({
 `;
 
 const ModalContainer = styled.div.attrs({
-    className: 'modal-container',
+  className: 'modal-container',
 })`
   width: 500px;
   max-width: 700px;
@@ -39,7 +39,7 @@ const ModalContainer = styled.div.attrs({
   }
 `;
 const ModalHeader = styled.div.attrs({
-    className: 'modal-header',
+  className: 'modal-header',
 })`
   padding: 1rem;
   font-weight: bold;
@@ -48,14 +48,14 @@ const ModalHeader = styled.div.attrs({
   justify-content: space-between;
 `;
 const ModalContent = styled.div.attrs({
-    className: 'modal-content',
+  className: 'modal-content',
 })`
   overflow: auto;
   padding: 5rem 2rem 5rem 2rem;
   border-bottom: 1px dashed lightgrey;
 `;
 const ModalFooter = styled.div.attrs({
-    className: 'modal-footer',
+  className: 'modal-footer',
 })`
   display: flex;
   justify-content: space-between;
@@ -65,73 +65,73 @@ const ModalFooter = styled.div.attrs({
   }
 `;
 const CloseIcon = styled.div.attrs({
-    className: 'modal-close-icon',
+  className: 'modal-close-icon',
 })`
   cursor: pointer;
 `;
 
 interface ModalProps {
-    setIsModalOpen: (isModalOpen: boolean) => void;
-    header?: string;
-    body: string | JSX.Element;
-    primaryButton: string;
-    secondaryButton?: string;
-    primaryButtonAction: () => void;
-    secondaryButtonAction?: () => void;
+  setIsModalOpen: (isModalOpen: boolean) => void;
+  header?: string;
+  body: string | JSX.Element;
+  primaryButton: string;
+  secondaryButton?: string;
+  primaryButtonAction: () => void;
+  secondaryButtonAction?: () => void;
 }
 
 const Modal = (props: ModalProps): React.ReactPortal | null => {
-    const close = () => props.setIsModalOpen(false);
+  const close = () => props.setIsModalOpen(false);
 
-    const closeOnEscapeKeyDown = (event: KeyboardEvent) => {
-        if ((event.key || event.code) === 'Escape') {
-            close();
-        }
+  const closeOnEscapeKeyDown = (event: KeyboardEvent) => {
+    if ((event.key || event.code) === 'Escape') {
+      close();
+    }
+  };
+
+  useEffect(() => {
+    document.body.addEventListener('keydown', closeOnEscapeKeyDown);
+    return function cleanup() {
+      document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
     };
+  });
 
-    useEffect(() => {
-        document.body.addEventListener('keydown', closeOnEscapeKeyDown);
-        return function cleanup() {
-            document.body.removeEventListener('keydown', closeOnEscapeKeyDown);
-        };
-    });
+  const appModal = document.getElementById('app-modal') as HTMLElement;
 
-    const appModal = document.getElementById('app-modal') as HTMLElement;
-
-    return (
-        appModal &&
-        createPortal(
-            <div id="app-modal-id">
-                <ModalOverlay onClick={close}/>
-                <ModalContainer>
-                    {props.header && (
-                        <ModalHeader>
-                            {props.header}
-                            <CloseIcon onClick={close}>[x]</CloseIcon>
-                        </ModalHeader>
-                    )}
-                    <ModalContent>{props.body}</ModalContent>
-                    <ModalFooter>
-                        {props.secondaryButton && props.secondaryButtonAction && (
-                            <Button
-                                id={'modal-secondary-button'}
-                                title={props.secondaryButton}
-                                color="orange"
-                                onClick={props.secondaryButtonAction}
-                            />
-                        )}
-                        <Button
-                            id={'modal-primary-button'}
-                            title={props.primaryButton}
-                            color="green"
-                            onClick={props.primaryButtonAction}
-                        />
-                    </ModalFooter>
-                </ModalContainer>
-            </div>,
-            appModal,
-        )
-    );
+  return (
+    appModal &&
+    createPortal(
+      <div id="app-modal-id">
+        <ModalOverlay onClick={close} />
+        <ModalContainer>
+          {props.header && (
+            <ModalHeader>
+              {props.header}
+              <CloseIcon onClick={close}>[x]</CloseIcon>
+            </ModalHeader>
+          )}
+          <ModalContent>{props.body}</ModalContent>
+          <ModalFooter>
+            {props.secondaryButton && props.secondaryButtonAction && (
+              <Button
+                id={'modal-secondary-button'}
+                title={props.secondaryButton}
+                color="orange"
+                onClick={props.secondaryButtonAction}
+              />
+            )}
+            <Button
+              id={'modal-primary-button'}
+              title={props.primaryButton}
+              color="green"
+              onClick={props.primaryButtonAction}
+            />
+          </ModalFooter>
+        </ModalContainer>
+      </div>,
+      appModal,
+    )
+  );
 };
 
 export default Modal;

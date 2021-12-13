@@ -1,14 +1,14 @@
-import {connect} from 'react-redux';
-import styled, {keyframes} from 'styled-components';
-import {GlobalState} from '../../app/store/redux';
+import { connect } from 'react-redux';
+import styled, { keyframes } from 'styled-components';
+import { GlobalState } from '../../app/store/redux';
 
 interface SpinnerProps {
-    size?: string;
-    isLoading?: boolean;
+  size?: string;
+  isLoading?: boolean;
 }
 
 const SpinnerOverlay = styled.div.attrs({
-    className: 'spinner-overlay',
+  className: 'spinner-overlay',
 })`
   position: fixed;
   top: 0;
@@ -20,7 +20,7 @@ const SpinnerOverlay = styled.div.attrs({
   background-color: rgba(255, 255, 255, 0.7);
 `;
 
-const SpinnerWrapper = styled.div.attrs({className: 'spinner-wrapper'})`
+const SpinnerWrapper = styled.div.attrs({ className: 'spinner-wrapper' })`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -38,7 +38,7 @@ const spin = keyframes`
 `;
 
 const SpinnerObject = styled.div.attrs({
-    className: 'spinner-object',
+  className: 'spinner-object',
 })<SpinnerProps>`
   display: inline-block;
   border: 20px solid mediumseagreen;
@@ -51,19 +51,19 @@ const SpinnerObject = styled.div.attrs({
 `;
 
 const Spinner = (props: SpinnerProps): React.ReactElement | null => {
-    return props.isLoading ? (
-        <SpinnerOverlay>
-            <SpinnerWrapper>
-                <SpinnerObject {...props}/>
-            </SpinnerWrapper>
-        </SpinnerOverlay>
-    ) : null;
+  return props.isLoading ? (
+    <SpinnerOverlay>
+      <SpinnerWrapper>
+        <SpinnerObject {...props} />
+      </SpinnerWrapper>
+    </SpinnerOverlay>
+  ) : null;
 };
 
-const mapStateToProps = ({spinner}: GlobalState) => {
-    return {
-        isLoading: spinner.isLoading,
-    };
+const mapStateToProps = ({ spinner }: GlobalState) => {
+  return {
+    isLoading: spinner.isLoading,
+  };
 };
 
 export default connect(mapStateToProps, null)(Spinner);

@@ -1,14 +1,14 @@
-import {useEffect, useState} from 'react';
-import styled, {css} from 'styled-components';
-import {connect} from 'react-redux';
-import {AlertState, resetAlert} from '../utils/alerts';
-import {GlobalState} from '../../app/store/redux';
-import {MSG_KEY_SESSION_INVALID} from '../utils/constants';
+import { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
+import { connect } from 'react-redux';
+import { AlertState, resetAlert } from '../utils/alerts';
+import { GlobalState } from '../../app/store/redux';
+import { MSG_KEY_SESSION_INVALID } from '../utils/constants';
 
 const AlertWrapper = styled.div.attrs({
-    className: 'alert-wrapper',
+  className: 'alert-wrapper',
 })<{
-    type: string | undefined;
+  type: string | undefined;
 }>`
   padding: 15px 35px 15px 15px;
   margin: 15px 5px 15px 5px;
@@ -17,103 +17,103 @@ const AlertWrapper = styled.div.attrs({
   display: flex;
   justify-content: space-between;
 
-  ${({type}) =>
+  ${({ type }) =>
     type === 'success'
-        ? css`
+      ? css`
           ${successCss()}
         `
-        : type === 'info'
-            ? css`
+      : type === 'info'
+      ? css`
           ${infoCss()}
         `
-            : type === 'warn'
-                ? css`
+      : type === 'warn'
+      ? css`
           ${warnCss()}
         `
-                : type === 'failure'
-                    ? css`
+      : type === 'failure'
+      ? css`
           ${failureCss()}
         `
-                    : css``}
+      : css``}
 `;
 
 const successCss = () =>
-    'color: #3c763d; ' +
-    'background-color: #dff0d8; ' +
-    'border-color: #d6e9c6; ';
+  'color: #3c763d; ' +
+  'background-color: #dff0d8; ' +
+  'border-color: #d6e9c6; ';
 
 const infoCss = () =>
-    'color: #31708f; ' +
-    'background-color: #d9edf7; ' +
-    'border-color: #bce8f1; ';
+  'color: #31708f; ' +
+  'background-color: #d9edf7; ' +
+  'border-color: #bce8f1; ';
 
 const warnCss = () =>
-    'color: #8a6d3b; ' +
-    'background-color: #fcf8e3; ' +
-    'border-color: #faebcc; ';
+  'color: #8a6d3b; ' +
+  'background-color: #fcf8e3; ' +
+  'border-color: #faebcc; ';
 
 const failureCss = () =>
-    'color: #a94442; ' +
-    'background-color: #f2dede; ' +
-    'border-color: #ebccd1; ';
+  'color: #a94442; ' +
+  'background-color: #f2dede; ' +
+  'border-color: #ebccd1; ';
 
 const CloseIcon = styled.div.attrs({
-    className: 'alert-close-icon',
+  className: 'alert-close-icon',
 })`
   cursor: pointer;
   font-weight: bold;
 `;
 
 interface AlertProps extends AlertState {
-    resetAlert: () => void;
+  resetAlert: () => void;
 }
 
 const Alert = (props: AlertProps): React.ReactElement | null => {
-    const {messageType, messageText, resetAlert} = props;
+  const { messageType, messageText, resetAlert } = props;
 
-    const [isShowAlert, setIsShowAlert] = useState(false);
-    const close = () => {
-        setIsShowAlert(false);
-        resetAlert();
-    };
+  const [isShowAlert, setIsShowAlert] = useState(false);
+  const close = () => {
+    setIsShowAlert(false);
+    resetAlert();
+  };
 
-    useEffect(() => {
-        if (messageType && messageText) {
-            setIsShowAlert(true);
-        } else {
-            setIsShowAlert(false);
-        }
-    }, [messageType, messageText]);
+  useEffect(() => {
+    if (messageType && messageText) {
+      setIsShowAlert(true);
+    } else {
+      setIsShowAlert(false);
+    }
+  }, [messageType, messageText]);
 
-    const sessionInvalidMessage = () => (
-        <>
-            Session Invalidated Due to Inactivity Please{'     '}
-            <a href="/">Click Here to Sign In</a>
-            {'     '} to Continue!!!
-        </>
-    );
+  const sessionInvalidMessage = () => (
+    <>
+      Session Invalidated Due to Inactivity Please{'     '}
+      <a href="/">Click Here to Sign In</a>
+      {'     '} to Continue!!!
+    </>
+  );
 
-    return isShowAlert ? (
-        <AlertWrapper type={messageType}>
-            <div>
-                {messageText === MSG_KEY_SESSION_INVALID
-                    ? sessionInvalidMessage()
-                    : messageText}
-            </div>
-            <CloseIcon onClick={close}>[x]</CloseIcon>
-        </AlertWrapper>
-    ) : null;
+  return isShowAlert ? (
+    <AlertWrapper type={messageType}>
+      <div>
+        {messageText === MSG_KEY_SESSION_INVALID
+          ? sessionInvalidMessage()
+          : messageText}
+      </div>
+      <CloseIcon onClick={close}>[x]</CloseIcon>
+    </AlertWrapper>
+  ) : null;
 };
 
-const mapStateToProps = ({alert}: GlobalState) => {
-    return {
-        messageType: alert.messageType,
-        messageText: alert.messageText,
-    };
+const mapStateToProps = ({ alert }: GlobalState) => {
+  return {
+    messageType: alert.messageType,
+    messageText: alert.messageText,
+  };
 };
 
 const mapDispatchToProps = {
-    resetAlert: () => resetAlert(),
+  resetAlert: () => resetAlert(),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Alert);

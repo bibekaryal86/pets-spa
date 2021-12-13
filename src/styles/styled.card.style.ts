@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 interface DisplayCardProps {
-    id?: string;
-    borderBtm?: boolean;
-    borderTop?: boolean;
-    width?: string;
-    textAlign?: string;
-    alignContent?: string;
-    background?: string;
-    fontWeight?: string;
+  id?: string;
+  borderBtm?: boolean;
+  borderTop?: boolean;
+  width?: string;
+  textAlign?: string;
+  alignContent?: string;
+  background?: string;
+  fontWeight?: string;
 }
 
 export const DisplayCardWrapper = styled.div.attrs({
-    className: 'display-card-wrapper',
+  className: 'display-card-wrapper',
 })<DisplayCardProps>`
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ export const DisplayCardWrapper = styled.div.attrs({
 `;
 
 export const DisplayCardBody = styled.div.attrs({
-    className: 'display-card-body',
+  className: 'display-card-body',
 })<DisplayCardProps>`
   border: 1px solid lightgrey;
   border-radius: 5px;
@@ -37,7 +37,7 @@ export const DisplayCardBody = styled.div.attrs({
 `;
 
 export const DisplayCardRow = styled.div.attrs({
-    className: 'display-card-row',
+  className: 'display-card-row',
 })<DisplayCardProps>`
   padding: 5px;
   border-bottom: ${(props) => (props.borderBtm ? '1px solid lightgrey' : '')};

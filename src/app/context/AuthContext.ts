@@ -1,23 +1,26 @@
-import {createContext} from 'react';
-import {DefaultUserDetails, UserDetails,} from '../../home/types/home.data.types';
+import { createContext } from 'react';
+import {
+  DefaultUserDetails,
+  UserDetails,
+} from '../../home/types/home.data.types';
 
 export interface AuthState {
-    isLoggedIn: boolean;
-    token: string;
-    userDetails: UserDetails;
+  isLoggedIn: boolean;
+  token: string;
+  userDetails: UserDetails;
 }
 
 export interface AuthAction {
-    authState: AuthState;
+  authState: AuthState;
 }
 
 export const DefaultAuthState = {
-    isLoggedIn: false,
-    token: '',
-    userDetails: DefaultUserDetails,
+  isLoggedIn: false,
+  token: '',
+  userDetails: DefaultUserDetails,
 };
 
 export const AuthContext = createContext({
-    auth: DefaultAuthState,
-    login: (auth: AuthState) => auth,
+  auth: DefaultAuthState,
+  login: (auth: AuthState) => auth,
 });

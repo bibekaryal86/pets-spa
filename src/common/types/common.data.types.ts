@@ -1,3 +1,3 @@
 export interface Status {
-    errMsg: string;
+  errMsg: string;
 }
