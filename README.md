@@ -1,26 +1,26 @@
-# pets-ui-layer
+# pets-spa
 
 This app uses React/Redux/Typescript to provide a user interface. It uses fetch to call microservices, via gateway, to
 retrieve/insert/modify/delete data, and present the same data to users.
 
 This app is one of the five apps that form the PETS (Personal Expenses Tracking System) application:
 
-* https://github.com/bibekaryal86/pets-database-layer
-* https://github.com/bibekaryal86/pets-service-layer
-* https://github.com/bibekaryal86/pets-authenticate-layer
-* https://github.com/bibekaryal86/pets-gateway-layer
-* https://github.com/bibekaryal86/pets-ui-layer (this)
+* https://github.com/bibekaryal86/pets-database
+* https://github.com/bibekaryal86/pets-service
+* https://github.com/bibekaryal86/pets-authenticate
+* https://github.com/bibekaryal86/pets-gateway
+* https://github.com/bibekaryal86/pets-spa (this)
 
 The following are some things to make for better usability of the app:
 
 * A page to import transactions (or any other data points)
     * A couple of ways to go about it:
-        * Grab the csv data and pass it to `pets-service-layer` to process the data
+        * Grab the csv data and pass it to `pets-service` to process the data
         * Process the data in the app itself and use existing endpoints to insert data
 * Add test coverage, which currently has been added to one module only
 * React Styleguidist
 * Reduce the amount of data while retrieving data (esp transactions)
-    * This requires changes to at least `pets-service-layer` as well
+    * This requires changes to at least `pets-service` as well
     * Another idea -> instead of pagination, get transactions for a year at a time, with option to get data multi-year,
       but with a warning message that the process could be slowed down because of the volume of data
 * Make the header menu fixed so that even when scrolling the header menu remains on top
