@@ -1,7 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvPlugin = require('dotenv-webpack');
 
@@ -60,12 +58,6 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true,
       },
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
-    new ESLintPlugin({
-      extensions: ['js', 'ts', 'tsx'],
     }),
     new CleanWebpackPlugin(),
     new DotenvPlugin({
