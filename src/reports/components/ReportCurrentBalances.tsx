@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReportCurrentBalances } from '../types/reports.data.types';
 import Table from '../../common/forms/Table';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
@@ -13,12 +14,12 @@ interface ReportCurrentBalancesProps {
 export const CurrentBalancesReport = (
   props: ReportCurrentBalancesProps,
 ): React.ReactElement => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToAccounts = (accountTypeId: string) => {
     SessionStorage.setItem(SESSION_ACCOUNT_FILTERS, {
       accountTypeId,
     });
-    history.push('/accounts');
+    navigate('/accounts');
   };
 
   const getAssets = () => {

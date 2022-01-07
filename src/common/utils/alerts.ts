@@ -1,3 +1,4 @@
+import React from 'react';
 import { RESET_ALERT, SET_ALERT } from '../types/common.action.types';
 import { ALERT_MESSAGES } from './constants';
 

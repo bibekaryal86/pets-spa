@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   MERCHANTS_CLEAR_FILTER,
   MERCHANTS_DELETE_MODAL_ACTION,

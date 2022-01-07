@@ -1,11 +1,11 @@
-import {
+import React, {
   useCallback,
   useContext,
   useEffect,
   useReducer,
   useState,
 } from 'react';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Account } from '../../accounts/types/accounts.data.types';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import { AuthContext } from '../../app/context/AuthContext';
@@ -87,10 +87,6 @@ interface OneTransactionProps {
   resetOnPageLeave: () => void;
 }
 
-interface RouteParams {
-  id: string;
-}
-
 interface QueryParams {
   accountId: string;
   merchantId: string;
@@ -136,8 +132,8 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
   const [isValidId, setIsValidId] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [queryParamsValue, setQueryParamsValue] = useState(DefaultQueryParams);
-  const { id } = useParams<RouteParams>();
-  const history = useHistory();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id && id !== ':id') {
@@ -149,7 +145,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
   useEffect(() => {
     if (username && isValidId) {
-      getTransactions(username, id);
+      getTransactions(username, id || '');
     }
   }, [getTransactions, id, isValidId, transactionsList, username]);
 
@@ -243,8 +239,8 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
   const showAllTransactions = useCallback(() => {
     resetAlert();
     resetOnPageLeave();
-    return history.push('/transactions');
-  }, [history, resetAlert, resetOnPageLeave]);
+    return navigate('/transactions');
+  }, [navigate, resetAlert, resetOnPageLeave]);
 
   // clear message when leaving the page
   useEffect(() => {
@@ -702,7 +698,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
       resetAlert();
       const transactionsRequest = transactionRequestFromOneTransaction();
       const txnId = isValidId ? id : '';
-      updateTransaction(username, txnId, transactionsRequest, method);
+      updateTransaction(username, txnId || '', transactionsRequest, method);
 
       if (method === 'POST') {
         showAllTransactions();
@@ -716,7 +712,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
   const deleteTransactionActionEnd = () => {
     setIsDeleteModalOpen(false);
-    deleteTransaction(username, id);
+    deleteTransaction(username, id || '');
     showAllTransactions();
   };
 

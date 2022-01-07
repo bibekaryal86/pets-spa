@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PetsLogo from '/public/images/petslogo.gif';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';

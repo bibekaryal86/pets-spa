@@ -1,3 +1,4 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
 import { getEndpoint } from '../../home/utils/endpoint';
 import {

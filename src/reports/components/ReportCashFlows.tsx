@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import { ReportCashFlows } from '../types/reports.data.types';
 import { DisplayCardRow } from '../../styles/styled.card.style';
@@ -20,7 +21,7 @@ interface ReportCashFlowsProps {
 export const CashFlowsReport = (
   props: ReportCashFlowsProps,
 ): React.ReactElement | null => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToTransactions = (txnDateFrom: string, txnDateTo: string) => {
     SessionStorage.setItem(SESSION_TRANSACTION_FILTERS, {
       ...DefaultTransactionFilters,
@@ -29,7 +30,7 @@ export const CashFlowsReport = (
       txnDateTo,
       txnDateToOnBlur: true,
     });
-    history.push('/transactions');
+    navigate('/transactions');
   };
 
   const tableHeaders = ['Month', 'Incomes', 'Expenses', 'Gain/Loss'];

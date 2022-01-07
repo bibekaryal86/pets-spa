@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import { DefaultUserDetails } from '../types/home.data.types';
 
@@ -23,7 +23,7 @@ const SignOut = (props: SignOutProps): React.ReactElement => {
     authContext.login(auth);
   }, [authContext, props]);
 
-  return <Redirect to="/" />;
+  return <Navigate to="/" />;
 };
 
 export default SignOut;

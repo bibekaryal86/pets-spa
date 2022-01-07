@@ -1,3 +1,4 @@
+import React from 'react';
 import moment from 'moment';
 import { GlobalDispatch } from '../../app/store/redux';
 import { SESSION_TRANSACTION_FILTERS } from '../../common/utils/constants';

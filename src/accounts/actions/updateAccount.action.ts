@@ -1,3 +1,4 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
 import {
   MSG_KEY_EDIT_ACCOUNT_FAIL,

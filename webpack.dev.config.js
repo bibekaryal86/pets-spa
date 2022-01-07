@@ -44,7 +44,9 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   target: 'web',
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
+    static: {
+      directory: path.resolve(__dirname, 'build'),
+    },
     historyApiFallback: true,
     port: 8000,
     open: false,

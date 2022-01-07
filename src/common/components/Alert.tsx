@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import { AlertState, resetAlert } from '../utils/alerts';

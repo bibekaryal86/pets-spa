@@ -1,3 +1,4 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
 import { MSG_KEY_FAIL_SIGNIN } from '../../common/utils/constants';
 import { FetchOptions, FetchResponse } from '../../common/utils/fetch';

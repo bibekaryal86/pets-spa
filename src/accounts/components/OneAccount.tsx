@@ -1,12 +1,11 @@
-import {
+import React, {
   useCallback,
   useContext,
   useEffect,
   useReducer,
   useState,
 } from 'react';
-import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
@@ -68,10 +67,6 @@ export interface OneAccountProps {
   deleteTransaction: (username: string, id: string) => void;
 }
 
-interface RouteParams {
-  id: string;
-}
-
 const OneAccount = (props: OneAccountProps): React.ReactElement => {
   const [username, setUsername] = useState('');
   const authContext = useContext(AuthContext);
@@ -102,8 +97,8 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
   const [accountData, setAccountData] = useReducer(oneAccount, DefaultAccount);
   const [isValidId, setIsValidId] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const { id } = useParams<RouteParams>();
-  const history = useHistory();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id && id !== ':id') {
@@ -115,7 +110,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
 
   useEffect(() => {
     if (username && isValidId) {
-      getAccounts(username, id);
+      getAccounts(username, id || '');
       getTransactions(username, { accountId: id });
     }
   }, [
@@ -148,17 +143,17 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
   const showAllAccounts = useCallback(() => {
     resetAlert();
     resetOnPageLeave();
-    return history.push('/accounts');
-  }, [history, resetAlert, resetOnPageLeave]);
+    return navigate('/accounts');
+  }, [navigate, resetAlert, resetOnPageLeave]);
 
   const showAllTransactions = useCallback(() => {
-    return history.push('/transactions');
-  }, [history]);
+    return navigate('/transactions');
+  }, [navigate]);
 
   const showAddNewTransaction = useCallback(() => {
     const url = `/transaction/?accountId=${id}`;
-    return history.push(url);
-  }, [history, id]);
+    return navigate(url);
+  }, [id, navigate]);
 
   const showBodyHeader = () => (
     <DisplayCardWrapper id="one-account-body-header">

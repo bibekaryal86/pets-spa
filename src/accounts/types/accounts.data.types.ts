@@ -23,7 +23,7 @@ export interface Account {
 export interface AccountFilters {
   accountTypeId?: string;
   bankId?: string;
-  status?: string;
+  status?: string | null;
 }
 
 export interface AccountsRequest {

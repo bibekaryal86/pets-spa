@@ -1,11 +1,11 @@
-import {
+import React, {
   useCallback,
   useContext,
   useEffect,
   useReducer,
   useState,
 } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
@@ -218,12 +218,12 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
     }
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToMerchant = useCallback(
     (id: string) => {
-      return history.push(`/merchant/${id}`);
+      return navigate(`/merchant/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const headers = ['Merchant Name', 'Actions'];

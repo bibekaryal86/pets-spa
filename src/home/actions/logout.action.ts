@@ -1,3 +1,4 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
 import { FetchOptions, FetchResponse } from '../../common/utils/fetch';
 import { LocalStorage } from '../../common/utils/localStorageHelper';

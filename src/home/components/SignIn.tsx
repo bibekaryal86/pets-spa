@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Input, { InputType } from '../../common/forms/Input';
 import Button from '../../common/forms/Button';
 import { validateLogInInput } from '../utils/validate';
@@ -11,8 +11,7 @@ import {
   MSG_KEY_SIGNIN_FIRST,
 } from '../../common/utils/constants';
 import { AuthContext } from '../../app/context/AuthContext';
-import { useHistory, useLocation } from 'react-router';
-import { Redirect } from 'react-router-dom';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import {
   DisplayCardBody,
   DisplayCardRow,
@@ -145,7 +144,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
   const location = useLocation();
   const locationState = location.state as { redirect: string };
   const redirectToPage = (locationState && locationState.redirect) || '';
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (redirectToPage) {
@@ -154,9 +153,12 @@ const SignIn = (props: SignInProps): React.ReactElement => {
         setAlert(ALERT_TYPE_FAILURE, MSG_KEY_SIGNIN_FIRST);
       }
 
-      history.replace({ ...history.location, state: { redirect: '' } });
+      navigate(redirectToPage || '/home', {
+        replace: true,
+        state: { redirect: '' },
+      });
     }
-  }, [authContext.auth.isLoggedIn, redirectToPage, setAlert, history]);
+  }, [authContext.auth.isLoggedIn, navigate, redirectToPage, setAlert]);
 
   useEffect(() => {
     return () => setRedirectTo('');
@@ -165,9 +167,9 @@ const SignIn = (props: SignInProps): React.ReactElement => {
   const redirect = useCallback(() => {
     const pageToRedirectTo = redirectToPage || redirectTo;
     if (pageToRedirectTo) {
-      return <Redirect to={pageToRedirectTo} />;
+      return <Navigate to={pageToRedirectTo} />;
     } else {
-      return <Redirect to="/summary" />;
+      return <Navigate to="/summary" />;
     }
   }, [redirectTo, redirectToPage]);
 

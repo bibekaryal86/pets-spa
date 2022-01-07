@@ -1,4 +1,4 @@
-import {
+import React, {
   useCallback,
   useContext,
   useEffect,
@@ -6,7 +6,7 @@ import {
   useReducer,
   useState,
 } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import HrefLink from '../../common/forms/HrefLink';
 import Select, { SelectOptionProps } from '../../common/forms/Select';
@@ -166,12 +166,12 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
     [onChangeFilter],
   );
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToAccount = useCallback(
     (id: string) => {
-      return history.push(`/account/${id}`);
+      return navigate(`/account/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const tableHeaders = useMemo(

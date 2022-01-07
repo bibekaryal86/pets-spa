@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   MERCHANTS_COMPLETE,
   MERCHANTS_EDIT_FAILURE,

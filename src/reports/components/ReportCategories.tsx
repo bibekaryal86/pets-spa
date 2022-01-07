@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import { ReportCategoryTypes } from '../types/reports.data.types';
 import { DisplayCardRow } from '../../styles/styled.card.style';
@@ -31,7 +32,7 @@ interface ReportCategoryTypesProps {
 export const CategoriesReport = (
   props: ReportCategoryTypesProps,
 ): React.ReactElement => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToTransactions = (
     categoryTypeId: string,
     categoryId: string,
@@ -41,7 +42,7 @@ export const CategoriesReport = (
       categoryTypeId,
       categoryId,
     });
-    history.push('/transactions');
+    navigate('/transactions');
   };
 
   const categoriesTotal = (reportCategoryType: ReportCategoryTypes) => {

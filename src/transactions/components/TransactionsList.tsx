@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
 import HrefLink from '../../common/forms/HrefLink';
@@ -25,7 +25,7 @@ const DefaultDeleteTransaction: DeleteTransaction = {
 };
 
 const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [txnToDelete, setTxnToDelete] = useState(DefaultDeleteTransaction);
 
@@ -49,23 +49,23 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
 
   const onClickToAccount = useCallback(
     (id: string) => {
-      return history.push(`/account/${id}`);
+      return navigate(`/account/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const onClickToMerchant = useCallback(
     (id: string) => {
-      return history.push(`/merchant/${id}`);
+      return navigate(`/merchant/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const onClickToTransaction = useCallback(
     (id: string) => {
-      return history.push(`/transaction/${id}`);
+      return navigate(`/transaction/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const deleteTransactionModal = () => (

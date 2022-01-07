@@ -1,3 +1,4 @@
+import React from 'react';
 import { ACCOUNTS_SELECT_ACCOUNT_TRANSACTIONS } from '../../accounts/types/accounts.action.types';
 import {
   AccountsAction,

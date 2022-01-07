@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 import { connect } from 'react-redux';
 import AllGlobalStyles from '../../styles/AllGlobalStyles';
 import Header from './Header';

@@ -1,4 +1,4 @@
-import {
+import React, {
   useCallback,
   useContext,
   useEffect,
@@ -6,7 +6,7 @@ import {
   useReducer,
   useState,
 } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Account } from '../../accounts/types/accounts.data.types';
 import { AuthContext } from '../../app/context/AuthContext';
@@ -377,9 +377,9 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
     transactionFilters.txnDateTo,
   ]);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const showAddNewTransaction = () => {
-    return history.push('/transaction');
+    return navigate('/transaction');
   };
 
   const showFiltersContent = () => (
@@ -441,7 +441,7 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
       filterText += '[Transaction Type]';
     }
     if (transactionFilters.categoryTypeId) {
-      filterText += '[Categry Type]';
+      filterText += '[Category Type]';
     }
     if (transactionFilters.categoryId) {
       filterText += '[Category]';
