@@ -153,7 +153,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
         setAlert(ALERT_TYPE_FAILURE, MSG_KEY_SIGNIN_FIRST);
       }
 
-      navigate(redirectToPage || '/home', {
+      navigate('/', {
         replace: true,
         state: { redirect: '' },
       });
