@@ -1,9 +1,6 @@
 import { SelectOptionProps } from '../../common/forms/Select';
 import { YEAR_ZERO } from '../../common/utils/constants';
-import {
-  ReportCategories,
-  ReportCategoryTypes,
-} from '../types/reports.data.types';
+import { ReportCategories, ReportCategoryTypes } from '../types/reports.data.types';
 
 export const yearsDropdownForReports = (): SelectOptionProps[] => {
   const years = [] as SelectOptionProps[];
@@ -18,12 +15,8 @@ export const yearsDropdownForReports = (): SelectOptionProps[] => {
   return years;
 };
 
-export const reportCategories = (
-  report: ReportCategoryTypes[],
-): ReportCategories[] => {
+export const reportCategories = (report: ReportCategoryTypes[]): ReportCategories[] => {
   const reportCategories = report.flatMap((x) => x.reportCategories);
-  reportCategories.sort((a, b) =>
-    a.refCategory?.description > b.refCategory?.description ? 1 : -1,
-  );
+  reportCategories.sort((a, b) => (a.refCategory?.description > b.refCategory?.description ? 1 : -1));
   return reportCategories;
 };

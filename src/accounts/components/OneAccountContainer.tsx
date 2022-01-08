@@ -24,24 +24,16 @@ const mapStateToProps = ({ accounts, refTypes }: GlobalState) => {
 };
 
 const mapDispatchToProps = {
-  getAccounts: (username: string, selectedAccountId: string) =>
-    getAccounts(username, selectedAccountId),
-  updateAccount: (
-    username: string,
-    id: string,
-    account: Account,
-    method: string,
-  ) => updateAccount(username, id, account, method),
+  getAccounts: (username: string, selectedAccountId: string) => getAccounts(username, selectedAccountId),
+  updateAccount: (username: string, id: string, account: Account, method: string) =>
+    updateAccount(username, id, account, method),
   deleteAccount: (username: string, id: string) => deleteAccount(username, id),
   setAlert: (type: string, messageKey: string) => setAlert(type, messageKey),
   resetAlert: () => resetAlert(),
   resetOnPageLeave: () => resetOnPageLeave(),
-  getTransactions: (
-    username: string,
-    transactionFilters: Partial<TransactionFilters>,
-  ) => getTransactions(username, transactionFilters),
-  deleteTransaction: (username: string, id: string) =>
-    deleteTransaction(username, id),
+  getTransactions: (username: string, transactionFilters: Partial<TransactionFilters>) =>
+    getTransactions(username, transactionFilters),
+  deleteTransaction: (username: string, id: string) => deleteTransaction(username, id),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OneAccount);

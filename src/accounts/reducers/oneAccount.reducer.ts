@@ -1,9 +1,6 @@
 import { Account, OneAccountAction } from '../types/accounts.data.types';
 
-export default function oneAccount(
-  state: Account,
-  action: OneAccountAction,
-): Account {
+export default function oneAccount(state: Account, action: OneAccountAction): Account {
   const { account } = action;
   return {
     ...state,

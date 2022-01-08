@@ -29,19 +29,10 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [txnToDelete, setTxnToDelete] = useState(DefaultDeleteTransaction);
 
-  const { transactions, selectedAccountId, username, deleteTransaction } =
-    props;
+  const { transactions, selectedAccountId, username, deleteTransaction } = props;
 
   const tableHeaders = useMemo(
-    () => [
-      'Date',
-      'Category',
-      'Account',
-      'Transfer To',
-      'Merchant',
-      'Amount',
-      'Actions',
-    ],
+    () => ['Date', 'Category', 'Account', 'Transfer To', 'Merchant', 'Amount', 'Actions'],
     [],
   );
 
@@ -93,12 +84,7 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
   const buttons = useCallback(
     (id: string, date: string) => (
       <>
-        <Button
-          id={`txn-list-button-view-${id}`}
-          title="View"
-          onClick={() => onClickToTransaction(id)}
-          includeBorder
-        />
+        <Button id={`txn-list-button-view-${id}`} title="View" onClick={() => onClickToTransaction(id)} includeBorder />
         <Button
           id={`txn-list-button-delete-${id}`}
           title="Delete"
@@ -148,13 +134,7 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
         actions: buttons(x.id, x.date),
       };
     });
-  }, [
-    buttons,
-    onClickToAccount,
-    onClickToMerchant,
-    selectedAccountId,
-    transactions,
-  ]);
+  }, [buttons, onClickToAccount, onClickToMerchant, selectedAccountId, transactions]);
 
   const showTransactionsList = useCallback(
     () => (

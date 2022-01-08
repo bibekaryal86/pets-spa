@@ -57,8 +57,7 @@ interface InputOptionalCallbacks {
   onPaste(event?: React.ClipboardEvent<HTMLInputElement>): void;
 }
 
-interface InputProps
-  extends Partial<InputOptionalProps & InputOptionalCallbacks> {
+interface InputProps extends Partial<InputOptionalProps & InputOptionalCallbacks> {
   id: string;
   label: string;
   value: string;
@@ -74,12 +73,7 @@ const Input = React.memo<InputProps>((props) => {
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (!props.disabled) {
-        props.onChange(
-          props.inputFilter
-            ? props.inputFilter(value, event.target.value)
-            : event.target.value,
-          event,
-        );
+        props.onChange(props.inputFilter ? props.inputFilter(value, event.target.value) : event.target.value, event);
       }
     },
     [props, value],
@@ -105,14 +99,11 @@ const Input = React.memo<InputProps>((props) => {
     [props],
   );
 
-  const formLabel = (label: string, required?: boolean): string =>
-    required ? label + ' *' : label;
+  const formLabel = (label: string, required?: boolean): string => (required ? label + ' *' : label);
 
   return (
     <InputWrapper focus={focus} required={props.required}>
-      <FormLabel htmlFor={props.id}>
-        {formLabel(props.label, props.required)}
-      </FormLabel>
+      <FormLabel htmlFor={props.id}>{formLabel(props.label, props.required)}</FormLabel>
       <FormInput
         className={props.className}
         id={props.id}

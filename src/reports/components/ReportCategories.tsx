@@ -6,10 +6,7 @@ import { DisplayCardRow } from '../../styles/styled.card.style';
 import Table from '../../common/forms/Table';
 import { reportCategories } from '../utils/reports.utils';
 import HrefLink from '../../common/forms/HrefLink';
-import {
-  REPORT_PATH_CATEGORIES,
-  SESSION_TRANSACTION_FILTERS,
-} from '../../common/utils/constants';
+import { REPORT_PATH_CATEGORIES, SESSION_TRANSACTION_FILTERS } from '../../common/utils/constants';
 import styled from 'styled-components';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
 import { DefaultTransactionFilters } from '../../transactions/types/transactions.data.types';
@@ -29,14 +26,9 @@ interface ReportCategoryTypesProps {
   showMore?: boolean;
 }
 
-export const CategoriesReport = (
-  props: ReportCategoryTypesProps,
-): React.ReactElement => {
+export const CategoriesReport = (props: ReportCategoryTypesProps): React.ReactElement => {
   const navigate = useNavigate();
-  const onClickToTransactions = (
-    categoryTypeId: string,
-    categoryId: string,
-  ) => {
+  const onClickToTransactions = (categoryTypeId: string, categoryId: string) => {
     SessionStorage.setItem(SESSION_TRANSACTION_FILTERS, {
       ...DefaultTransactionFilters,
       categoryTypeId,
@@ -85,11 +77,7 @@ export const CategoriesReport = (
         {props.showMore && (
           <DisplayCardRow>
             Click here to see reports for previous years:
-            <HrefLink
-              id="report-categories-show-more"
-              linkTo={REPORT_PATH_CATEGORIES}
-              title="Categories Report"
-            />
+            <HrefLink id="report-categories-show-more" linkTo={REPORT_PATH_CATEGORIES} title="Categories Report" />
           </DisplayCardRow>
         )}
 

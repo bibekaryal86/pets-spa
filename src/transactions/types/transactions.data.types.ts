@@ -1,20 +1,8 @@
-import {
-  Account,
-  DefaultAccount,
-} from '../../accounts/types/accounts.data.types';
+import { Account, DefaultAccount } from '../../accounts/types/accounts.data.types';
 import { Status } from '../../common/types/common.data.types';
-import {
-  RefCategory,
-  RefTransactionType,
-} from '../../common/types/refTypes.data.types';
-import {
-  DefaultUserDetails,
-  UserDetails,
-} from '../../home/types/home.data.types';
-import {
-  DefaultMerchant,
-  Merchant,
-} from '../../merchants/types/merchants.data.types';
+import { RefCategory, RefTransactionType } from '../../common/types/refTypes.data.types';
+import { DefaultUserDetails, UserDetails } from '../../home/types/home.data.types';
+import { DefaultMerchant, Merchant } from '../../merchants/types/merchants.data.types';
 
 export interface Transaction {
   id: string;

@@ -2,15 +2,8 @@ import React, { useCallback, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { CSVLink } from 'react-csv';
 import { getCsvReport, getSortData, getSortedData } from '../utils/table';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
-import {
-  TABLE_EXPORT_KEYS_TO_AVOID,
-  TABLE_SORTED_NONE_CODE,
-} from '../utils/constants';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
+import { TABLE_EXPORT_KEYS_TO_AVOID, TABLE_SORTED_NONE_CODE } from '../utils/constants';
 
 const TableMaxWidthWrapper = styled.div.attrs({
   className: 'table-max-width-wrapper',
@@ -61,8 +54,7 @@ const TableCell = css`
 const TableRow = styled.tr<{
   verticalAlign?: string;
 }>`
-  vertical-align: ${(props) =>
-    props.verticalAlign ? props.verticalAlign : ''};
+  vertical-align: ${(props) => (props.verticalAlign ? props.verticalAlign : '')};
 `;
 
 const TableHead = styled.th<{
@@ -127,12 +119,7 @@ const Table = (props: TableProps): React.ReactElement | null => {
 
   const sortTableData = useCallback(
     (header: string, index: number) => {
-      const updatedSortData = getSortData(
-        sortData,
-        header,
-        index,
-        props.data?.[0],
-      );
+      const updatedSortData = getSortData(sortData, header, index, props.data?.[0]);
       setSortData(updatedSortData);
     },
     [props.data, sortData],
@@ -159,14 +146,10 @@ const Table = (props: TableProps): React.ReactElement | null => {
                           props.onHeaderClick && props.onHeaderClick(header);
                           props.isSortAllowed && sortTableData(header, key);
                         }}
-                        isSortAllowed={
-                          props.isSortAllowed &&
-                          !TABLE_EXPORT_KEYS_TO_AVOID.includes(header)
-                        }
+                        isSortAllowed={props.isSortAllowed && !TABLE_EXPORT_KEYS_TO_AVOID.includes(header)}
                       >
                         {header}
-                        {header === sortData.header &&
-                          String.fromCharCode(sortData.sortedDirection)}
+                        {header === sortData.header && String.fromCharCode(sortData.sortedDirection)}
                       </TableHead>
                     ))}
                   </TableRow>
@@ -181,16 +164,10 @@ const Table = (props: TableProps): React.ReactElement | null => {
                       <TableRow
                         verticalAlign={props.verticalAlign}
                         key={index}
-                        onClick={() =>
-                          props.onRowClick && props.onRowClick(item)
-                        }
+                        onClick={() => props.onRowClick && props.onRowClick(item)}
                       >
-                        {(
-                          Object.keys(tableData[0]) as Array<keyof TableData>
-                        ).map((key) => (
-                          <TableCellData key={key.toString()}>
-                            {item[key]}
-                          </TableCellData>
+                        {(Object.keys(tableData[0]) as Array<keyof TableData>).map((key) => (
+                          <TableCellData key={key.toString()}>{item[key]}</TableCellData>
                         ))}
                       </TableRow>
                     ))
@@ -200,26 +177,15 @@ const Table = (props: TableProps): React.ReactElement | null => {
                   (typeof props.footer === 'string' ? (
                     <TableFooter>
                       <TableRow>
-                        <TableCellData colSpan={100}>
-                          {props.footer}
-                        </TableCellData>
+                        <TableCellData colSpan={100}>{props.footer}</TableCellData>
                       </TableRow>
                     </TableFooter>
                   ) : (
                     <TableFooter>
                       {props.footer.map((item: TableData, index: number) => (
-                        <TableRow
-                          key={index}
-                          onClick={() =>
-                            props.onRowClick && props.onRowClick(item)
-                          }
-                        >
-                          {(
-                            Object.keys(tableData[0]) as Array<keyof TableData>
-                          ).map((key) => (
-                            <TableCellData key={key.toString()}>
-                              {item[key]}
-                            </TableCellData>
+                        <TableRow key={index} onClick={() => props.onRowClick && props.onRowClick(item)}>
+                          {(Object.keys(tableData[0]) as Array<keyof TableData>).map((key) => (
+                            <TableCellData key={key.toString()}>{item[key]}</TableCellData>
                           ))}
                         </TableRow>
                       ))}
@@ -229,15 +195,7 @@ const Table = (props: TableProps): React.ReactElement | null => {
             </TableScrollWrapper>
             {props.isExportToCsv && tableData?.length && props.headers?.length && (
               <CSVLinkWrapper>
-                <CSVLink
-                  {...getCsvReport(
-                    props.headers,
-                    tableData,
-                    props.exportToCsvFileName,
-                  )}
-                >
-                  Export to CSV
-                </CSVLink>
+                <CSVLink {...getCsvReport(props.headers, tableData, props.exportToCsvFileName)}>Export to CSV</CSVLink>
               </CSVLinkWrapper>
             )}
           </TableMaxWidthWrapper>

@@ -1,9 +1,6 @@
 import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
-import {
-  MSG_KEY_DELETE_ACCOUNT_FAIL,
-  MSG_KEY_EDIT_ACCOUNT_SUCCESS,
-} from '../../common/utils/constants';
+import { MSG_KEY_DELETE_ACCOUNT_FAIL, MSG_KEY_EDIT_ACCOUNT_SUCCESS } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
@@ -20,19 +17,13 @@ export const deleteAccount = (username: string, id: string) => {
     dispatch(deleteAccountRequest());
 
     try {
-      const urlPath = getEndpoint([
-        process.env.BASE_URL as string,
-        process.env.EDIT_ACCOUNT_ENDPOINT as string,
-      ]);
+      const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.EDIT_ACCOUNT_ENDPOINT as string]);
       const options: Partial<FetchOptions> = {
         method: 'DELETE',
         pathParams: { username },
         queryParams: { id },
       };
-      const deleteAccountResponse = (await prefetch(
-        urlPath,
-        options,
-      )) as AccountsResponse;
+      const deleteAccountResponse = (await prefetch(urlPath, options)) as AccountsResponse;
 
       if (deleteAccountResponse && !deleteAccountResponse.status) {
         dispatch(deleteAccountSuccess());

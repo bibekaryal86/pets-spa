@@ -4,10 +4,7 @@ import { mount } from 'enzyme';
 import { AuthContext } from '../../app/context/AuthContext';
 import { getAuthSample } from '../../common/fixtures/authContext.sample.data';
 import { ACCOUNTS_SAMPLE_DATA } from '../../common/fixtures/accounts.sample.data';
-import {
-  REF_ACCOUNT_TYPES,
-  REF_BANKS,
-} from '../../common/fixtures/refTypes.sample.data';
+import { REF_ACCOUNT_TYPES, REF_BANKS } from '../../common/fixtures/refTypes.sample.data';
 import { DefaultAccount } from '../types/accounts.data.types';
 import * as accountUtils from '../utils/accounts.utils';
 
@@ -81,21 +78,11 @@ describe('other one account tests', () => {
             accountsList,
           });
 
-          expect(
-            output.find('#one-account-button-add').at(0).prop('title'),
-          ).toEqual('Add Account');
-          expect(
-            output.find('button[id="one-account-button-add"]').prop('disabled'),
-          ).toBeTruthy();
+          expect(output.find('#one-account-button-add').at(0).prop('title')).toEqual('Add Account');
+          expect(output.find('button[id="one-account-button-add"]').prop('disabled')).toBeTruthy();
 
-          expect(
-            output.find('#one-account-button-reset').at(0).prop('title'),
-          ).toEqual('Revert Changes');
-          expect(
-            output
-              .find('button[id="one-account-button-reset"]')
-              .prop('disabled'),
-          ).toBeTruthy();
+          expect(output.find('#one-account-button-reset').at(0).prop('title')).toEqual('Revert Changes');
+          expect(output.find('button[id="one-account-button-reset"]').prop('disabled')).toBeTruthy();
         });
 
         it('buttons are enabled when an input is updated', () => {
@@ -107,14 +94,8 @@ describe('other one account tests', () => {
             target: { value: 'ACCOUNT CASH' },
           });
 
-          expect(
-            output.find('button[id="one-account-button-add"]').prop('disabled'),
-          ).toBeFalsy();
-          expect(
-            output
-              .find('button[id="one-account-button-reset"]')
-              .prop('disabled'),
-          ).toBeFalsy();
+          expect(output.find('button[id="one-account-button-add"]').prop('disabled')).toBeFalsy();
+          expect(output.find('button[id="one-account-button-reset"]').prop('disabled')).toBeFalsy();
         });
 
         describe('revert button actions', () => {
@@ -123,49 +104,33 @@ describe('other one account tests', () => {
               accountsList,
             });
 
-            expect(
-              output.find('input[id="one-account-name-input"]').prop('value'),
-            ).toEqual('');
+            expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('');
 
-            output
-              .find('input[id="one-account-name-input"]')
-              .simulate('change', {
-                target: { value: 'ACCOUNT CASH' },
-              });
+            output.find('input[id="one-account-name-input"]').simulate('change', {
+              target: { value: 'ACCOUNT CASH' },
+            });
 
-            expect(
-              output.find('input[id="one-account-name-input"]').prop('value'),
-            ).toEqual('ACCOUNT CASH');
+            expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('ACCOUNT CASH');
 
-            output
-              .find('button[id="one-account-button-reset"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-reset"]').simulate('click');
 
-            expect(
-              output.find('input[id="one-account-name-input"]').prop('value'),
-            ).toEqual('');
+            expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('');
           });
         });
 
         describe('add button actions', () => {
           it('calls validate and set alert if not valid', () => {
-            const validateAccountSpy = jest
-              .spyOn(accountUtils, 'validateAccount')
-              .mockReturnValue(' [Bank] ');
+            const validateAccountSpy = jest.spyOn(accountUtils, 'validateAccount').mockReturnValue(' [Bank] ');
 
             const output = renderOneAccount({
               accountsList,
             });
 
-            output
-              .find('input[id="one-account-name-input"]')
-              .simulate('change', {
-                target: { value: 'ACCOUNT CASH' },
-              });
+            output.find('input[id="one-account-name-input"]').simulate('change', {
+              target: { value: 'ACCOUNT CASH' },
+            });
 
-            output
-              .find('button[id="one-account-button-add"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-add"]').simulate('click');
 
             expect(validateAccountSpy).toHaveBeenCalledTimes(1);
             expect(setAlert).toHaveBeenCalledTimes(1);
@@ -176,23 +141,17 @@ describe('other one account tests', () => {
           });
 
           it('calls made when changes are valid', () => {
-            const validateAccountSpy = jest
-              .spyOn(accountUtils, 'validateAccount')
-              .mockReturnValue('');
+            const validateAccountSpy = jest.spyOn(accountUtils, 'validateAccount').mockReturnValue('');
 
             const output = renderOneAccount({
               accountsList,
             });
 
-            output
-              .find('input[id="one-account-name-input"]')
-              .simulate('change', {
-                target: { value: 'ACCOUNT CASH' },
-              });
+            output.find('input[id="one-account-name-input"]').simulate('change', {
+              target: { value: 'ACCOUNT CASH' },
+            });
 
-            output
-              .find('button[id="one-account-button-add"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-add"]').simulate('click');
 
             const accountData = {
               ...DefaultAccount,
@@ -205,12 +164,7 @@ describe('other one account tests', () => {
             expect(resetAlert).toHaveBeenCalledTimes(2); // updateAccountAction and showAllAccounts
             expect(resetOnPageLeave).toHaveBeenCalledTimes(1);
             expect(updateAccount).toHaveBeenCalledTimes(1);
-            expect(updateAccount).toHaveBeenCalledWith(
-              username,
-              '',
-              accountData,
-              'POST',
-            );
+            expect(updateAccount).toHaveBeenCalledWith(username, '', accountData, 'POST');
             expect(mockUseNavigate).toHaveBeenCalledTimes(1);
             expect(mockUseNavigate).toHaveBeenCalledWith('/accounts');
           });

@@ -11,10 +11,7 @@ import {
   MERCHANTS_UPDATE_MODAL_ACTION,
 } from '../types/merchants.action.types';
 import { GlobalDispatch } from '../../app/store/redux';
-import {
-  Merchant,
-  MerchantsReducerAction,
-} from '../types/merchants.data.types';
+import { Merchant, MerchantsReducerAction } from '../types/merchants.data.types';
 
 export const resetOnPageLeave = () => {
   return async (dispatch: React.Dispatch<GlobalDispatch>): Promise<void> => {
@@ -41,10 +38,7 @@ export const setMerchantsNotUsedInTxnsOnly = (
   displayMerchantsList: merchantsNotUsedInTxnsList,
 });
 
-export const setMerchantInAction = (
-  id: string,
-  description: string,
-): Partial<MerchantsReducerAction> => ({
+export const setMerchantInAction = (id: string, description: string): Partial<MerchantsReducerAction> => ({
   type: MERCHANTS_SET_MERCHANT_IN_ACTION,
   merchantInActionId: id,
   merchantInActionDesc: description,
@@ -54,23 +48,17 @@ export const clearMerchantsFilter = (): Partial<MerchantsReducerAction> => ({
   type: MERCHANTS_CLEAR_FILTER,
 });
 
-export const setIsDeleteModal = (
-  isOpen: boolean,
-): Partial<MerchantsReducerAction> => ({
+export const setIsDeleteModal = (isOpen: boolean): Partial<MerchantsReducerAction> => ({
   type: MERCHANTS_DELETE_MODAL_ACTION,
   isDeleteModalOpen: isOpen,
 });
 
-export const setIsUpdateModal = (
-  isOpen: boolean,
-): Partial<MerchantsReducerAction> => ({
+export const setIsUpdateModal = (isOpen: boolean): Partial<MerchantsReducerAction> => ({
   type: MERCHANTS_UPDATE_MODAL_ACTION,
   isUpdateModalOpen: isOpen,
 });
 
-export const setModalInputs = (
-  modalInput: string,
-): Partial<MerchantsReducerAction> => ({
+export const setModalInputs = (modalInput: string): Partial<MerchantsReducerAction> => ({
   type: MERCHANTS_MODAL_INPUT,
   modalInput,
 });
@@ -79,10 +67,5 @@ export const closeModals = (): Partial<MerchantsReducerAction> => ({
   type: MERCHANTS_MODAL_CLOSE,
 });
 
-const filterMerchants = (
-  firstChar: string,
-  merchantsList: Merchant[],
-): Merchant[] =>
-  merchantsList.filter((merchant) =>
-    merchant.description.startsWith(firstChar),
-  );
+const filterMerchants = (firstChar: string, merchantsList: Merchant[]): Merchant[] =>
+  merchantsList.filter((merchant) => merchant.description.startsWith(firstChar));

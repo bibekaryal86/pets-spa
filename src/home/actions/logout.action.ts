@@ -8,11 +8,7 @@ import { USER_LOGIN_SUCCESS, USER_LOGOUT } from '../types/home.action.types';
 import { LoginResponse, UserDetails } from '../types/home.data.types';
 import { getEndpoint } from '../utils/endpoint';
 
-export const userLogout = (
-  token: string,
-  userDetails?: UserDetails,
-  isRefreshTokenRequired?: boolean,
-) => {
+export const userLogout = (token: string, userDetails?: UserDetails, isRefreshTokenRequired?: boolean) => {
   return async (dispatch: React.Dispatch<GlobalDispatch>): Promise<void> => {
     if (isRefreshTokenRequired) {
       try {
@@ -34,11 +30,7 @@ export const userLogout = (
           },
         };
 
-        const fetchResponse = (await prefetch(
-          logoutEndpoint,
-          options,
-          true,
-        )) as FetchResponse;
+        const fetchResponse = (await prefetch(logoutEndpoint, options, true)) as FetchResponse;
 
         if (!userDetails) {
           userDetails = LocalStorage.getItem('userDetails') as UserDetails;
@@ -46,8 +38,7 @@ export const userLogout = (
 
         if (fetchResponse.statusCode === 200) {
           const loginResponse = fetchResponse.data as LoginResponse;
-          if (userDetails)
-            userRefreshSuccess(dispatch, loginResponse, userDetails);
+          if (userDetails) userRefreshSuccess(dispatch, loginResponse, userDetails);
         } else {
           clearLocalData(dispatch);
         }
@@ -89,8 +80,6 @@ const userLoginSuccessResponseActions = (loginResponse: LoginResponse) => ({
   loginResponse,
 });
 
-const userRefreshSuccessLocalStorageActions = (
-  loginResponse: LoginResponse,
-) => {
+const userRefreshSuccessLocalStorageActions = (loginResponse: LoginResponse) => {
   LocalStorage.setItem('token', loginResponse.token);
 };

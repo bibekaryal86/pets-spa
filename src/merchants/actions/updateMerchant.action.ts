@@ -13,29 +13,18 @@ import {
 } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
-import {
-  MerchantsRequest,
-  MerchantsResponse,
-} from '../types/merchants.data.types';
+import { MerchantsRequest, MerchantsResponse } from '../types/merchants.data.types';
 import { getEndpoint } from '../../home/utils/endpoint';
 
-const validateMerchant = (newDescription: string): boolean =>
-  !!(newDescription && newDescription.trim().length > 2);
+const validateMerchant = (newDescription: string): boolean => !!(newDescription && newDescription.trim().length > 2);
 
-export const updateMerchant = (
-  username: string,
-  id: string,
-  newDescription: string,
-) => {
+export const updateMerchant = (username: string, id: string, newDescription: string) => {
   return async (dispatch: React.Dispatch<GlobalDispatch>): Promise<void> => {
     dispatch(updateMerchantRequest());
 
     try {
       if (validateMerchant(newDescription)) {
-        const urlPath = getEndpoint([
-          process.env.BASE_URL as string,
-          process.env.EDIT_MERCHANT_ENDPOINT as string,
-        ]);
+        const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.EDIT_MERCHANT_ENDPOINT as string]);
         const requestBody: MerchantsRequest = {
           username,
           description: newDescription.toUpperCase(),
@@ -46,17 +35,12 @@ export const updateMerchant = (
           queryParams: { id },
           requestBody,
         };
-        const updateMerchantResponse = (await prefetch(
-          urlPath,
-          options,
-        )) as MerchantsResponse;
+        const updateMerchantResponse = (await prefetch(urlPath, options)) as MerchantsResponse;
 
         if (updateMerchantResponse && !updateMerchantResponse.status) {
           dispatch(updateMerchantSuccess());
         } else {
-          dispatch(
-            updateMerchantFailure(updateMerchantResponse?.status?.errMsg),
-          );
+          dispatch(updateMerchantFailure(updateMerchantResponse?.status?.errMsg));
         }
       } else {
         dispatch(updateMerchantFailure(MSG_KEY_INVALID_MERCHANT));

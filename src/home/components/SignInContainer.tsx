@@ -12,8 +12,7 @@ const mapStateToProps = ({ login }: GlobalState) => {
 };
 
 const mapDispatchToProps = {
-  userLogin: (username: string, password: string) =>
-    userLogin(username, password),
+  userLogin: (username: string, password: string) => userLogin(username, password),
   setAlert: (type: string, messageKey: string) => setAlert(type, messageKey),
   resetAlert: () => resetAlert(),
 };

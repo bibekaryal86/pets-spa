@@ -1,15 +1,8 @@
 import { Account } from '../../accounts/types/accounts.data.types';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import { SelectOptionProps } from '../../common/forms/Select';
-import {
-  RefCategory,
-  RefCategoryType,
-  RefTransactionType,
-} from '../../common/types/refTypes.data.types';
-import {
-  TRANSACTION_TYPE_ID_EXPENSE,
-  TRANSACTION_TYPE_ID_TRANSFER,
-} from '../../common/utils/constants';
+import { RefCategory, RefCategoryType, RefTransactionType } from '../../common/types/refTypes.data.types';
+import { TRANSACTION_TYPE_ID_EXPENSE, TRANSACTION_TYPE_ID_TRANSFER } from '../../common/utils/constants';
 import { Merchant } from '../../merchants/types/merchants.data.types';
 import {
   DefaultTransactionFilters,
@@ -24,9 +17,7 @@ export const isTransactionTypeTransfer = (transactionTypeId: string): boolean =>
 export const toUppercaseRemoveApostrophe = (input: string): string =>
   input ? input.toUpperCase().replace("/'/g", '') : '';
 
-export const getQueryParamsValue = (
-  search: string,
-): { accountId: string; merchantId: string } => {
+export const getQueryParamsValue = (search: string): { accountId: string; merchantId: string } => {
   const filteredSearch = search.slice(1);
   const queryParams = filteredSearch.split('&');
   let accountId = '';
@@ -53,13 +44,9 @@ export const getQueryParamsValue = (
   return { accountId, merchantId };
 };
 
-export const isTransactionDataUpdated = (
-  transaction: Transaction,
-  oneTransactionOne: OneTransactionOne,
-): boolean =>
+export const isTransactionDataUpdated = (transaction: Transaction, oneTransactionOne: OneTransactionOne): boolean =>
   transaction.refTransactionType.id === oneTransactionOne.transactionTypeId &&
-  transaction.refCategory.refCategoryType.id ===
-    oneTransactionOne.categoryTypeId &&
+  transaction.refCategory.refCategoryType.id === oneTransactionOne.categoryTypeId &&
   transaction.refCategory.id === oneTransactionOne.categoryId &&
   transaction.account.id === oneTransactionOne.accountId &&
   transaction.trfAccount?.id === oneTransactionOne.trfAccountId &&
@@ -71,15 +58,10 @@ export const isTransactionDataUpdated = (
   checkNecessaryRegular(transaction.regular, oneTransactionOne.regular) &&
   checkNecessaryRegular(transaction.necessary, oneTransactionOne.necessary);
 
-const checkAmount = (amountStrNum: string, amountStr: string) =>
-  amountStrNum.toString() === amountStr.toString();
+const checkAmount = (amountStrNum: string, amountStr: string) => amountStrNum.toString() === amountStr.toString();
 
-const checkNecessaryRegular = (
-  booleanValue: boolean | undefined,
-  stringValue: string | undefined,
-) =>
-  (booleanValue === undefined &&
-    (stringValue === undefined || stringValue === '')) ||
+const checkNecessaryRegular = (booleanValue: boolean | undefined, stringValue: string | undefined) =>
+  (booleanValue === undefined && (stringValue === undefined || stringValue === '')) ||
   (booleanValue === true && stringValue === 'YES') ||
   (booleanValue === false && stringValue === 'NO');
 
@@ -94,11 +76,7 @@ export const transactionsListNumberFormatter = (
     if (TRANSACTION_TYPE_ID_EXPENSE === transactionTypeId) {
       anotherInputAmount = inputAmount * -1;
     } else if (TRANSACTION_TYPE_ID_TRANSFER === transactionTypeId) {
-      if (
-        trfAccountId &&
-        selectedAccountId &&
-        trfAccountId === selectedAccountId
-      ) {
+      if (trfAccountId && selectedAccountId && trfAccountId === selectedAccountId) {
         anotherInputAmount = inputAmount;
       } else {
         anotherInputAmount = inputAmount * -1;
@@ -111,12 +89,8 @@ export const transactionsListNumberFormatter = (
   return numberFormatter(anotherInputAmount);
 };
 
-export const filterTransactionTypeOptions = (
-  transactionTypes: RefTransactionType[],
-): SelectOptionProps[] => {
-  const transactionTypesSelectOptions: SelectOptionProps[] = [
-    { text: 'Please Select', value: '' },
-  ];
+export const filterTransactionTypeOptions = (transactionTypes: RefTransactionType[]): SelectOptionProps[] => {
+  const transactionTypesSelectOptions: SelectOptionProps[] = [{ text: 'Please Select', value: '' }];
 
   transactionTypes.forEach((type) =>
     transactionTypesSelectOptions.push({
@@ -128,12 +102,8 @@ export const filterTransactionTypeOptions = (
   return transactionTypesSelectOptions;
 };
 
-export const filterCategoryTypeOptions = (
-  categoryTypes: RefCategoryType[],
-): SelectOptionProps[] => {
-  const categoryTypesSelectOptions: SelectOptionProps[] = [
-    { text: 'Please Select', value: '' },
-  ];
+export const filterCategoryTypeOptions = (categoryTypes: RefCategoryType[]): SelectOptionProps[] => {
+  const categoryTypesSelectOptions: SelectOptionProps[] = [{ text: 'Please Select', value: '' }];
 
   categoryTypes.forEach((type) =>
     categoryTypesSelectOptions.push({
@@ -149,9 +119,7 @@ export const filterCategoryOptions = (
   categories: RefCategory[],
   selectedCategoryType?: string,
 ): SelectOptionProps[] => {
-  const categoriesSelectOptions: SelectOptionProps[] = [
-    { text: 'Please Select', value: '' },
-  ];
+  const categoriesSelectOptions: SelectOptionProps[] = [{ text: 'Please Select', value: '' }];
 
   if (selectedCategoryType) {
     categories = categories.filter((category) => {
@@ -169,12 +137,8 @@ export const filterCategoryOptions = (
   return categoriesSelectOptions;
 };
 
-export const filterAccountOptions = (
-  accounts: Account[],
-): SelectOptionProps[] => {
-  const accountsSelectOptions: SelectOptionProps[] = [
-    { text: 'Please Select', value: '' },
-  ];
+export const filterAccountOptions = (accounts: Account[]): SelectOptionProps[] => {
+  const accountsSelectOptions: SelectOptionProps[] = [{ text: 'Please Select', value: '' }];
 
   accounts.forEach((account) =>
     accountsSelectOptions.push({
@@ -186,12 +150,8 @@ export const filterAccountOptions = (
   return accountsSelectOptions;
 };
 
-export const filterMerchantOptions = (
-  merchants: Merchant[],
-): SelectOptionProps[] => {
-  const merchantSelectOptions: SelectOptionProps[] = [
-    { text: 'Please Select', value: '' },
-  ];
+export const filterMerchantOptions = (merchants: Merchant[]): SelectOptionProps[] => {
+  const merchantSelectOptions: SelectOptionProps[] = [{ text: 'Please Select', value: '' }];
 
   merchants.forEach((merchant) =>
     merchantSelectOptions.push({
@@ -203,9 +163,7 @@ export const filterMerchantOptions = (
   return merchantSelectOptions;
 };
 
-export const isTransactionFilterApplied = (
-  transactionFilters: TransactionFilters,
-): string | boolean | undefined =>
+export const isTransactionFilterApplied = (transactionFilters: TransactionFilters): string | boolean | undefined =>
   transactionFilters &&
   (transactionFilters.accountId ||
     transactionFilters.categoryId ||
@@ -236,29 +194,13 @@ export const getTransactionFilters = (
     case 'mct':
       return setMerchantFilter(value, transactionFilters);
     case 'amtFrom':
-      return setTxnAmountFromFilter(
-        value,
-        transactionFilters,
-        value.trim().length > 0,
-      );
+      return setTxnAmountFromFilter(value, transactionFilters, value.trim().length > 0);
     case 'amtTo':
-      return setTxnAmountToFilter(
-        value,
-        transactionFilters,
-        value.trim().length > 0,
-      );
+      return setTxnAmountToFilter(value, transactionFilters, value.trim().length > 0);
     case 'dateFrom':
-      return setTxnDateFromFilter(
-        value,
-        transactionFilters,
-        value.trim().length > 0,
-      );
+      return setTxnDateFromFilter(value, transactionFilters, value.trim().length > 0);
     case 'dateTo':
-      return setTxnDateToFilter(
-        value,
-        transactionFilters,
-        value.trim().length > 0,
-      );
+      return setTxnDateToFilter(value, transactionFilters, value.trim().length > 0);
     case 'reg':
       return setRegularTxnsFilter(value, transactionFilters);
     case 'nec':
@@ -287,20 +229,14 @@ export const getTransactionFilter = (
   }
 };
 
-const setTransactionTypeFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-): TransactionFilters => {
+const setTransactionTypeFilter = (value: string, transactionFilters: TransactionFilters): TransactionFilters => {
   return {
     ...transactionFilters,
     transactionTypeId: value,
   };
 };
 
-const setCategoryTypeFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-): TransactionFilters => {
+const setCategoryTypeFilter = (value: string, transactionFilters: TransactionFilters): TransactionFilters => {
   return {
     ...transactionFilters,
     categoryTypeId: value,
@@ -308,30 +244,21 @@ const setCategoryTypeFilter = (
   };
 };
 
-const setCategoryFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-): TransactionFilters => {
+const setCategoryFilter = (value: string, transactionFilters: TransactionFilters): TransactionFilters => {
   return {
     ...transactionFilters,
     categoryId: value,
   };
 };
 
-const setAccountFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-): TransactionFilters => {
+const setAccountFilter = (value: string, transactionFilters: TransactionFilters): TransactionFilters => {
   return {
     ...transactionFilters,
     accountId: value,
   };
 };
 
-const setMerchantFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-): TransactionFilters => {
+const setMerchantFilter = (value: string, transactionFilters: TransactionFilters): TransactionFilters => {
   return {
     ...transactionFilters,
     merchantId: value,
@@ -386,16 +313,11 @@ const setTxnDateToFilter = (
   };
 };
 
-const setRegularTxnsFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-) => {
+const setRegularTxnsFilter = (value: string, transactionFilters: TransactionFilters) => {
   let newArray: string[];
 
   if (transactionFilters.regular.includes(value)) {
-    newArray = transactionFilters.regular.filter(
-      (oneValue) => oneValue !== value,
-    );
+    newArray = transactionFilters.regular.filter((oneValue) => oneValue !== value);
   } else {
     // when Yes is checked, uncheck No, and vice-versa
     newArray = [value];
@@ -407,16 +329,11 @@ const setRegularTxnsFilter = (
   };
 };
 
-const setNecessaryTxnsFilter = (
-  value: string,
-  transactionFilters: TransactionFilters,
-) => {
+const setNecessaryTxnsFilter = (value: string, transactionFilters: TransactionFilters) => {
   let newArray: string[];
 
   if (transactionFilters.necessary.includes(value)) {
-    newArray = transactionFilters.necessary.filter(
-      (oneValue) => oneValue !== value,
-    );
+    newArray = transactionFilters.necessary.filter((oneValue) => oneValue !== value);
   } else {
     // when Yes is checked, uncheck No, and vice-versa
     newArray = [value];

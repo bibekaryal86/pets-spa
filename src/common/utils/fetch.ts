@@ -27,16 +27,13 @@ const addPathParams = (path: string, pathParams: ParamObjects) => {
   return Object.keys(pathParams).length === 0
     ? path
     : Object.keys(pathParams).reduce(
-        (str: string, param: string) =>
-          str.replace(`{${param}}`, pathParams[param].toString()),
+        (str: string, param: string) => str.replace(`{${param}}`, pathParams[param].toString()),
         path,
       );
 };
 
 const addQueryParams = (queryParams: ParamObjects) => {
-  return Object.keys(queryParams).length === 0
-    ? ''
-    : getQueryString(queryParams);
+  return Object.keys(queryParams).length === 0 ? '' : getQueryString(queryParams);
 };
 
 const getQueryString = (queryParams: ParamObjects) => {
@@ -47,11 +44,7 @@ const getQueryString = (queryParams: ParamObjects) => {
   return queryString.slice(0, -1);
 };
 
-const getUrl = ({
-  path = '',
-  queryParams = {},
-  pathParams = {},
-}: Partial<UrlOptions>) => {
+const getUrl = ({ path = '', queryParams = {}, pathParams = {} }: Partial<UrlOptions>) => {
   const pathWithParams = addPathParams(path, pathParams);
   const queryString = addQueryParams(queryParams);
   return pathWithParams + queryString;
@@ -85,18 +78,8 @@ const getBody = (method: string, body: unknown) =>
   method !== 'GET' && typeof body !== 'undefined' ? JSON.stringify(body) : '';
 
 export const Async = {
-  fetch: async (
-    urlPath: string,
-    options: Partial<FetchOptions>,
-  ): Promise<FetchResponse> => {
-    const {
-      queryParams,
-      pathParams,
-      method = 'GET',
-      requestBody = {},
-      requestHeaders = {},
-      noAuth = false,
-    } = options;
+  fetch: async (urlPath: string, options: Partial<FetchOptions>): Promise<FetchResponse> => {
+    const { queryParams, pathParams, method = 'GET', requestBody = {}, requestHeaders = {}, noAuth = false } = options;
 
     const url = getUrl({ path: urlPath, queryParams, pathParams });
     const headers = getHeaders(!noAuth, requestHeaders);

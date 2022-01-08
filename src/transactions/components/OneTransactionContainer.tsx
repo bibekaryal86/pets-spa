@@ -10,12 +10,7 @@ import { updateTransaction } from '../actions/updateTransaction.action';
 import { TransactionsRequest } from '../types/transactions.data.types';
 import OneTransaction from './OneTransaction';
 
-const mapStateToProps = ({
-  accounts,
-  merchants,
-  refTypes,
-  transactions,
-}: GlobalState) => {
+const mapStateToProps = ({ accounts, merchants, refTypes, transactions }: GlobalState) => {
   return {
     error: transactions.error,
     success: transactions.success,
@@ -32,18 +27,12 @@ const mapStateToProps = ({
 const mapDispatchToProps = {
   getTransactions: (username: string, selectedTransactionId: string) =>
     getTransactions(username, undefined, selectedTransactionId),
-  updateTransaction: (
-    username: string,
-    id: string,
-    transactionsRequest: TransactionsRequest,
-    method: string,
-  ) => updateTransaction(username, id, transactionsRequest, method),
-  deleteTransaction: (username: string, id: string) =>
-    deleteTransaction(username, id),
+  updateTransaction: (username: string, id: string, transactionsRequest: TransactionsRequest, method: string) =>
+    updateTransaction(username, id, transactionsRequest, method),
+  deleteTransaction: (username: string, id: string) => deleteTransaction(username, id),
   getAccounts: (username: string) => getAccounts(username),
   getMerchants: (username: string) => getMerchants(username),
-  setAlert: (type: string, messageKey: string, messageBody?: JSX.Element) =>
-    setAlert(type, messageKey, messageBody),
+  setAlert: (type: string, messageKey: string, messageBody?: JSX.Element) => setAlert(type, messageKey, messageBody),
   resetAlert: () => resetAlert(),
   resetOnPageLeave: () => resetOnPageLeave(),
 };

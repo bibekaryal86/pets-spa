@@ -5,10 +5,7 @@ const initialState: SpinnerState = {
   isLoading: false,
 };
 
-export default function spinner(
-  state = initialState,
-  action: SpinnerAction,
-): SpinnerState {
+export default function spinner(state = initialState, action: SpinnerAction): SpinnerState {
   const { type } = action;
   const matchesRequest = /(.*)_(REQUEST)/.exec(type);
   const matchesResponse = /(.*)_(SUCCESS|FAILURE|COMPLETE)/.exec(type);

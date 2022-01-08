@@ -37,25 +37,13 @@ const AlertWrapper = styled.div.attrs({
       : css``}
 `;
 
-const successCss = () =>
-  'color: #3c763d; ' +
-  'background-color: #dff0d8; ' +
-  'border-color: #d6e9c6; ';
+const successCss = () => 'color: #3c763d; ' + 'background-color: #dff0d8; ' + 'border-color: #d6e9c6; ';
 
-const infoCss = () =>
-  'color: #31708f; ' +
-  'background-color: #d9edf7; ' +
-  'border-color: #bce8f1; ';
+const infoCss = () => 'color: #31708f; ' + 'background-color: #d9edf7; ' + 'border-color: #bce8f1; ';
 
-const warnCss = () =>
-  'color: #8a6d3b; ' +
-  'background-color: #fcf8e3; ' +
-  'border-color: #faebcc; ';
+const warnCss = () => 'color: #8a6d3b; ' + 'background-color: #fcf8e3; ' + 'border-color: #faebcc; ';
 
-const failureCss = () =>
-  'color: #a94442; ' +
-  'background-color: #f2dede; ' +
-  'border-color: #ebccd1; ';
+const failureCss = () => 'color: #a94442; ' + 'background-color: #f2dede; ' + 'border-color: #ebccd1; ';
 
 const CloseIcon = styled.div.attrs({
   className: 'alert-close-icon',
@@ -95,11 +83,7 @@ const Alert = (props: AlertProps): React.ReactElement | null => {
 
   return isShowAlert ? (
     <AlertWrapper type={messageType}>
-      <div>
-        {messageText === MSG_KEY_SESSION_INVALID
-          ? sessionInvalidMessage()
-          : messageText}
-      </div>
+      <div>{messageText === MSG_KEY_SESSION_INVALID ? sessionInvalidMessage() : messageText}</div>
       <CloseIcon onClick={close}>[x]</CloseIcon>
     </AlertWrapper>
   ) : null;

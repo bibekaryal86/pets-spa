@@ -1,14 +1,9 @@
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
-import {
-  DefaultReportsResponse,
-  ReportsResponse,
-} from '../types/reports.data.types';
+import { DefaultReportsResponse, ReportsResponse } from '../types/reports.data.types';
 
-export const getCurrentBalancesReport = async (
-  username: string,
-): Promise<ReportsResponse> => {
+export const getCurrentBalancesReport = async (username: string): Promise<ReportsResponse> => {
   try {
     const urlPath = getEndpoint([
       process.env.BASE_URL as string,
@@ -26,9 +21,7 @@ export const getCurrentBalancesReport = async (
   }
 };
 
-const getCurrentBalancesReportError = (
-  reportsResponse: ReportsResponse,
-): ReportsResponse => {
+const getCurrentBalancesReportError = (reportsResponse: ReportsResponse): ReportsResponse => {
   return {
     ...reportsResponse,
     status: {

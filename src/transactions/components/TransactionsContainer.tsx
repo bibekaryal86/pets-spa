@@ -8,12 +8,7 @@ import { getTransactions } from '../actions/getTransactions.action';
 import { resetOnPageLeave } from '../actions/transactions.state.action';
 import Transactions from './Transactions';
 
-const mapStateToProps = ({
-  accounts,
-  merchants,
-  refTypes,
-  transactions,
-}: GlobalState) => {
+const mapStateToProps = ({ accounts, merchants, refTypes, transactions }: GlobalState) => {
   return {
     error: transactions.error,
     success: transactions.success,
@@ -28,8 +23,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = {
   getTransactions: (username: string) => getTransactions(username),
-  deleteTransaction: (username: string, id: string) =>
-    deleteTransaction(username, id),
+  deleteTransaction: (username: string, id: string) => deleteTransaction(username, id),
   getAccounts: (username: string) => getAccounts(username),
   getMerchants: (username: string) => getMerchants(username),
   setAlert: (type: string, messageKey: string) => setAlert(type, messageKey),

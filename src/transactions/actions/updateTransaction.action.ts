@@ -1,9 +1,6 @@
 import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
-import {
-  MSG_KEY_EDIT_TRANSACTION_FAIL,
-  MSG_KEY_EDIT_TRANSACTION_SUCCESS,
-} from '../../common/utils/constants';
+import { MSG_KEY_EDIT_TRANSACTION_FAIL, MSG_KEY_EDIT_TRANSACTION_SUCCESS } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
@@ -13,10 +10,7 @@ import {
   TRANSACTIONS_EDIT_REQUEST,
   TRANSACTIONS_EDIT_SUCCESS,
 } from '../types/transactions.action.types';
-import {
-  TransactionsRequest,
-  TransactionsResponse,
-} from '../types/transactions.data.types';
+import { TransactionsRequest, TransactionsResponse } from '../types/transactions.data.types';
 
 export const updateTransaction = (
   username: string,
@@ -28,10 +22,7 @@ export const updateTransaction = (
     dispatch(updateTransactionRequest());
 
     try {
-      const urlPath = getEndpoint([
-        process.env.BASE_URL as string,
-        process.env.EDIT_TRANSACTION_ENDPOINT as string,
-      ]);
+      const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.EDIT_TRANSACTION_ENDPOINT as string]);
       const options: Partial<FetchOptions> = {
         method,
         pathParams: { username },
@@ -39,17 +30,12 @@ export const updateTransaction = (
         requestBody: transactionsRequest,
       };
 
-      const updateTransactionResponse = (await prefetch(
-        urlPath,
-        options,
-      )) as TransactionsResponse;
+      const updateTransactionResponse = (await prefetch(urlPath, options)) as TransactionsResponse;
 
       if (updateTransactionResponse && !updateTransactionResponse.status) {
         dispatch(updateTransactionSuccess());
       } else {
-        dispatch(
-          updateTransactionFailure(updateTransactionResponse?.status?.errMsg),
-        );
+        dispatch(updateTransactionFailure(updateTransactionResponse?.status?.errMsg));
       }
     } catch (error) {
       console.log('Update Transaction Error: ', error);

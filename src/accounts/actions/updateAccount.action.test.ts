@@ -7,10 +7,7 @@ import {
   ACCOUNTS_EDIT_REQUEST,
   ACCOUNTS_EDIT_SUCCESS,
 } from '../types/accounts.action.types';
-import {
-  MSG_KEY_EDIT_ACCOUNT_FAIL,
-  MSG_KEY_EDIT_ACCOUNT_SUCCESS,
-} from '../../common/utils/constants';
+import { MSG_KEY_EDIT_ACCOUNT_FAIL, MSG_KEY_EDIT_ACCOUNT_SUCCESS } from '../../common/utils/constants';
 
 jest.mock('../../common/utils/prefetch');
 
@@ -68,22 +65,19 @@ describe('update account', () => {
       'PUT',
     )(dispatchSpy)
       .then(() =>
-        expect(mockPrefetch).toHaveBeenLastCalledWith(
-          'www.edit-account-endpoint.com',
-          {
-            method: 'PUT',
-            pathParams: { username: 'user-name' },
-            queryParams: { id: 'account-id' },
-            requestBody: {
-              bankId: '5ede4d790525eb78290332ee',
-              description: 'CHASE-AMAZON',
-              openingBalance: '1.07',
-              status: 'CLOSED',
-              typeId: '5ede4cf30525eb78290332e7',
-              username: 'user-name',
-            },
+        expect(mockPrefetch).toHaveBeenLastCalledWith('www.edit-account-endpoint.com', {
+          method: 'PUT',
+          pathParams: { username: 'user-name' },
+          queryParams: { id: 'account-id' },
+          requestBody: {
+            bankId: '5ede4d790525eb78290332ee',
+            description: 'CHASE-AMAZON',
+            openingBalance: '1.07',
+            status: 'CLOSED',
+            typeId: '5ede4cf30525eb78290332e7',
+            username: 'user-name',
           },
-        ),
+        }),
       )
       .then(done);
   });

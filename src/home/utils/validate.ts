@@ -1,9 +1,6 @@
 import { INPUT_REGEX_PATTERN } from '../../common/utils/constants';
 
-export const validateLogInInput = (
-  username: string,
-  password: string,
-): boolean =>
+export const validateLogInInput = (username: string, password: string): boolean =>
   !!(
     username &&
     password &&

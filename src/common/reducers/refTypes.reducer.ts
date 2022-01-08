@@ -1,18 +1,8 @@
-import {
-  REF_TYPES_FAILURE,
-  REF_TYPES_SUCCESS,
-} from '../types/common.action.types';
-import {
-  DefaultRefTypesState,
-  RefTypesAction,
-  RefTypesState,
-} from '../types/refTypes.data.types';
+import { REF_TYPES_FAILURE, REF_TYPES_SUCCESS } from '../types/common.action.types';
+import { DefaultRefTypesState, RefTypesAction, RefTypesState } from '../types/refTypes.data.types';
 import { MSG_KEY_REFTYPE_FAIL } from '../utils/constants';
 
-export default function refTypes(
-  state = DefaultRefTypesState,
-  action: RefTypesAction,
-): RefTypesState {
+export default function refTypes(state = DefaultRefTypesState, action: RefTypesAction): RefTypesState {
   switch (action.type) {
     case REF_TYPES_SUCCESS:
       return {

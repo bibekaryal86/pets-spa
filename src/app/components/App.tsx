@@ -5,11 +5,7 @@ import Header from './Header';
 import Alert from '../../common/components/Alert';
 import Body from './Body';
 import Footer from './Footer';
-import {
-  AuthContext,
-  AuthState,
-  DefaultAuthState,
-} from '../context/AuthContext';
+import { AuthContext, AuthState, DefaultAuthState } from '../context/AuthContext';
 import { UserDetails } from '../../home/types/home.data.types';
 import { LocalStorage } from '../../common/utils/localStorageHelper';
 import { PrefetchState } from '../../common/utils/prefetch';
@@ -19,20 +15,12 @@ import { GlobalState } from '../store/redux';
 import Spinner from '../../common/components/Spinner';
 import { getRefTypes } from '../../common/actions/refTypes.action';
 import { setAlert } from '../../common/utils/alerts';
-import {
-  ALERT_TYPE_FAILURE,
-  ALERT_TYPE_INFO,
-  MSG_KEY_SESSION_INVALID,
-} from '../../common/utils/constants';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_INFO, MSG_KEY_SESSION_INVALID } from '../../common/utils/constants';
 
 interface AppProps extends PrefetchState {
   appError: string;
   isLoggedInProps: boolean;
-  userLogout: (
-    token: string,
-    userDetails: UserDetails,
-    isRefreshTokenRequired: boolean,
-  ) => void;
+  userLogout: (token: string, userDetails: UserDetails, isRefreshTokenRequired: boolean) => void;
   getRefTypes: (username: string) => void;
   setAlert: (type: string, messageKey: string) => void;
 }
@@ -81,8 +69,7 @@ function App(props: AppProps): React.ReactElement {
   }, [auth, getRefTypes]);
 
   // Check Session Invalid or Refresh Token Required
-  const { isSessionInvalid, isRefreshTokenRequired, userLogout, setAlert } =
-    props;
+  const { isSessionInvalid, isRefreshTokenRequired, userLogout, setAlert } = props;
   const { token, userDetails } = auth;
 
   useEffect(() => {
@@ -93,14 +80,7 @@ function App(props: AppProps): React.ReactElement {
         setAlert(ALERT_TYPE_INFO, MSG_KEY_SESSION_INVALID);
       }
     }
-  }, [
-    isRefreshTokenRequired,
-    isSessionInvalid,
-    setAlert,
-    token,
-    userDetails,
-    userLogout,
-  ]);
+  }, [isRefreshTokenRequired, isSessionInvalid, setAlert, token, userDetails, userLogout]);
 
   // Display any error from any fetch calls
   const { appError, isLoggedInProps } = props;
@@ -134,13 +114,7 @@ function App(props: AppProps): React.ReactElement {
     </div>
   );
 
-  return (
-    <>
-      {isSessionInvalid
-        ? (window.location.href = '/?isSessionInvalid=true')
-        : theApp()}
-    </>
-  );
+  return <>{isSessionInvalid ? (window.location.href = '/?isSessionInvalid=true') : theApp()}</>;
 }
 
 const mapStateToProps = ({ prefetch, refTypes, login }: GlobalState) => {
@@ -154,11 +128,8 @@ const mapStateToProps = ({ prefetch, refTypes, login }: GlobalState) => {
 };
 
 const mapDispatchToProps = {
-  userLogout: (
-    token: string,
-    userDetails: UserDetails,
-    isRefreshTokenRequired: boolean,
-  ) => userLogout(token, userDetails, isRefreshTokenRequired),
+  userLogout: (token: string, userDetails: UserDetails, isRefreshTokenRequired: boolean) =>
+    userLogout(token, userDetails, isRefreshTokenRequired),
   getRefTypes: (username: string) => getRefTypes(username),
   setAlert: (type: string, messageKey: string) => setAlert(type, messageKey),
 };

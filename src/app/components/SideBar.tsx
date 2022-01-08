@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 
 const SideBar = (): React.ReactElement => {
   return (

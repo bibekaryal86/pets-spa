@@ -20,10 +20,7 @@ import {
 
 const initialState = DefaultTransactionsState;
 
-export default function transactions(
-  state = initialState,
-  action: TransactionsAction,
-): TransactionsState {
+export default function transactions(state = initialState, action: TransactionsAction): TransactionsState {
   switch (action.type) {
     case TRANSACTIONS_GET_REQUEST:
       return {

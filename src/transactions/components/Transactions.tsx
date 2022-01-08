@@ -1,11 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { Account } from '../../accounts/types/accounts.data.types';
@@ -14,39 +7,24 @@ import Checkbox from '../../common/forms/Checkbox';
 import HrefLink from '../../common/forms/HrefLink';
 import Input, { InputType } from '../../common/forms/Input';
 import Select from '../../common/forms/Select';
-import {
-  RefCategory,
-  RefCategoryType,
-  RefTransactionType,
-} from '../../common/types/refTypes.data.types';
+import { RefCategory, RefCategoryType, RefTransactionType } from '../../common/types/refTypes.data.types';
 import {
   ALERT_TYPE_FAILURE,
   ALERT_TYPE_SUCCESS,
   checkBoxOptionsYesNo,
   SESSION_TRANSACTION_FILTERS,
 } from '../../common/utils/constants';
-import {
-  getStartOfTheMonth,
-  getStartOfTheYear,
-} from '../../common/utils/momentHelper';
+import { getStartOfTheMonth, getStartOfTheYear } from '../../common/utils/momentHelper';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
 import { Merchant } from '../../merchants/types/merchants.data.types';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import {
   resetTransactionFilters,
   setTransactionFilter,
   setTransactionFilters,
 } from '../actions/transactions.state.action';
 import transactionsStateReducer from '../reducers/transactions.state.reducer';
-import {
-  DefaultTransactionsReducerState,
-  Transaction,
-  TransactionFilters,
-} from '../types/transactions.data.types';
+import { DefaultTransactionsReducerState, Transaction, TransactionFilters } from '../types/transactions.data.types';
 import {
   filterAccountOptions,
   filterCategoryOptions,
@@ -120,13 +98,9 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
 
   // get filter data from session upon page refresh
   useEffect(() => {
-    const transactionFilters = SessionStorage.getItem(
-      SESSION_TRANSACTION_FILTERS,
-    ) as TransactionFilters;
+    const transactionFilters = SessionStorage.getItem(SESSION_TRANSACTION_FILTERS) as TransactionFilters;
     if (isTransactionFilterApplied(transactionFilters)) {
-      transactionsDispatch(
-        setTransactionFilters(transactionFilters, transactionsList),
-      );
+      transactionsDispatch(setTransactionFilters(transactionFilters, transactionsList));
     }
   }, [transactionsList]);
 
@@ -230,18 +204,10 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
         label="Category Name"
         onChange={(value) => setFilters('cat', value)}
         value={transactionFilters.categoryId || ''}
-        options={filterCategoryOptions(
-          props.categories,
-          transactionFilters.categoryTypeId,
-        )}
+        options={filterCategoryOptions(props.categories, transactionFilters.categoryTypeId)}
       />
     ),
-    [
-      props.categories,
-      setFilters,
-      transactionFilters.categoryId,
-      transactionFilters.categoryTypeId,
-    ],
+    [props.categories, setFilters, transactionFilters.categoryId, transactionFilters.categoryTypeId],
   );
 
   const filterByAccount = useCallback(
@@ -297,12 +263,7 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
         />
       </TransactionFilterStyle>
     );
-  }, [
-    setFilter,
-    setFilters,
-    transactionFilters.txnAmountFrom,
-    transactionFilters.txnAmountTo,
-  ]);
+  }, [setFilter, setFilters, transactionFilters.txnAmountFrom, transactionFilters.txnAmountTo]);
 
   const filterByRegularTxns = () => (
     <div style={{ marginTop: '33px' }}>
@@ -370,12 +331,7 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
         </TransactionFilterStyleWithMargin>
       </TransactionFilterStyle>
     );
-  }, [
-    setFilter,
-    setFilters,
-    transactionFilters.txnDateFrom,
-    transactionFilters.txnDateTo,
-  ]);
+  }, [setFilter, setFilters, transactionFilters.txnDateFrom, transactionFilters.txnDateTo]);
 
   const navigate = useNavigate();
   const showAddNewTransaction = () => {
@@ -452,16 +408,10 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
     if (transactionFilters.merchantId) {
       filterText += '[Merchant]';
     }
-    if (
-      transactionFilters.txnAmountFromOnBlur ||
-      transactionFilters.txnAmountToOnBlur
-    ) {
+    if (transactionFilters.txnAmountFromOnBlur || transactionFilters.txnAmountToOnBlur) {
       filterText += '[Txn Amount]';
     }
-    if (
-      transactionFilters.txnDateFromOnBlur ||
-      transactionFilters.txnDateToOnBlur
-    ) {
+    if (transactionFilters.txnDateFromOnBlur || transactionFilters.txnDateToOnBlur) {
       filterText += '[Txn Date]';
     }
     if (transactionFilters.regular.length > 0) {
@@ -481,9 +431,7 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
   const showFiltersApplied = () => (
     <DisplayCardWrapper>
       <DisplayCardBody>
-        <DisplayCardRow fontWeight="bold">
-          {filtersCurrentlyApplied}
-        </DisplayCardRow>
+        <DisplayCardRow fontWeight="bold">{filtersCurrentlyApplied}</DisplayCardRow>
         <DisplayCardRow borderTop>
           <HrefLink
             id="txns-clear-filters"
@@ -505,13 +453,10 @@ const Transactions = (props: TransactionsProps): React.ReactElement => {
     </DisplayCardWrapper>
   );
 
-  const isFilterCurrentlyApplied =
-    isTransactionFilterApplied(transactionFilters);
+  const isFilterCurrentlyApplied = isTransactionFilterApplied(transactionFilters);
 
   const transactionsToDisplay = useMemo(() => {
-    return isFilterCurrentlyApplied
-      ? displayTransactionsList
-      : transactionsList;
+    return isFilterCurrentlyApplied ? displayTransactionsList : transactionsList;
   }, [displayTransactionsList, isFilterCurrentlyApplied, transactionsList]);
 
   const showTransactionsList = useCallback(

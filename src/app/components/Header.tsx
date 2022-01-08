@@ -23,10 +23,8 @@ const StyledNav = styled.nav.attrs({
   color: whitesmoke;
 
   font-weight: ${(props) => (props.fontWeight ? props.fontWeight : 'normal')};
-  background: ${(props) =>
-    props.background ? props.background : 'mediumseagreen'};
-  justify-content: ${(props) =>
-    props.justifycontent ? props.justifycontent : 'center'};
+  background: ${(props) => (props.background ? props.background : 'mediumseagreen')};
+  justify-content: ${(props) => (props.justifycontent ? props.justifycontent : 'center')};
 
   @media (max-width: 786px) {
     flex-direction: column;
@@ -117,11 +115,7 @@ const Header = (): React.ReactElement => {
 
 const HeaderLinks = ({ displayName = '' }): React.ReactElement => {
   return (
-    <StyledNav
-      justifycontent={displayName ? 'space-between' : ''}
-      background="seagreen"
-      fontWeight="bold"
-    >
+    <StyledNav justifycontent={displayName ? 'space-between' : ''} background="seagreen" fontWeight="bold">
       Personal Expenses Tracking System
       {displayName.trim() ? (
         <>

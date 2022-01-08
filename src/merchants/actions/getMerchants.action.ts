@@ -26,35 +26,24 @@ export const getMerchants = (
   merchantFilters?: MerchantFilters,
   fetchCallOnly?: boolean,
 ) => {
-  return async (
-    dispatch: React.Dispatch<GlobalDispatch>,
-    getStore: () => GlobalState,
-  ): Promise<void> => {
+  return async (dispatch: React.Dispatch<GlobalDispatch>, getStore: () => GlobalState): Promise<void> => {
     dispatch(getMerchantsRequest());
 
     try {
       let getMerchantsResponse: Partial<MerchantsResponse>;
       const merchantsInStore: Merchant[] = getStore().merchants.merchantsList;
-      const merchantsFiltersListInStore: string[] =
-        getStore().merchants.merchantsFiltersList;
-      const merchantsNotUsedInTxnsListInStore: Merchant[] =
-        getStore().merchants.merchantsNotUsedInTxnsList;
+      const merchantsFiltersListInStore: string[] = getStore().merchants.merchantsFiltersList;
+      const merchantsNotUsedInTxnsListInStore: Merchant[] = getStore().merchants.merchantsNotUsedInTxnsList;
 
       if (merchantsInStore.length === 0 || fetchCallOnly) {
-        const urlPath = getEndpoint([
-          process.env.BASE_URL as string,
-          process.env.GET_MERCHANTS_ENDPOINT as string,
-        ]);
+        const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.GET_MERCHANTS_ENDPOINT as string]);
         const options: Partial<FetchOptions> = {
           method: 'POST',
           pathParams: { username },
           requestBody: merchantFilters || null,
         };
 
-        getMerchantsResponse = (await prefetch(
-          urlPath,
-          options,
-        )) as MerchantsResponse;
+        getMerchantsResponse = (await prefetch(urlPath, options)) as MerchantsResponse;
       } else if (merchantsInStore.length > 0) {
         getMerchantsResponse = {
           refMerchants: merchantsInStore,
@@ -74,11 +63,7 @@ export const getMerchants = (
 
       if (getMerchantsResponse && !getMerchantsResponse.status) {
         if (selectedMerchantId) {
-          setSelectedMerchant(
-            selectedMerchantId,
-            getMerchantsResponse,
-            dispatch,
-          );
+          setSelectedMerchant(selectedMerchantId, getMerchantsResponse, dispatch);
         }
 
         dispatch(getMerchantsSuccess(getMerchantsResponse));
@@ -98,14 +83,11 @@ const getMerchantsRequest = () => ({
   type: MERCHANTS_GET_REQUEST,
 });
 
-const getMerchantsSuccess = (
-  getMerchantsResponse: Partial<MerchantsResponse>,
-) => ({
+const getMerchantsSuccess = (getMerchantsResponse: Partial<MerchantsResponse>) => ({
   type: MERCHANTS_GET_SUCCESS,
   merchantsList: getMerchantsResponse.refMerchants,
   merchantsFiltersList: getMerchantsResponse.refMerchantsFilterList,
-  merchantsNotUsedInTxnsList:
-    getMerchantsResponse.refMerchantsNotUsedInTransactions,
+  merchantsNotUsedInTxnsList: getMerchantsResponse.refMerchantsNotUsedInTransactions,
 });
 
 const getMerchantsFailure = (errMsg: string | undefined) => ({

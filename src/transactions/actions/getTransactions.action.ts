@@ -1,19 +1,13 @@
 import React from 'react';
 import { ACCOUNTS_SELECT_ACCOUNT_TRANSACTIONS } from '../../accounts/types/accounts.action.types';
-import {
-  AccountsAction,
-  DefaultAccountsState,
-} from '../../accounts/types/accounts.data.types';
+import { AccountsAction, DefaultAccountsState } from '../../accounts/types/accounts.data.types';
 import { GlobalDispatch, GlobalState } from '../../app/store/redux';
 import { MSG_KEY_GET_TRANSACTION_FAIL } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
 import { MERCHANTS_SELECT_MERCHANT_TRANSACTIONS } from '../../merchants/types/merchants.action.types';
-import {
-  DefaultMerchantsState,
-  MerchantsAction,
-} from '../../merchants/types/merchants.data.types';
+import { DefaultMerchantsState, MerchantsAction } from '../../merchants/types/merchants.data.types';
 import {
   TRANSACTIONS_COMPLETE,
   TRANSACTIONS_GET_FAILURE,
@@ -37,32 +31,22 @@ export const getTransactions = (
   fetchTransactionsFilters?: TransactionFilters,
   fetchCallOnly?: boolean,
 ) => {
-  return async (
-    dispatch: React.Dispatch<GlobalDispatch>,
-    getStore: () => GlobalState,
-  ): Promise<void> => {
+  return async (dispatch: React.Dispatch<GlobalDispatch>, getStore: () => GlobalState): Promise<void> => {
     dispatch(getTransactionsRequest());
 
     try {
       let getTransactionsResponse: Partial<TransactionsResponse>;
-      const transactionsInStore: Transaction[] =
-        getStore().transactions.transactionsList;
+      const transactionsInStore: Transaction[] = getStore().transactions.transactionsList;
 
       if (transactionsInStore.length === 0 || fetchCallOnly) {
-        const urlPath = getEndpoint([
-          process.env.BASE_URL as string,
-          process.env.GET_TRANSACTIONS_ENDPOINT as string,
-        ]);
+        const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.GET_TRANSACTIONS_ENDPOINT as string]);
         const options: Partial<FetchOptions> = {
           method: 'POST',
           pathParams: { username },
           requestBody: fetchTransactionsFilters || null,
         };
 
-        getTransactionsResponse = (await prefetch(
-          urlPath,
-          options,
-        )) as TransactionsResponse;
+        getTransactionsResponse = (await prefetch(urlPath, options)) as TransactionsResponse;
       } else if (transactionsInStore.length > 0) {
         getTransactionsResponse = {
           transactions: transactionsInStore,
@@ -77,32 +61,18 @@ export const getTransactions = (
         };
       }
 
-      if (
-        getTransactionsResponse &&
-        getTransactionsResponse.transactions &&
-        !getTransactionsResponse.status
-      ) {
+      if (getTransactionsResponse && getTransactionsResponse.transactions && !getTransactionsResponse.status) {
         if (transactionsFilters) {
-          applyTransactionsFilters(
-            getTransactionsResponse.transactions,
-            transactionsFilters,
-            dispatch,
-          );
+          applyTransactionsFilters(getTransactionsResponse.transactions, transactionsFilters, dispatch);
         }
 
         if (selectedTransactionId) {
-          setSelectedTransaction(
-            selectedTransactionId,
-            getTransactionsResponse.transactions,
-            dispatch,
-          );
+          setSelectedTransaction(selectedTransactionId, getTransactionsResponse.transactions, dispatch);
         }
 
         dispatch(getTransactionsSuccess(getTransactionsResponse.transactions));
       } else {
-        dispatch(
-          getTransactionsFailure(getTransactionsResponse?.status?.errMsg),
-        );
+        dispatch(getTransactionsFailure(getTransactionsResponse?.status?.errMsg));
       }
     } catch (error) {
       console.log('Get Transactions Error: ', error);
@@ -145,10 +115,7 @@ const applyTransactionsFilters = (
       return transaction.trfAccount?.id === transactionFilters.accountId;
     });
 
-    const selectedAccountTransactions = [
-      ...accountTransactions,
-      ...trfAccountTransactions,
-    ];
+    const selectedAccountTransactions = [...accountTransactions, ...trfAccountTransactions];
 
     if (trfAccountTransactions) {
       // ascending

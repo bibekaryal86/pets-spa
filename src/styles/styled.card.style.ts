@@ -17,8 +17,7 @@ export const DisplayCardWrapper = styled.div.attrs({
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: ${(props) =>
-    props.alignContent ? props.alignContent : 'flex-start'};
+  align-content: ${(props) => (props.alignContent ? props.alignContent : 'flex-start')};
   margin: 5px;
   padding: 5px;
 `;
@@ -32,8 +31,7 @@ export const DisplayCardBody = styled.div.attrs({
   display: inline-block;
   width: ${(props) => (props.width ? props.width : '-webkit-fill-available')};
   min-width: fit-content;
-  background: ${(props) =>
-    props.background ? props.background : 'ghostwhite'};
+  background: ${(props) => (props.background ? props.background : 'ghostwhite')};
 `;
 
 export const DisplayCardRow = styled.div.attrs({

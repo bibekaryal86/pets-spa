@@ -56,11 +56,7 @@ describe('account utils', () => {
 
   it('number dollar format for deposit accounts and no dollar sign', () => {
     const expectedNumber = '1.07';
-    const actualNumber = numberDollarFormat(
-      1.07,
-      '5ede4cc80525eb78290332e5',
-      true,
-    );
+    const actualNumber = numberDollarFormat(1.07, '5ede4cc80525eb78290332e5', true);
     expect(actualNumber).toEqual(expectedNumber);
   });
 
@@ -130,27 +126,16 @@ describe('account utils', () => {
   });
 
   describe('display accounts', () => {
-    const displayAccountsList = [
-      ACCOUNTS_SAMPLE_DATA[0],
-      ACCOUNTS_SAMPLE_DATA[1],
-    ];
+    const displayAccountsList = [ACCOUNTS_SAMPLE_DATA[0], ACCOUNTS_SAMPLE_DATA[1]];
     const accountsList = ACCOUNTS_SAMPLE_DATA;
 
     it('returns accounts list when filter is not set', () => {
-      const displayAccounts = getDisplayAccounts(
-        false,
-        displayAccountsList,
-        accountsList,
-      );
+      const displayAccounts = getDisplayAccounts(false, displayAccountsList, accountsList);
       expect(displayAccounts).toEqual(accountsList);
     });
 
     it('returns display accounts list when filter is set', () => {
-      const displayAccounts = getDisplayAccounts(
-        true,
-        displayAccountsList,
-        accountsList,
-      );
+      const displayAccounts = getDisplayAccounts(true, displayAccountsList, accountsList);
       expect(displayAccounts).toEqual(displayAccountsList);
     });
   });
@@ -160,12 +145,7 @@ describe('account utils', () => {
     const mockSetAccountData = jest.fn();
 
     it('updates account type', () => {
-      handleOneAccountFieldChange(
-        'updated_account_type',
-        'type',
-        accountData,
-        mockSetAccountData,
-      );
+      handleOneAccountFieldChange('updated_account_type', 'type', accountData, mockSetAccountData);
       expect(mockSetAccountData).toHaveBeenCalledWith({
         account: {
           ...accountData,
@@ -178,12 +158,7 @@ describe('account utils', () => {
     });
 
     it('updates account bank', () => {
-      handleOneAccountFieldChange(
-        'updated_account_bank',
-        'bank',
-        accountData,
-        mockSetAccountData,
-      );
+      handleOneAccountFieldChange('updated_account_bank', 'bank', accountData, mockSetAccountData);
       expect(mockSetAccountData).toHaveBeenCalledWith({
         account: {
           ...accountData,
@@ -196,12 +171,7 @@ describe('account utils', () => {
     });
 
     it('updates account status', () => {
-      handleOneAccountFieldChange(
-        'updated_account_status',
-        'status',
-        accountData,
-        mockSetAccountData,
-      );
+      handleOneAccountFieldChange('updated_account_status', 'status', accountData, mockSetAccountData);
       expect(mockSetAccountData).toHaveBeenCalledWith({
         account: {
           ...accountData,
@@ -211,12 +181,7 @@ describe('account utils', () => {
     });
 
     it('updates account name', () => {
-      handleOneAccountFieldChange(
-        'updated_account_name',
-        'name',
-        accountData,
-        mockSetAccountData,
-      );
+      handleOneAccountFieldChange('updated_account_name', 'name', accountData, mockSetAccountData);
       expect(mockSetAccountData).toHaveBeenCalledWith({
         account: {
           ...accountData,
@@ -226,12 +191,7 @@ describe('account utils', () => {
     });
 
     it('updates account opening balance', () => {
-      handleOneAccountFieldChange(
-        'updated_account_opening_balance',
-        'opening',
-        accountData,
-        mockSetAccountData,
-      );
+      handleOneAccountFieldChange('updated_account_opening_balance', 'opening', accountData, mockSetAccountData);
       expect(mockSetAccountData).toHaveBeenCalledWith({
         account: {
           ...accountData,

@@ -44,8 +44,7 @@ interface TextAreaOptionalCallbacks {
   onPaste(event?: React.ClipboardEvent<HTMLTextAreaElement>): void;
 }
 
-interface TextAreaProps
-  extends Partial<TextAreaOptionalProps & TextAreaOptionalCallbacks> {
+interface TextAreaProps extends Partial<TextAreaOptionalProps & TextAreaOptionalCallbacks> {
   id: string;
   label: string;
   value: string;
@@ -61,12 +60,7 @@ const TextArea = React.memo<TextAreaProps>((props) => {
   const onChange = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       if (!props.disabled) {
-        props.onChange(
-          props.inputFilter
-            ? props.inputFilter(value, event.target.value)
-            : event.target.value,
-          event,
-        );
+        props.onChange(props.inputFilter ? props.inputFilter(value, event.target.value) : event.target.value, event);
       }
     },
     [props, value],
@@ -92,14 +86,11 @@ const TextArea = React.memo<TextAreaProps>((props) => {
     [props],
   );
 
-  const formLabel = (label: string, required?: boolean): string =>
-    required ? label + ' *' : label;
+  const formLabel = (label: string, required?: boolean): string => (required ? label + ' *' : label);
 
   return (
     <TextAreaWrapper focus={focus} required={props.required}>
-      <FormLabel htmlFor={props.id}>
-        {formLabel(props.label, props.required)}
-      </FormLabel>
+      <FormLabel htmlFor={props.id}>{formLabel(props.label, props.required)}</FormLabel>
       <FormTextArea
         className={props.className}
         id={props.id}

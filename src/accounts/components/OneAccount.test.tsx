@@ -147,9 +147,7 @@ describe('one account tests', () => {
   });
 
   describe('one account header', () => {
-    const headerBodyWrapper = renderOneAccount({ selectedAccount }).find(
-      '#one-account-body-header',
-    );
+    const headerBodyWrapper = renderOneAccount({ selectedAccount }).find('#one-account-body-header');
 
     it('header background color', () => {
       const headerBody = headerBodyWrapper.find(DisplayCardBody);
@@ -166,9 +164,7 @@ describe('one account tests', () => {
       expect(hrefLink.prop('linkTo')).toEqual('#');
       expect(hrefLink.prop('title')).toEqual('To All Accounts List');
 
-      const ahref = headerBodyWrapper
-        .find('#one-account-all-accounts-link-1')
-        .at(0);
+      const ahref = headerBodyWrapper.find('#one-account-all-accounts-link-1').at(0);
       expect(ahref.text()).toEqual('To All Accounts List');
 
       ahref.simulate('click');
@@ -194,9 +190,7 @@ describe('one account tests', () => {
         expect(accountNameInput.prop('required')).toEqual(true);
 
         // before change
-        expect(
-          output.find('input[id="one-account-name-input"]').prop('value'),
-        ).toEqual('ACCOUNT CASH');
+        expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('ACCOUNT CASH');
 
         // change
         accountNameInput.find('input').simulate('change', {
@@ -204,9 +198,7 @@ describe('one account tests', () => {
         });
 
         // after change
-        expect(
-          output.find('input[id="one-account-name-input"]').prop('value'),
-        ).toEqual('CASH ACCOUNT');
+        expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('CASH ACCOUNT');
       });
 
       it('opening balance input', () => {
@@ -215,38 +207,24 @@ describe('one account tests', () => {
           selectedAccount,
           selectedAccountTransactions,
         });
-        const openingBalanceInput = output
-          .find('#one-account-opening-balance-input')
-          .at(0);
+        const openingBalanceInput = output.find('#one-account-opening-balance-input').at(0);
 
-        expect(openingBalanceInput.prop('label')).toEqual(
-          'Opening Balance (USD)',
-        );
+        expect(openingBalanceInput.prop('label')).toEqual('Opening Balance (USD)');
         expect(openingBalanceInput.prop('value')).toEqual('11');
         expect(openingBalanceInput.prop('maxLength')).toEqual(10);
         expect(openingBalanceInput.prop('type')).toEqual(InputType.number);
         expect(openingBalanceInput.prop('required')).toEqual(true);
 
         // before change
-        expect(
-          output
-            .find('input[id="one-account-opening-balance-input"]')
-            .prop('value'),
-        ).toEqual('11');
+        expect(output.find('input[id="one-account-opening-balance-input"]').prop('value')).toEqual('11');
 
         // change
-        output
-          .find('input[id="one-account-opening-balance-input"]')
-          .simulate('change', {
-            target: { value: '12' },
-          });
+        output.find('input[id="one-account-opening-balance-input"]').simulate('change', {
+          target: { value: '12' },
+        });
 
         // after change
-        expect(
-          output
-            .find('input[id="one-account-opening-balance-input"]')
-            .prop('value'),
-        ).toEqual('12');
+        expect(output.find('input[id="one-account-opening-balance-input"]').prop('value')).toEqual('12');
       });
 
       it('current balance input', () => {
@@ -255,19 +233,13 @@ describe('one account tests', () => {
           selectedAccount,
           selectedAccountTransactions,
         });
-        const currentBalanceInput = output
-          .find('#one-account-current-balance-input')
-          .at(0);
+        const currentBalanceInput = output.find('#one-account-current-balance-input').at(0);
 
-        expect(currentBalanceInput.prop('label')).toEqual(
-          'Current Balance (USD)',
-        );
+        expect(currentBalanceInput.prop('label')).toEqual('Current Balance (USD)');
         expect(currentBalanceInput.prop('value')).toEqual('21');
         expect(currentBalanceInput.prop('disabled')).toEqual(true);
 
-        expect(
-          currentBalanceInput.find('input').props()['disabled'],
-        ).toBeTruthy();
+        expect(currentBalanceInput.find('input').props()['disabled']).toBeTruthy();
       });
 
       it('account type select', () => {
@@ -279,18 +251,12 @@ describe('one account tests', () => {
         const accountTypeSelect = output.find('#one-account-type-select').at(0);
 
         expect(accountTypeSelect.prop('label')).toEqual('Account Type');
-        expect(accountTypeSelect.prop('value')).toEqual(
-          REF_ACCOUNT_TYPES[0].id,
-        );
+        expect(accountTypeSelect.prop('value')).toEqual(REF_ACCOUNT_TYPES[0].id);
         expect(accountTypeSelect.prop('required')).toEqual(true);
-        expect(accountTypeSelect.prop('options')).toEqual(
-          REF_ACCOUNT_TYPES_SELECT_OPTIONS,
-        );
+        expect(accountTypeSelect.prop('options')).toEqual(REF_ACCOUNT_TYPES_SELECT_OPTIONS);
 
         // before change
-        expect(
-          output.find('select[id="one-account-type-select"]').prop('value'),
-        ).toEqual(REF_ACCOUNT_TYPES[0].id);
+        expect(output.find('select[id="one-account-type-select"]').prop('value')).toEqual(REF_ACCOUNT_TYPES[0].id);
 
         // change
         accountTypeSelect.find('select').simulate('change', {
@@ -298,9 +264,7 @@ describe('one account tests', () => {
         });
 
         // after change
-        expect(
-          output.find('select[id="one-account-type-select"]').prop('value'),
-        ).toEqual(REF_ACCOUNT_TYPES[1].id);
+        expect(output.find('select[id="one-account-type-select"]').prop('value')).toEqual(REF_ACCOUNT_TYPES[1].id);
       });
 
       it('bank select', () => {
@@ -317,9 +281,7 @@ describe('one account tests', () => {
         expect(bankSelect.prop('options')).toEqual(REF_BANKS_SELECT_OPTIONS);
 
         // before change
-        expect(
-          output.find('select[id="one-account-bank-select"]').prop('value'),
-        ).toEqual(REF_BANKS[1].id);
+        expect(output.find('select[id="one-account-bank-select"]').prop('value')).toEqual(REF_BANKS[1].id);
 
         // change
         bankSelect.find('select').simulate('change', {
@@ -327,9 +289,7 @@ describe('one account tests', () => {
         });
 
         // after change
-        expect(
-          output.find('select[id="one-account-bank-select"]').prop('value'),
-        ).toEqual(REF_BANKS[2].id);
+        expect(output.find('select[id="one-account-bank-select"]').prop('value')).toEqual(REF_BANKS[2].id);
       });
 
       it('account status select', () => {
@@ -338,23 +298,17 @@ describe('one account tests', () => {
           selectedAccount,
           selectedAccountTransactions,
         });
-        const accountStatusSelect = output
-          .find('#one-account-status-select')
-          .at(0);
+        const accountStatusSelect = output.find('#one-account-status-select').at(0);
 
         expect(accountStatusSelect.prop('label')).toEqual('Account Status');
-        expect(accountStatusSelect.prop('value')).toEqual(
-          REF_STATUS_SELECT_OPTIONS[1].value,
-        );
+        expect(accountStatusSelect.prop('value')).toEqual(REF_STATUS_SELECT_OPTIONS[1].value);
         expect(accountStatusSelect.prop('required')).toEqual(true);
-        expect(accountStatusSelect.prop('options')).toEqual(
-          REF_STATUS_SELECT_OPTIONS,
-        );
+        expect(accountStatusSelect.prop('options')).toEqual(REF_STATUS_SELECT_OPTIONS);
 
         // before change
-        expect(
-          output.find('select[id="one-account-status-select"]').prop('value'),
-        ).toEqual(REF_STATUS_SELECT_OPTIONS[1].value);
+        expect(output.find('select[id="one-account-status-select"]').prop('value')).toEqual(
+          REF_STATUS_SELECT_OPTIONS[1].value,
+        );
 
         // change
         accountStatusSelect.find('select').simulate('change', {
@@ -362,9 +316,9 @@ describe('one account tests', () => {
         });
 
         // after change
-        expect(
-          output.find('select[id="one-account-status-select"]').prop('value'),
-        ).toEqual(REF_STATUS_SELECT_OPTIONS[2].value);
+        expect(output.find('select[id="one-account-status-select"]').prop('value')).toEqual(
+          REF_STATUS_SELECT_OPTIONS[2].value,
+        );
       });
     });
 
@@ -378,32 +332,14 @@ describe('one account tests', () => {
           const buttons = output.find(Button);
           expect(buttons.length).toEqual(3);
 
-          expect(
-            output.find('#one-account-button-update').at(0).prop('title'),
-          ).toEqual('Update Account');
-          expect(
-            output
-              .find('button[id="one-account-button-update"]')
-              .prop('disabled'),
-          ).toBeTruthy();
+          expect(output.find('#one-account-button-update').at(0).prop('title')).toEqual('Update Account');
+          expect(output.find('button[id="one-account-button-update"]').prop('disabled')).toBeTruthy();
 
-          expect(
-            output.find('#one-account-button-delete').at(0).prop('title'),
-          ).toEqual('Delete Account');
-          expect(
-            output
-              .find('button[id="one-account-button-delete"]')
-              .prop('disabled'),
-          ).toBeFalsy();
+          expect(output.find('#one-account-button-delete').at(0).prop('title')).toEqual('Delete Account');
+          expect(output.find('button[id="one-account-button-delete"]').prop('disabled')).toBeFalsy();
 
-          expect(
-            output.find('#one-account-button-reset').at(0).prop('title'),
-          ).toEqual('Revert Changes');
-          expect(
-            output
-              .find('button[id="one-account-button-reset"]')
-              .prop('disabled'),
-          ).toBeTruthy();
+          expect(output.find('#one-account-button-reset').at(0).prop('title')).toEqual('Revert Changes');
+          expect(output.find('button[id="one-account-button-reset"]').prop('disabled')).toBeTruthy();
         });
 
         it('buttons are enabled when an input is updated', () => {
@@ -416,16 +352,8 @@ describe('one account tests', () => {
             target: { value: 'CASH ACCOUNT' },
           });
 
-          expect(
-            output
-              .find('button[id="one-account-button-update"]')
-              .prop('disabled'),
-          ).toBeFalsy();
-          expect(
-            output
-              .find('button[id="one-account-button-reset"]')
-              .prop('disabled'),
-          ).toBeFalsy();
+          expect(output.find('button[id="one-account-button-update"]').prop('disabled')).toBeFalsy();
+          expect(output.find('button[id="one-account-button-reset"]').prop('disabled')).toBeFalsy();
         });
 
         describe('revert button actions', () => {
@@ -435,50 +363,34 @@ describe('one account tests', () => {
               selectedAccount,
             });
 
-            expect(
-              output.find('input[id="one-account-name-input"]').prop('value'),
-            ).toEqual('ACCOUNT CASH');
+            expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('ACCOUNT CASH');
 
-            output
-              .find('input[id="one-account-name-input"]')
-              .simulate('change', {
-                target: { value: 'CASH ACCOUNT' },
-              });
+            output.find('input[id="one-account-name-input"]').simulate('change', {
+              target: { value: 'CASH ACCOUNT' },
+            });
 
-            expect(
-              output.find('input[id="one-account-name-input"]').prop('value'),
-            ).toEqual('CASH ACCOUNT');
+            expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('CASH ACCOUNT');
 
-            output
-              .find('button[id="one-account-button-reset"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-reset"]').simulate('click');
 
-            expect(
-              output.find('input[id="one-account-name-input"]').prop('value'),
-            ).toEqual('ACCOUNT CASH');
+            expect(output.find('input[id="one-account-name-input"]').prop('value')).toEqual('ACCOUNT CASH');
           });
         });
 
         describe('update button actions', () => {
           it('calls validate and set alert if not valid', () => {
-            const validateAccountSpy = jest
-              .spyOn(accountUtils, 'validateAccount')
-              .mockReturnValue(' [ACCOUNT NAME] ');
+            const validateAccountSpy = jest.spyOn(accountUtils, 'validateAccount').mockReturnValue(' [ACCOUNT NAME] ');
 
             const output = renderOneAccount({
               accountsList,
               selectedAccount,
             });
 
-            output
-              .find('input[id="one-account-name-input"]')
-              .simulate('change', {
-                target: { value: '' },
-              });
+            output.find('input[id="one-account-name-input"]').simulate('change', {
+              target: { value: '' },
+            });
 
-            output
-              .find('button[id="one-account-button-update"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-update"]').simulate('click');
 
             expect(validateAccountSpy).toHaveBeenCalledTimes(1);
             expect(setAlert).toHaveBeenCalledTimes(1);
@@ -489,24 +401,18 @@ describe('one account tests', () => {
           });
 
           it('calls made when changes are valid', () => {
-            const validateAccountSpy = jest
-              .spyOn(accountUtils, 'validateAccount')
-              .mockReturnValue('');
+            const validateAccountSpy = jest.spyOn(accountUtils, 'validateAccount').mockReturnValue('');
 
             const output = renderOneAccount({
               accountsList,
               selectedAccount,
             });
 
-            output
-              .find('input[id="one-account-name-input"]')
-              .simulate('change', {
-                target: { value: 'CASH ACCOUNT' },
-              });
+            output.find('input[id="one-account-name-input"]').simulate('change', {
+              target: { value: 'CASH ACCOUNT' },
+            });
 
-            output
-              .find('button[id="one-account-button-update"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-update"]').simulate('click');
 
             const accountData = {
               ...selectedAccount,
@@ -520,12 +426,7 @@ describe('one account tests', () => {
             expect(resetOnPageLeave).not.toHaveBeenCalled();
             expect(mockUseNavigate).not.toHaveBeenCalled();
             expect(updateAccount).toHaveBeenCalledTimes(1);
-            expect(updateAccount).toHaveBeenCalledWith(
-              username,
-              mockAccountId,
-              accountData,
-              'PUT',
-            );
+            expect(updateAccount).toHaveBeenCalledWith(username, mockAccountId, accountData, 'PUT');
           });
         });
 
@@ -536,9 +437,7 @@ describe('one account tests', () => {
               selectedAccount,
             });
 
-            const deleteButton = output.find(
-              'button[id="one-account-button-delete"]',
-            );
+            const deleteButton = output.find('button[id="one-account-button-delete"]');
 
             expect(deleteButton.prop('disabled')).toBeFalsy();
           });
@@ -546,9 +445,7 @@ describe('one account tests', () => {
           it('opens modal when button is clicked', () => {
             document.getElementById = jest
               .fn()
-              .mockImplementation((id) =>
-                id === 'app-modal' ? document.createElement('div') : null,
-              );
+              .mockImplementation((id) => (id === 'app-modal' ? document.createElement('div') : null));
             const output = renderOneAccount({
               accountsList,
               selectedAccount,
@@ -557,9 +454,7 @@ describe('one account tests', () => {
             const modalBeforeClick = output.find('#app-modal-id');
             expect(modalBeforeClick.length).toEqual(0);
 
-            output
-              .find('button[id="one-account-button-delete"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-delete"]').simulate('click');
 
             const modalAfterClick = output.find('#app-modal-id');
             expect(modalAfterClick.length).toEqual(1);
@@ -571,9 +466,7 @@ describe('one account tests', () => {
             );
 
             // modal secondary button
-            const secondaryButton = output
-              .find('#app-modal-id')
-              .find('button[id="modal-secondary-button"]');
+            const secondaryButton = output.find('#app-modal-id').find('button[id="modal-secondary-button"]');
             expect(secondaryButton.text()).toEqual('Cancel');
             secondaryButton.simulate('click');
             // modal is closed
@@ -581,14 +474,10 @@ describe('one account tests', () => {
             expect(modalAfterClick_secondayButton.length).toEqual(0);
 
             // click delete button to open modal again
-            output
-              .find('button[id="one-account-button-delete"]')
-              .simulate('click');
+            output.find('button[id="one-account-button-delete"]').simulate('click');
 
             // modal primary button
-            const primaryButton = output
-              .find('#app-modal-id')
-              .find('button[id="modal-primary-button"]');
+            const primaryButton = output.find('#app-modal-id').find('button[id="modal-primary-button"]');
             expect(primaryButton.text()).toEqual('Yes');
             primaryButton.simulate('click');
             // modal is closed
@@ -598,10 +487,7 @@ describe('one account tests', () => {
             expect(resetAlert).toHaveBeenCalledTimes(1);
             expect(resetOnPageLeave).toHaveBeenCalledTimes(1);
             expect(deleteAccount).toHaveBeenCalledTimes(1);
-            expect(deleteAccount).toHaveBeenCalledWith(
-              username,
-              selectedAccount.id,
-            );
+            expect(deleteAccount).toHaveBeenCalledWith(username, selectedAccount.id);
             expect(mockUseNavigate).toHaveBeenCalledTimes(1);
             expect(mockUseNavigate).toHaveBeenCalledWith('/accounts');
           });
@@ -617,29 +503,21 @@ describe('one account tests', () => {
       });
 
       it('link to all accounts', () => {
-        const linkToAllAccounts = output
-          .find('#one-account-all-accounts-link-2')
-          .at(0);
+        const linkToAllAccounts = output.find('#one-account-all-accounts-link-2').at(0);
         expect(linkToAllAccounts.text()).toEqual(' [ Show All Accounts ] ');
         linkToAllAccounts.simulate('click');
         expect(mockUseNavigate).toHaveBeenCalledWith('/accounts');
       });
 
       it('link to add new transaction', () => {
-        const linkToAllAccounts = output
-          .find('#one-account-add-txn-link')
-          .at(0);
+        const linkToAllAccounts = output.find('#one-account-add-txn-link').at(0);
         expect(linkToAllAccounts.text()).toEqual(' [ Add New Transaction ] ');
         linkToAllAccounts.simulate('click');
-        expect(mockUseNavigate).toHaveBeenCalledWith(
-          '/transaction/?accountId=' + ACCOUNTS_SAMPLE_DATA[0].id,
-        );
+        expect(mockUseNavigate).toHaveBeenCalledWith('/transaction/?accountId=' + ACCOUNTS_SAMPLE_DATA[0].id);
       });
 
       it('link to show all transactions', () => {
-        const linkToAllAccounts = output
-          .find('#one-account-all-txns-link')
-          .at(0);
+        const linkToAllAccounts = output.find('#one-account-all-txns-link').at(0);
         expect(linkToAllAccounts.text()).toEqual(' [ Show All Transactions ] ');
         linkToAllAccounts.simulate('click');
         expect(mockUseNavigate).toHaveBeenCalledWith('/transactions');
@@ -655,12 +533,8 @@ describe('one account tests', () => {
 
       it('transactions for selected account', () => {
         const transactions = output.find(TransactionsList);
-        expect(transactions.prop('transactions')).toEqual(
-          selectedAccountTransactions,
-        );
-        expect(transactions.prop('selectedAccountId')).toEqual(
-          ACCOUNTS_SAMPLE_DATA[0].id,
-        );
+        expect(transactions.prop('transactions')).toEqual(selectedAccountTransactions);
+        expect(transactions.prop('selectedAccountId')).toEqual(ACCOUNTS_SAMPLE_DATA[0].id);
       });
     });
   });

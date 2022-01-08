@@ -18,10 +18,7 @@ export const userLogin = (username: string, password: string) => {
     dispatch(userLoginRequest());
 
     try {
-      const loginEndpoint = getEndpoint([
-        process.env.BASE_URL as string,
-        process.env.LOGIN_ENDPOINT as string,
-      ]);
+      const loginEndpoint = getEndpoint([process.env.BASE_URL as string, process.env.LOGIN_ENDPOINT as string]);
       const options: Partial<FetchOptions> = {
         method: 'POST',
         noAuth: true,
@@ -31,11 +28,7 @@ export const userLogin = (username: string, password: string) => {
         },
       };
 
-      const fetchResponse = (await prefetch(
-        loginEndpoint,
-        options,
-        true,
-      )) as FetchResponse;
+      const fetchResponse = (await prefetch(loginEndpoint, options, true)) as FetchResponse;
 
       if (fetchResponse.statusCode === 200) {
         const loginResponse = fetchResponse.data as LoginResponse;
@@ -58,10 +51,7 @@ const userLoginRequest = () => ({
   loginResponse: DefaultLoginResponse,
 });
 
-const userLoginSuccess = (
-  dispatch: React.Dispatch<GlobalDispatch>,
-  loginResponse: LoginResponse,
-) => {
+const userLoginSuccess = (dispatch: React.Dispatch<GlobalDispatch>, loginResponse: LoginResponse) => {
   dispatch(userLoginSuccessResponseActions(loginResponse));
   userLoginSuccessLocalStorageActions(loginResponse);
 };

@@ -2,16 +2,8 @@ import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
 import { SESSION_ACCOUNT_FILTERS } from '../../common/utils/constants';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
-import {
-  ACCOUNTS_CLEAR_FILTERS,
-  ACCOUNTS_SET_FILTER,
-  ACCOUNTS_UNMOUNT,
-} from '../types/accounts.action.types';
-import {
-  Account,
-  AccountFilters,
-  AccountsReducerAction,
-} from '../types/accounts.data.types';
+import { ACCOUNTS_CLEAR_FILTERS, ACCOUNTS_SET_FILTER, ACCOUNTS_UNMOUNT } from '../types/accounts.action.types';
+import { Account, AccountFilters, AccountsReducerAction } from '../types/accounts.data.types';
 
 export const resetOnPageLeave = () => {
   return async (dispatch: React.Dispatch<GlobalDispatch>): Promise<void> => {
@@ -34,9 +26,7 @@ export const setAccountsFilter = (
   selectedValue: string,
   accountsList: Account[],
 ): Partial<AccountsReducerAction> => {
-  let accountFilters = SessionStorage.getItem(
-    SESSION_ACCOUNT_FILTERS,
-  ) as AccountFilters;
+  let accountFilters = SessionStorage.getItem(SESSION_ACCOUNT_FILTERS) as AccountFilters;
 
   switch (selectedFilter) {
     case 'type': {
@@ -71,10 +61,7 @@ export const setAccountsFilter = (
   };
 };
 
-const filterAccounts = (
-  accountFilters: AccountFilters,
-  accountsList: Account[],
-): Account[] => {
+const filterAccounts = (accountFilters: AccountFilters, accountsList: Account[]): Account[] => {
   let filteredAccounts = accountsList;
 
   if (accountFilters) {
@@ -85,15 +72,11 @@ const filterAccounts = (
     }
 
     if (accountFilters.bankId) {
-      filteredAccounts = filteredAccounts.filter(
-        (account) => account.refBank.id === accountFilters.bankId,
-      );
+      filteredAccounts = filteredAccounts.filter((account) => account.refBank.id === accountFilters.bankId);
     }
 
     if (accountFilters.status) {
-      filteredAccounts = filteredAccounts.filter(
-        (account) => account.status === accountFilters.status,
-      );
+      filteredAccounts = filteredAccounts.filter((account) => account.status === accountFilters.status);
     }
   }
 

@@ -19,10 +19,8 @@ const mapStateToProps = ({ merchants }: GlobalState) => {
 
 const mapDispatchToProps = {
   getMerchants: (username: string) => getMerchants(username),
-  updateMerchant: (username: string, id: string, description: string) =>
-    updateMerchant(username, id, description),
-  deleteMerchant: (username: string, id: string) =>
-    deleteMerchant(username, id),
+  updateMerchant: (username: string, id: string, description: string) => updateMerchant(username, id, description),
+  deleteMerchant: (username: string, id: string) => deleteMerchant(username, id),
   setAlert: (type: string, messageKey: string) => setAlert(type, messageKey),
   resetAlert: () => resetAlert(),
   resetOnPageLeave: () => resetOnPageLeave(),

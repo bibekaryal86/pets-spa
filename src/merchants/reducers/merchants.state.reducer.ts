@@ -8,15 +8,9 @@ import {
   MERCHANTS_SHOW_NOT_USED_IN_TXNS_ONLY,
   MERCHANTS_UPDATE_MODAL_ACTION,
 } from '../types/merchants.action.types';
-import {
-  MerchantsReducerAction,
-  MerchantsReducerState,
-} from '../types/merchants.data.types';
+import { MerchantsReducerAction, MerchantsReducerState } from '../types/merchants.data.types';
 
-export default (
-  state: MerchantsReducerState,
-  action: Partial<MerchantsReducerAction>,
-): MerchantsReducerState => {
+export default (state: MerchantsReducerState, action: Partial<MerchantsReducerAction>): MerchantsReducerState => {
   switch (action.type) {
     case MERCHANTS_SET_MERCHANT_IN_ACTION:
       return {

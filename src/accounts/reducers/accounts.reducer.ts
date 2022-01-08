@@ -13,19 +13,11 @@ import {
   ACCOUNTS_SELECT_ACCOUNT_TRANSACTIONS,
   ACCOUNTS_UNMOUNT,
 } from '../types/accounts.action.types';
-import {
-  AccountsAction,
-  AccountsState,
-  DefaultAccount,
-  DefaultAccountsState,
-} from '../types/accounts.data.types';
+import { AccountsAction, AccountsState, DefaultAccount, DefaultAccountsState } from '../types/accounts.data.types';
 
 const initialState = DefaultAccountsState;
 
-export default function accounts(
-  state = initialState,
-  action: AccountsAction,
-): AccountsState {
+export default function accounts(state = initialState, action: AccountsAction): AccountsState {
   switch (action.type) {
     case ACCOUNTS_GET_REQUEST:
       return {

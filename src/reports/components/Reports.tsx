@@ -13,11 +13,7 @@ import {
   REPORT_PATH_CATEGORIES,
   REPORT_PATH_CURRENT_BALANCES,
 } from '../../common/utils/constants';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import { getCashFlowsReport } from '../actions/getCashFlowsReport.action';
 import { getCategoriesReport } from '../actions/getCategoriesReport.action';
 import { getCurrentBalancesReport } from '../actions/getCurrentBalancesReport.action';
@@ -50,15 +46,9 @@ const Reports = (props: ReportsProps): React.ReactElement => {
   const [selectedReport, setSelectedReport] = useState('');
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [errMsg, setErrMsg] = useState('');
-  const [cashFlowsReport, setCashFlowsReport] = useState(
-    DefaultReportsResponse.reportCashFlows,
-  );
-  const [currentBalancesReport, setCurrentBalancesReport] = useState(
-    DefaultReportsResponse.reportCurrentBalances,
-  );
-  const [categoriesReport, setCategoriesReport] = useState(
-    DefaultReportsResponse.reportCategoryTypes,
-  );
+  const [cashFlowsReport, setCashFlowsReport] = useState(DefaultReportsResponse.reportCashFlows);
+  const [currentBalancesReport, setCurrentBalancesReport] = useState(DefaultReportsResponse.reportCurrentBalances);
+  const [categoriesReport, setCategoriesReport] = useState(DefaultReportsResponse.reportCategoryTypes);
 
   const setCashFlowsReportData = async () => {
     setSpinner();
@@ -136,8 +126,7 @@ const Reports = (props: ReportsProps): React.ReactElement => {
 
   const showYearSelectOptions = useCallback(
     () =>
-      (selectedReport === REPORT_NAME_CASH_FLOWS ||
-        selectedReport === REPORT_NAME_CATEGORIES) && (
+      (selectedReport === REPORT_NAME_CASH_FLOWS || selectedReport === REPORT_NAME_CATEGORIES) && (
         <DisplayCardWrapper>
           <DisplayCardBody>
             <DisplayCardRow>
@@ -177,21 +166,13 @@ const Reports = (props: ReportsProps): React.ReactElement => {
     ) : selectedReport === REPORT_NAME_CASH_FLOWS ? (
       <CashFlowsReport report={cashFlowsReport} selectedYear={selectedYear} />
     ) : selectedReport === REPORT_NAME_CATEGORIES ? (
-      <CategoriesReport
-        report={categoriesReport}
-        selectedYear={selectedYear}
-        displaySideBySide={true}
-      />
+      <CategoriesReport report={categoriesReport} selectedYear={selectedYear} displaySideBySide={true} />
     ) : (
       <DisplayCardWrapper>
         <DisplayCardBody>
           <DisplayCardRow>
             <CurrentBalancesReport report={currentBalancesReport} />
-            <CashFlowsReport
-              report={cashFlowsReport}
-              selectedYear={selectedYear}
-              showMore={true}
-            />
+            <CashFlowsReport report={cashFlowsReport} selectedYear={selectedYear} showMore={true} />
             <CategoriesReport
               report={categoriesReport}
               selectedYear={selectedYear}

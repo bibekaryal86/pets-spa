@@ -5,20 +5,10 @@ import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
 import HrefLink from '../../common/forms/HrefLink';
 import Input from '../../common/forms/Input';
-import {
-  ALERT_TYPE_FAILURE,
-  ALERT_TYPE_SUCCESS,
-} from '../../common/utils/constants';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_SUCCESS } from '../../common/utils/constants';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import TransactionsList from '../../transactions/components/TransactionsList';
-import {
-  Transaction,
-  TransactionFilters,
-} from '../../transactions/types/transactions.data.types';
+import { Transaction, TransactionFilters } from '../../transactions/types/transactions.data.types';
 import { Merchant } from '../types/merchants.data.types';
 
 export interface OneMerchantProps {
@@ -33,10 +23,7 @@ export interface OneMerchantProps {
   setAlert: (type: string, messageKey: string) => void;
   resetAlert: () => void;
   resetOnPageLeave: () => void;
-  getTransactions: (
-    username: string,
-    transactionFilters: Partial<TransactionFilters>,
-  ) => void;
+  getTransactions: (username: string, transactionFilters: Partial<TransactionFilters>) => void;
   deleteTransaction: (username: string, id: string) => void;
 }
 
@@ -78,14 +65,7 @@ const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
       getMerchants(username, id || '');
       getTransactions(username, { merchantId: id });
     }
-  }, [
-    getMerchants,
-    getTransactions,
-    id,
-    username,
-    merchantsList,
-    selectedMerchantTransactions.length,
-  ]);
+  }, [getMerchants, getTransactions, id, username, merchantsList, selectedMerchantTransactions.length]);
 
   useEffect(() => {
     setMerchantDesc(selectedMerchant.description);
