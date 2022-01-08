@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { AuthContext } from '../context/AuthContext';
 import { UserDetails } from '../../home/types/home.data.types';
-import { protectedRoutes } from '../config/routes';
+import { protectedRoutes } from './AppRoutes';
 
 const StyledHeader = styled.header.attrs({
   className: 'styled-header',
@@ -143,26 +143,19 @@ const HeaderLinks = ({ displayName = '' }): React.ReactElement => {
   );
 };
 
-const getRoutePath = (route: string) => route.split('/:')[0];
-
 const Navigation = ({ isLoggedIn = false }): React.ReactElement => {
   return (
     <StyledNav justifycontent="center">
       {protectedRoutes.map((route) =>
         route.display ? (
-          route.submenu ? (
+          route.submenus ? (
             <StyledNavDropdownMenu key={route.path}>
-              <StyledNavLink to={getRoutePath(route.path)}>
-                {route.display}
-              </StyledNavLink>
+              <StyledNavLink to={route.path}>{route.display}</StyledNavLink>
               {isLoggedIn && (
                 <StyledNavDropdownMenuContent>
-                  {route.submenu.map((subroute) => (
-                    <StyledNavLinkDropdown
-                      key={subroute.path}
-                      to={subroute.path}
-                    >
-                      {subroute.display}
+                  {route.submenus.map((submenu) => (
+                    <StyledNavLinkDropdown key={submenu.path} to={submenu.path}>
+                      {submenu.display}
                     </StyledNavLinkDropdown>
                   ))}
                 </StyledNavDropdownMenuContent>

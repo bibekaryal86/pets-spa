@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SideBar from './SideBar';
-import AppRoutes from '../config/AppRoutes';
+import AppRoutes from './AppRoutes';
 
 const BodyWrapper = styled.div.attrs({
   className: 'body-wrapper',
