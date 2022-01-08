@@ -22,12 +22,10 @@ import {
 import HrefLink from '../../common/forms/HrefLink';
 import Table from '../../common/forms/Table';
 
-const mockHistoryPush = jest.fn();
+const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...(jest.requireActual('react-router-dom') as any),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe('accounts tests', () => {
@@ -151,8 +149,8 @@ describe('accounts tests', () => {
       expect(ahref.text()).toEqual('To Add a New Account Click Here');
 
       ahref.simulate('click');
-      expect(mockHistoryPush).toHaveBeenCalledTimes(1);
-      expect(mockHistoryPush).toHaveBeenCalledWith('/account/');
+      expect(mockUseNavigate).toHaveBeenCalledTimes(1);
+      expect(mockUseNavigate).toHaveBeenCalledWith('/account/');
     });
 
     it('filter dropdowns', () => {
@@ -357,7 +355,7 @@ describe('accounts tests', () => {
         });
 
         it('accounts list click to open account details', () => {
-          mockHistoryPush.mockReset();
+          mockUseNavigate.mockReset();
 
           const accountNameColumn = table
             .find('tbody')
@@ -371,7 +369,7 @@ describe('accounts tests', () => {
 
           const accountNameLinkHref = accountNameLink.find('a');
           accountNameLinkHref.simulate('click');
-          expect(mockHistoryPush).toHaveBeenCalledWith(
+          expect(mockUseNavigate).toHaveBeenCalledWith(
             '/account/5ede989a2c473171d7464592',
           );
         });

@@ -2795,6 +2795,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                 },
                               ]
                             }
+                            enclosingCharacter="\\""
                             filename="Selected_Transactions.csv"
                             headers={
                               Array [
