@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import HrefLink from '../../common/forms/HrefLink';
 import Select from '../../common/forms/Select';
@@ -98,9 +99,10 @@ const Reports = (props: ReportsProps): React.ReactElement => {
     setCategoriesReportData();
   };
 
+  const path = useLocation().pathname;
   useEffect(() => {
     if (username) {
-      switch (window.location.pathname) {
+      switch (path) {
         case REPORT_PATH_ALL:
           setSelectedReport('');
           setAllReports();
@@ -120,7 +122,7 @@ const Reports = (props: ReportsProps): React.ReactElement => {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedReport, selectedYear, username]);
+  }, [path, selectedReport, selectedYear, username]);
 
   useEffect(() => {
     errMsg && setAlert(ALERT_TYPE_FAILURE, errMsg);

@@ -43,13 +43,22 @@ const AppRoutes = (): React.ReactElement => {
         }
       />
       <Route
-        path={'/transaction/:id?'}
+        path={'/transaction'}
         element={
           <RequireAuth>
             <OneTransactionContainer />
           </RequireAuth>
         }
-      />
+      >
+        <Route
+          path={':id'}
+          element={
+            <RequireAuth>
+              <OneTransactionContainer />
+            </RequireAuth>
+          }
+        />
+      </Route>
       <Route
         path={'/accounts'}
         element={
@@ -59,13 +68,22 @@ const AppRoutes = (): React.ReactElement => {
         }
       />
       <Route
-        path={'/account/:id?'}
+        path={'/account'}
         element={
           <RequireAuth>
             <OneAccountContainer />
           </RequireAuth>
         }
-      />
+      >
+        <Route
+          path={':id'}
+          element={
+            <RequireAuth>
+              <OneAccountContainer />
+            </RequireAuth>
+          }
+        />
+      </Route>
       <Route
         path={'/merchants'}
         element={
@@ -75,13 +93,22 @@ const AppRoutes = (): React.ReactElement => {
         }
       />
       <Route
-        path={'/merchant/:id?'}
+        path={'/merchant'}
         element={
           <RequireAuth>
             <OneMerchantContainer />
           </RequireAuth>
         }
-      />
+      >
+        <Route
+          path={':id'}
+          element={
+            <RequireAuth>
+              <OneMerchantContainer />
+            </RequireAuth>
+          }
+        />
+      </Route>
       <Route
         path={REPORT_PATH_ALL}
         element={
