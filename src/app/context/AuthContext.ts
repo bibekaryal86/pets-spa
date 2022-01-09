@@ -1,8 +1,5 @@
 import { createContext } from 'react';
-import {
-  DefaultUserDetails,
-  UserDetails,
-} from '../../home/types/home.data.types';
+import { DefaultUserDetails, UserDetails } from '../../home/types/home.data.types';
 
 export interface AuthState {
   isLoggedIn: boolean;

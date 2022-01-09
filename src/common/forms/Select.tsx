@@ -69,20 +69,13 @@ const Select: React.FC<SelectProps> = (props) => {
     setFocus(false);
   }, []);
 
-  const formLabel = (label: string, required?: boolean): string =>
-    required ? label + ' *' : label;
+  const formLabel = (label: string, required?: boolean): string => (required ? label + ' *' : label);
 
-  const size = props.size
-    ? props.size
-    : props.multiple
-    ? Math.min(7, props.options.length)
-    : 0;
+  const size = props.size ? props.size : props.multiple ? Math.min(7, props.options.length) : 0;
 
   return (
     <SelectWrapper focus={focus} required={props.required}>
-      <FormLabel htmlFor={props.id}>
-        {formLabel(props.label, props.required)}
-      </FormLabel>
+      <FormLabel htmlFor={props.id}>{formLabel(props.label, props.required)}</FormLabel>
       <select
         className={props.className}
         id={props.id}

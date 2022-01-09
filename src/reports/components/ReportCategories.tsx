@@ -1,14 +1,12 @@
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import { ReportCategoryTypes } from '../types/reports.data.types';
 import { DisplayCardRow } from '../../styles/styled.card.style';
 import Table from '../../common/forms/Table';
 import { reportCategories } from '../utils/reports.utils';
 import HrefLink from '../../common/forms/HrefLink';
-import {
-  REPORT_PATH_CATEGORIES,
-  SESSION_TRANSACTION_FILTERS,
-} from '../../common/utils/constants';
+import { REPORT_PATH_CATEGORIES, SESSION_TRANSACTION_FILTERS } from '../../common/utils/constants';
 import styled from 'styled-components';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
 import { DefaultTransactionFilters } from '../../transactions/types/transactions.data.types';
@@ -28,20 +26,15 @@ interface ReportCategoryTypesProps {
   showMore?: boolean;
 }
 
-export const CategoriesReport = (
-  props: ReportCategoryTypesProps,
-): React.ReactElement => {
-  const history = useHistory();
-  const onClickToTransactions = (
-    categoryTypeId: string,
-    categoryId: string,
-  ) => {
+export const CategoriesReport = (props: ReportCategoryTypesProps): React.ReactElement => {
+  const navigate = useNavigate();
+  const onClickToTransactions = (categoryTypeId: string, categoryId: string) => {
     SessionStorage.setItem(SESSION_TRANSACTION_FILTERS, {
       ...DefaultTransactionFilters,
       categoryTypeId,
       categoryId,
     });
-    history.push('/transactions');
+    navigate('/transactions');
   };
 
   const categoriesTotal = (reportCategoryType: ReportCategoryTypes) => {
@@ -84,11 +77,7 @@ export const CategoriesReport = (
         {props.showMore && (
           <DisplayCardRow>
             Click here to see reports for previous years:
-            <HrefLink
-              id="report-categories-show-more"
-              linkTo={REPORT_PATH_CATEGORIES}
-              title="Categories Report"
-            />
+            <HrefLink id="report-categories-show-more" linkTo={REPORT_PATH_CATEGORIES} title="Categories Report" />
           </DisplayCardRow>
         )}
 

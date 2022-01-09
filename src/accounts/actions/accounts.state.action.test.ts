@@ -1,14 +1,6 @@
-import {
-  clearAccountsFilter,
-  resetOnPageLeave,
-  setAccountsFilter,
-} from './accounts.state.action';
+import { clearAccountsFilter, resetOnPageLeave, setAccountsFilter } from './accounts.state.action';
 import { ACCOUNTS_SAMPLE_DATA } from '../../common/fixtures/accounts.sample.data';
-import {
-  ACCOUNTS_CLEAR_FILTERS,
-  ACCOUNTS_SET_FILTER,
-  ACCOUNTS_UNMOUNT,
-} from '../types/accounts.action.types';
+import { ACCOUNTS_CLEAR_FILTERS, ACCOUNTS_SET_FILTER, ACCOUNTS_UNMOUNT } from '../types/accounts.action.types';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
 import { SESSION_ACCOUNT_FILTERS } from '../../common/utils/constants';
 
@@ -60,17 +52,10 @@ describe('account state actions', () => {
         displayAccountsList,
       };
 
-      const received = setAccountsFilter(
-        'type',
-        accountFilters.accountTypeId,
-        ACCOUNTS_SAMPLE_DATA,
-      );
+      const received = setAccountsFilter('type', accountFilters.accountTypeId, ACCOUNTS_SAMPLE_DATA);
 
       expect(received).toEqual(expected);
-      expect(setSessionSpy).toHaveBeenCalledWith(
-        SESSION_ACCOUNT_FILTERS,
-        accountFilters,
-      );
+      expect(setSessionSpy).toHaveBeenCalledWith(SESSION_ACCOUNT_FILTERS, accountFilters);
     });
 
     it('filters by bank', () => {
@@ -87,17 +72,10 @@ describe('account state actions', () => {
         displayAccountsList,
       };
 
-      const received = setAccountsFilter(
-        'bank',
-        accountFilters.bankId,
-        ACCOUNTS_SAMPLE_DATA,
-      );
+      const received = setAccountsFilter('bank', accountFilters.bankId, ACCOUNTS_SAMPLE_DATA);
 
       expect(received).toEqual(expected);
-      expect(setSessionSpy).toHaveBeenCalledWith(
-        SESSION_ACCOUNT_FILTERS,
-        accountFilters,
-      );
+      expect(setSessionSpy).toHaveBeenCalledWith(SESSION_ACCOUNT_FILTERS, accountFilters);
     });
 
     it('filters by status', () => {
@@ -110,12 +88,8 @@ describe('account state actions', () => {
         status: 'ACTIVE',
       };
 
-      const accountsList = ACCOUNTS_SAMPLE_DATA.filter(
-        (account) => account.refBank.id === accountFilters.bankId,
-      );
-      const displayAccountsList = accountsList.filter(
-        (account) => account.status === accountFilters.status,
-      );
+      const accountsList = ACCOUNTS_SAMPLE_DATA.filter((account) => account.refBank.id === accountFilters.bankId);
+      const displayAccountsList = accountsList.filter((account) => account.status === accountFilters.status);
 
       const expected = {
         type: ACCOUNTS_SET_FILTER,
@@ -129,10 +103,7 @@ describe('account state actions', () => {
       expect(getSessionSpy).toHaveBeenCalledTimes(1);
       expect(getSessionSpy).toHaveBeenCalledWith(SESSION_ACCOUNT_FILTERS);
       expect(setSessionSpy).toHaveBeenCalledTimes(1);
-      expect(setSessionSpy).toHaveBeenCalledWith(
-        SESSION_ACCOUNT_FILTERS,
-        accountFilters,
-      );
+      expect(setSessionSpy).toHaveBeenCalledWith(SESSION_ACCOUNT_FILTERS, accountFilters);
     });
   });
 });

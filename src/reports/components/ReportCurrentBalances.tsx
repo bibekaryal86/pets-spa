@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ReportCurrentBalances } from '../types/reports.data.types';
 import Table from '../../common/forms/Table';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
@@ -10,15 +11,13 @@ interface ReportCurrentBalancesProps {
   report: ReportCurrentBalances[];
 }
 
-export const CurrentBalancesReport = (
-  props: ReportCurrentBalancesProps,
-): React.ReactElement => {
-  const history = useHistory();
+export const CurrentBalancesReport = (props: ReportCurrentBalancesProps): React.ReactElement => {
+  const navigate = useNavigate();
   const onClickToAccounts = (accountTypeId: string) => {
     SessionStorage.setItem(SESSION_ACCOUNT_FILTERS, {
       accountTypeId,
     });
-    history.push('/accounts');
+    navigate('/accounts');
   };
 
   const getAssets = () => {
@@ -30,9 +29,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Cash:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(props.report?.[0]?.accountTypeCashId)
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeCashId)}
           />
           {numberFormatter(+props.report?.[0]?.totalCash)}
         </div>
@@ -42,11 +39,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Checking Accounts:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(
-                props.report?.[0]?.accountTypeCheckingAccountsId,
-              )
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeCheckingAccountsId)}
           />
           {numberFormatter(+props.report?.[0]?.totalCheckingAccounts)}
         </div>
@@ -56,9 +49,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Savings Accounts:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(props.report?.[0]?.accountTypeSavingsAccountsId)
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeSavingsAccountsId)}
           />
           {numberFormatter(+props.report?.[0]?.totalSavingsAccounts)}
         </div>
@@ -68,11 +59,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Investment Accounts:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(
-                props.report?.[0]?.accountTypeInvestmentAccountsId,
-              )
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeInvestmentAccountsId)}
           />
           {numberFormatter(+props.report?.[0]?.totalInvestmentAccounts)}
         </div>
@@ -82,11 +69,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Other Deposit Accounts:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(
-                props.report?.[0]?.accountTypeOtherDepositAccountsId,
-              )
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeOtherDepositAccountsId)}
           />
           {numberFormatter(+props.report?.[0]?.totalOtherDepositAccounts)}
         </div>
@@ -103,9 +86,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Credit Cards:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(props.report?.[0]?.accountTypeCreditCardsId)
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeCreditCardsId)}
           />
           {numberFormatter(+props.report?.[0]?.totalCreditCards)}
         </div>
@@ -115,11 +96,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Loans and Mortgages:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(
-                props.report?.[0]?.accountTypeLoansAndMortgagesId,
-              )
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeLoansAndMortgagesId)}
           />
           {numberFormatter(+props.report?.[0]?.totalLoansAndMortgages)}
         </div>
@@ -129,11 +106,7 @@ export const CurrentBalancesReport = (
             linkTo="#"
             title="Other Loan Accounts:"
             margin="0 5px 0 0"
-            onClick={() =>
-              onClickToAccounts(
-                props.report?.[0]?.accountTypeOtherLoanAccountsId,
-              )
-            }
+            onClick={() => onClickToAccounts(props.report?.[0]?.accountTypeOtherLoanAccountsId)}
           />
           {numberFormatter(+props.report?.[0]?.totalOtherLoanAccounts)}
         </div>
@@ -168,12 +141,6 @@ export const CurrentBalancesReport = (
   ];
 
   return (
-    <Table
-      title="Current Balances"
-      headers={tableHeaders}
-      data={tableData}
-      footer={tableFooter}
-      verticalAlign="top"
-    />
+    <Table title="Current Balances" headers={tableHeaders} data={tableData} footer={tableFooter} verticalAlign="top" />
   );
 };

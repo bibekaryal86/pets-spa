@@ -1,8 +1,6 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
-import {
-  MSG_KEY_DELETE_TRANSACTION_FAIL,
-  MSG_KEY_EDIT_TRANSACTION_SUCCESS,
-} from '../../common/utils/constants';
+import { MSG_KEY_DELETE_TRANSACTION_FAIL, MSG_KEY_EDIT_TRANSACTION_SUCCESS } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
@@ -19,26 +17,18 @@ export const deleteTransaction = (username: string, id: string) => {
     dispatch(deleteTransactionRequest());
 
     try {
-      const urlPath = getEndpoint([
-        process.env.BASE_URL as string,
-        process.env.EDIT_TRANSACTION_ENDPOINT as string,
-      ]);
+      const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.EDIT_TRANSACTION_ENDPOINT as string]);
       const options: Partial<FetchOptions> = {
         method: 'DELETE',
         pathParams: { username },
         queryParams: { id },
       };
-      const deleteTransactionResponse = (await prefetch(
-        urlPath,
-        options,
-      )) as TransactionsResponse;
+      const deleteTransactionResponse = (await prefetch(urlPath, options)) as TransactionsResponse;
 
       if (deleteTransactionResponse && !deleteTransactionResponse.status) {
         dispatch(deleteTransactionSuccess());
       } else {
-        dispatch(
-          deleteTransactionFailure(deleteTransactionResponse?.status?.errMsg),
-        );
+        dispatch(deleteTransactionFailure(deleteTransactionResponse?.status?.errMsg));
       }
     } catch (error) {
       console.log('Delete Transaction Error: ', error);

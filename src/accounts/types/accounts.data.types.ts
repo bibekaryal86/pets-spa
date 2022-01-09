@@ -1,12 +1,6 @@
 import { Status } from '../../common/types/common.data.types';
-import {
-  RefAccountType,
-  RefBank,
-} from '../../common/types/refTypes.data.types';
-import {
-  DefaultUserDetails,
-  UserDetails,
-} from '../../home/types/home.data.types';
+import { RefAccountType, RefBank } from '../../common/types/refTypes.data.types';
+import { DefaultUserDetails, UserDetails } from '../../home/types/home.data.types';
 import { Transaction } from '../../transactions/types/transactions.data.types';
 
 export interface Account {
@@ -23,7 +17,7 @@ export interface Account {
 export interface AccountFilters {
   accountTypeId?: string;
   bankId?: string;
-  status?: string;
+  status?: string | null;
 }
 
 export interface AccountsRequest {

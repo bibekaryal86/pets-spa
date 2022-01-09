@@ -4,10 +4,7 @@ interface OneTransactionOneAction {
   oneTransaction: OneTransactionOne;
 }
 
-export default function oneTransaction(
-  state: OneTransactionOne,
-  action: OneTransactionOneAction,
-): OneTransactionOne {
+export default function oneTransaction(state: OneTransactionOne, action: OneTransactionOneAction): OneTransactionOne {
   const { oneTransaction } = action;
   return {
     ...state,

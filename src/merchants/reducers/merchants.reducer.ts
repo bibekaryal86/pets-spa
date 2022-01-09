@@ -11,19 +11,11 @@ import {
   MERCHANTS_SELECT_MERCHANT_TRANSACTIONS,
   MERCHANTS_UNMOUNT,
 } from '../types/merchants.action.types';
-import {
-  DefaultMerchant,
-  DefaultMerchantsState,
-  MerchantsAction,
-  MerchantsState,
-} from '../types/merchants.data.types';
+import { DefaultMerchant, DefaultMerchantsState, MerchantsAction, MerchantsState } from '../types/merchants.data.types';
 
 const initialState = DefaultMerchantsState;
 
-export default function merchants(
-  state = initialState,
-  action: MerchantsAction,
-): MerchantsState {
+export default function merchants(state = initialState, action: MerchantsAction): MerchantsState {
   switch (action.type) {
     case MERCHANTS_GET_REQUEST:
       return {

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 const FormLabel = styled.label``;
@@ -40,10 +40,7 @@ interface RadioButtonProps {
   showSideBySide?: boolean;
   selectedValue?: string;
 
-  onChange(
-    selectedValue: string,
-    event?: React.ChangeEvent<HTMLInputElement>,
-  ): void;
+  onChange(selectedValue: string, event?: React.ChangeEvent<HTMLInputElement>): void;
 
   onClick?(event: React.MouseEvent<HTMLInputElement, MouseEvent>): void;
 }
@@ -109,18 +106,11 @@ const RadioButtons = (
 
 const RadioButton = (props: RadioButtonProps): React.ReactElement => {
   const [focus, setFocus] = useState(false);
-  const formLabel = (label: string, required: boolean): string =>
-    required ? label + ' *' : label;
+  const formLabel = (label: string, required: boolean): string => (required ? label + ' *' : label);
 
   return (
-    <RadioButtonWrapper
-      required={props.required === true}
-      focus={focus}
-      showSideBySide={props.showSideBySide}
-    >
-      <FormLabel htmlFor={props.id}>
-        {formLabel(props.title, props.required === true)}
-      </FormLabel>
+    <RadioButtonWrapper required={props.required === true} focus={focus} showSideBySide={props.showSideBySide}>
+      <FormLabel htmlFor={props.id}>{formLabel(props.title, props.required === true)}</FormLabel>
       {props.radioButtons.map((radioButton) => (
         <RadioButtons
           key={radioButton.value}

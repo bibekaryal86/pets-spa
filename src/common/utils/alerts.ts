@@ -1,3 +1,4 @@
+import React from 'react';
 import { RESET_ALERT, SET_ALERT } from '../types/common.action.types';
 import { ALERT_MESSAGES } from './constants';
 
@@ -19,19 +20,13 @@ export const resetAlert = () => {
   };
 };
 
-export const setAlert = (
-  type: string,
-  messageKey: string,
-  messageBody?: JSX.Element,
-) => {
+export const setAlert = (type: string, messageKey: string, messageBody?: JSX.Element) => {
   return (dispatch: React.Dispatch<AlertAction>): void => {
     dispatch({
       type: SET_ALERT,
       alert: {
         messageType: type,
-        messageText: messageBody
-          ? messageBody
-          : ALERT_MESSAGES.get(messageKey) || messageKey,
+        messageText: messageBody ? messageBody : ALERT_MESSAGES.get(messageKey) || messageKey,
       },
     });
   };

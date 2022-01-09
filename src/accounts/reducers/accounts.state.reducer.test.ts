@@ -1,8 +1,5 @@
 import { ACCOUNTS_SAMPLE_DATA } from '../../common/fixtures/accounts.sample.data';
-import {
-  ACCOUNTS_CLEAR_FILTERS,
-  ACCOUNTS_SET_FILTER,
-} from '../types/accounts.action.types';
+import { ACCOUNTS_CLEAR_FILTERS, ACCOUNTS_SET_FILTER } from '../types/accounts.action.types';
 import { DefaultAccountsReducerState } from '../types/accounts.data.types';
 import accounts from './accounts.state.reducer';
 
@@ -34,9 +31,7 @@ describe('accounts state reducer', () => {
     },
   };
 
-  const displayAccountsListFilteredByStatus = ACCOUNTS_SAMPLE_DATA.filter(
-    (account) => account.status === 'ACTIVE',
-  );
+  const displayAccountsListFilteredByStatus = ACCOUNTS_SAMPLE_DATA.filter((account) => account.status === 'ACTIVE');
 
   const returnStateFilteredByStatus = {
     displayAccountsList: displayAccountsListFilteredByStatus,

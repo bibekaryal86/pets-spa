@@ -17,14 +17,12 @@ export default (
     case TRANSACTIONS_SET_FILTER:
       return {
         ...state,
-        transactionFilters:
-          action.transactionFilters || DefaultTransactionFilters,
+        transactionFilters: action.transactionFilters || DefaultTransactionFilters,
       };
     case TRANSACTIONS_SET_FILTERS:
       return {
         ...state,
-        transactionFilters:
-          action.transactionFilters || DefaultTransactionFilters,
+        transactionFilters: action.transactionFilters || DefaultTransactionFilters,
         displayTransactionsList: action.displayTransactionsList || [],
       };
     case TRANSACTIONS_RESET_FILTERS:

@@ -26,10 +26,7 @@ export const getAccounts = (
   accountFilters?: AccountFilters,
   fetchCallOnly?: boolean,
 ) => {
-  return async (
-    dispatch: React.Dispatch<GlobalDispatch>,
-    getStore: () => GlobalState,
-  ): Promise<void> => {
+  return async (dispatch: React.Dispatch<GlobalDispatch>, getStore: () => GlobalState): Promise<void> => {
     dispatch(getAccountsRequest());
 
     try {
@@ -37,19 +34,13 @@ export const getAccounts = (
       const accountsInStore: Account[] = getStore().accounts.accountsList;
 
       if (accountsInStore.length === 0 || fetchCallOnly) {
-        const urlPath = getEndpoint([
-          process.env.BASE_URL as string,
-          process.env.GET_ACCOUNTS_ENDPOINT as string,
-        ]);
+        const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.GET_ACCOUNTS_ENDPOINT as string]);
         const options: Partial<FetchOptions> = {
           method: 'POST',
           pathParams: { username },
           requestBody: accountFilters || null,
         };
-        getAccountsResponse = (await prefetch(
-          urlPath,
-          options,
-        )) as AccountsResponse;
+        getAccountsResponse = (await prefetch(urlPath, options)) as AccountsResponse;
       } else if (accountsInStore.length > 0) {
         getAccountsResponse = {
           accounts: accountsInStore,
@@ -64,17 +55,9 @@ export const getAccounts = (
         };
       }
 
-      if (
-        getAccountsResponse &&
-        getAccountsResponse.accounts &&
-        !getAccountsResponse.status
-      ) {
+      if (getAccountsResponse && getAccountsResponse.accounts && !getAccountsResponse.status) {
         if (selectedAccountId) {
-          setSelectedAccount(
-            selectedAccountId,
-            getAccountsResponse.accounts,
-            dispatch,
-          );
+          setSelectedAccount(selectedAccountId, getAccountsResponse.accounts, dispatch);
         }
 
         dispatch(getAccountsSuccess(getAccountsResponse.accounts));

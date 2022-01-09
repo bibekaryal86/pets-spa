@@ -28,48 +28,21 @@ export const MSG_KEY_EDIT_TRANSACTION_SUCCESS = 'SUCCESS_TRANSACTION_EDIT';
 
 export const ALERT_MESSAGES = new Map([
   [MSG_KEY_INVALID_SIGNIN, 'Invalid Input! Please Try Again!!!'],
-  [
-    MSG_KEY_FAIL_SIGNIN,
-    'Invalid Username and/or Password! Please Try Again!!!',
-  ],
+  [MSG_KEY_FAIL_SIGNIN, 'Invalid Username and/or Password! Please Try Again!!!'],
   [MSG_KEY_SIGNIN_FIRST, 'Please Sign In First!!!'],
-  [
-    MSG_KEY_REFTYPE_FAIL,
-    'Error Retrieving Reference Types! Please Try Again!!!',
-  ],
-  [
-    MSG_KEY_GET_MERCHANT_FAIL,
-    'Error Retrieving Merchants List! Please Try Again!!!',
-  ],
-  [
-    MSG_KEY_DELETE_MERCHANT_FAIL,
-    'Error Deleting Merchant! Please Try Again!!!',
-  ],
+  [MSG_KEY_REFTYPE_FAIL, 'Error Retrieving Reference Types! Please Try Again!!!'],
+  [MSG_KEY_GET_MERCHANT_FAIL, 'Error Retrieving Merchants List! Please Try Again!!!'],
+  [MSG_KEY_DELETE_MERCHANT_FAIL, 'Error Deleting Merchant! Please Try Again!!!'],
   [MSG_KEY_EDIT_MERCHANT_FAIL, 'Error Updating Merchant! Please Try Again!!!'],
   [MSG_KEY_EDIT_MERCHANT_SUCCESS, 'Successfully Updated Merchants!!!'],
-  [
-    MSG_KEY_INVALID_MERCHANT,
-    'Invalid Input! The Merchant Name Should be 3 Characters or More!! Please Try Again!!!',
-  ],
-  [
-    MSG_KEY_GET_ACCOUNT_FAIL,
-    'Error Retrieving Accounts List! Please Try Again!!!',
-  ],
+  [MSG_KEY_INVALID_MERCHANT, 'Invalid Input! The Merchant Name Should be 3 Characters or More!! Please Try Again!!!'],
+  [MSG_KEY_GET_ACCOUNT_FAIL, 'Error Retrieving Accounts List! Please Try Again!!!'],
   [MSG_KEY_DELETE_ACCOUNT_FAIL, 'Error Deleting Account! Please Try Again!!!'],
   [MSG_KEY_EDIT_ACCOUNT_FAIL, 'Error Updating Account! Please Try Again!!!'],
   [MSG_KEY_EDIT_ACCOUNT_SUCCESS, 'Successfully Updated Accounts!!!'],
-  [
-    MSG_KEY_GET_TRANSACTION_FAIL,
-    'Error Retrieving Transactions List! Please Try Again!!!',
-  ],
-  [
-    MSG_KEY_DELETE_TRANSACTION_FAIL,
-    'Error Deleting Transaction! Please Try Again!!!',
-  ],
-  [
-    MSG_KEY_EDIT_TRANSACTION_FAIL,
-    'Error Updating Transaction! Please Try Again!!!',
-  ],
+  [MSG_KEY_GET_TRANSACTION_FAIL, 'Error Retrieving Transactions List! Please Try Again!!!'],
+  [MSG_KEY_DELETE_TRANSACTION_FAIL, 'Error Deleting Transaction! Please Try Again!!!'],
+  [MSG_KEY_EDIT_TRANSACTION_FAIL, 'Error Updating Transaction! Please Try Again!!!'],
   [MSG_KEY_EDIT_TRANSACTION_SUCCESS, 'Successfully Updated Transactions!!!'],
 ]);
 
@@ -119,9 +92,5 @@ export const TABLE_SORTED_NONE_CODE = 8205;
 export const TABLE_EXPORT_KEYS_TO_AVOID = ['actions', 'Actions'];
 export const TABLE_EXPORT_KEY_FOR_TITLE = 'title';
 
-export const DATE_FORMAT_MATCHER_REGEX = new RegExp(
-  '[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}',
-);
-export const CURRENCY_FORMAT_MATCHER_REGEX = new RegExp(
-  '^\\$|\\-\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{1,2})?$',
-);
+export const DATE_FORMAT_MATCHER_REGEX = new RegExp('[0-9]{4}\\-[0-9]{2}\\-[0-9]{2}');
+export const CURRENCY_FORMAT_MATCHER_REGEX = new RegExp('^\\$|\\-\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{1,2})?$');

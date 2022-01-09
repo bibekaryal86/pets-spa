@@ -1,7 +1,4 @@
-import {
-  MSG_KEY_DELETE_ACCOUNT_FAIL,
-  MSG_KEY_EDIT_ACCOUNT_SUCCESS,
-} from '../../common/utils/constants';
+import { MSG_KEY_DELETE_ACCOUNT_FAIL, MSG_KEY_EDIT_ACCOUNT_SUCCESS } from '../../common/utils/constants';
 import { prefetch } from '../../common/utils/prefetch';
 import {
   ACCOUNTS_COMPLETE,
@@ -59,18 +56,15 @@ describe('delete account', () => {
       id,
     )(dispatchSpy)
       .then(() =>
-        expect(mockPrefetch).toHaveBeenCalledWith(
-          'www.edit-account-endpoint.com',
-          {
-            method: 'DELETE',
-            pathParams: {
-              username: 'user-name',
-            },
-            queryParams: {
-              id: 'account-id',
-            },
+        expect(mockPrefetch).toHaveBeenCalledWith('www.edit-account-endpoint.com', {
+          method: 'DELETE',
+          pathParams: {
+            username: 'user-name',
           },
-        ),
+          queryParams: {
+            id: 'account-id',
+          },
+        }),
       )
       .then(done);
   });

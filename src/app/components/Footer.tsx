@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export const StyledFooter = styled.footer.attrs({
@@ -16,8 +17,7 @@ const CURRENT_YEAR = new Date().getFullYear();
 const Footer = (): React.ReactElement => {
   return (
     <StyledFooter>
-      Copyright (c). {CURRENT_YEAR} ABibek. All rights reserved. <br /> build{' '}
-      {BUILD_NUMBER}
+      Copyright (c). {CURRENT_YEAR} ABibek. All rights reserved. <br /> build {BUILD_NUMBER}
     </StyledFooter>
   );
 };

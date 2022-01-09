@@ -1,9 +1,6 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 
 const Summary = (): React.ReactElement => {
   const homePageText = () => (
@@ -17,8 +14,7 @@ const Summary = (): React.ReactElement => {
         <DisplayCardBody>
           <DisplayCardRow borderBtm>
             <h6>
-              To add a new transaction,{' '}
-              <Link to="/transaction">click here</Link>
+              To add a new transaction, <Link to="/transaction">click here</Link>
             </h6>
           </DisplayCardRow>
           <DisplayCardRow>

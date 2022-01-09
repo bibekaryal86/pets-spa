@@ -1,24 +1,14 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
 import HrefLink from '../../common/forms/HrefLink';
 import Input from '../../common/forms/Input';
-import {
-  ALERT_TYPE_FAILURE,
-  ALERT_TYPE_SUCCESS,
-} from '../../common/utils/constants';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_SUCCESS } from '../../common/utils/constants';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import TransactionsList from '../../transactions/components/TransactionsList';
-import {
-  Transaction,
-  TransactionFilters,
-} from '../../transactions/types/transactions.data.types';
+import { Transaction, TransactionFilters } from '../../transactions/types/transactions.data.types';
 import { Merchant } from '../types/merchants.data.types';
 
 export interface OneMerchantProps {
@@ -33,15 +23,8 @@ export interface OneMerchantProps {
   setAlert: (type: string, messageKey: string) => void;
   resetAlert: () => void;
   resetOnPageLeave: () => void;
-  getTransactions: (
-    username: string,
-    transactionFilters: Partial<TransactionFilters>,
-  ) => void;
+  getTransactions: (username: string, transactionFilters: Partial<TransactionFilters>) => void;
   deleteTransaction: (username: string, id: string) => void;
-}
-
-interface RouteParams {
-  id: string;
 }
 
 const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
@@ -74,22 +57,15 @@ const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
   const [merchantDesc, setMerchantDesc] = useState('');
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const { id } = useParams<RouteParams>();
-  const history = useHistory();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (username) {
-      getMerchants(username, id);
+      getMerchants(username, id || '');
       getTransactions(username, { merchantId: id });
     }
-  }, [
-    getMerchants,
-    getTransactions,
-    id,
-    username,
-    merchantsList,
-    selectedMerchantTransactions.length,
-  ]);
+  }, [getMerchants, getTransactions, id, username, merchantsList, selectedMerchantTransactions.length]);
 
   useEffect(() => {
     setMerchantDesc(selectedMerchant.description);
@@ -114,8 +90,8 @@ const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
   const showAllMerchants = useCallback(() => {
     resetAlert();
     resetOnPageLeave();
-    return history.push('/merchants');
-  }, [history, resetAlert, resetOnPageLeave]);
+    return navigate('/merchants');
+  }, [navigate, resetAlert, resetOnPageLeave]);
 
   // clear message when leaving the page
   useEffect(() => {
@@ -126,13 +102,13 @@ const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
   }, [resetAlert, resetOnPageLeave]);
 
   const showAllTransactions = useCallback(() => {
-    return history.push('/transactions');
-  }, [history]);
+    return navigate('/transactions');
+  }, [navigate]);
 
   const showAddNewTransaction = useCallback(() => {
     const url = `/transaction/?merchantId=${id}`;
-    return history.push(url);
-  }, [history, id]);
+    return navigate(url);
+  }, [id, navigate]);
 
   const showBodyHeader = () => (
     <DisplayCardWrapper>
@@ -195,7 +171,7 @@ const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
 
   const updateMerchantAction = () => {
     resetAlert();
-    updateMerchant(username, id, merchantDesc);
+    updateMerchant(username, id || '', merchantDesc);
   };
 
   const deleteMerchantActionBegin = () => {
@@ -204,7 +180,7 @@ const OneMerchant = (props: OneMerchantProps): React.ReactElement => {
 
   const deleteMerchantActionEnd = () => {
     setIsDeleteModalOpen(false);
-    deleteMerchant(username, id);
+    deleteMerchant(username, id || '');
     showAllMerchants();
   };
 

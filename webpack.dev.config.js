@@ -21,11 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
+            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
           },
         },
       },
@@ -44,7 +40,9 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   target: 'web',
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
+    static: {
+      directory: path.resolve(__dirname, 'build'),
+    },
     historyApiFallback: true,
     port: 8000,
     open: false,

@@ -1,41 +1,16 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import HrefLink from '../../common/forms/HrefLink';
 import Select, { SelectOptionProps } from '../../common/forms/Select';
 import Table from '../../common/forms/Table';
-import {
-  RefAccountType,
-  RefBank,
-} from '../../common/types/refTypes.data.types';
-import {
-  ALERT_TYPE_FAILURE,
-  ALERT_TYPE_SUCCESS,
-  SESSION_ACCOUNT_FILTERS,
-} from '../../common/utils/constants';
+import { RefAccountType, RefBank } from '../../common/types/refTypes.data.types';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_SUCCESS, SESSION_ACCOUNT_FILTERS } from '../../common/utils/constants';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
-import {
-  clearAccountsFilter,
-  setAccountsFilter,
-} from '../actions/accounts.state.action';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
+import { clearAccountsFilter, setAccountsFilter } from '../actions/accounts.state.action';
 import accountsStateReducer from '../reducers/accounts.state.reducer';
-import {
-  Account,
-  AccountFilters,
-  DefaultAccountsReducerState,
-} from '../types/accounts.data.types';
+import { Account, AccountFilters, DefaultAccountsReducerState } from '../types/accounts.data.types';
 import {
   filterAccountBankOptions,
   filterAccountStatusOptions,
@@ -69,20 +44,9 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
     }
   }, [authContext]);
 
-  const {
-    error,
-    success,
-    accountsList,
-    getAccounts,
-    resetAlert,
-    resetOnPageLeave,
-    setAlert,
-  } = props;
+  const { error, success, accountsList, getAccounts, resetAlert, resetOnPageLeave, setAlert } = props;
 
-  const [accountsState, accountsDispatch] = useReducer(
-    accountsStateReducer,
-    DefaultAccountsReducerState,
-  );
+  const [accountsState, accountsDispatch] = useReducer(accountsStateReducer, DefaultAccountsReducerState);
 
   const clearFilter = useCallback(() => {
     accountsDispatch(clearAccountsFilter());
@@ -113,9 +77,7 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
 
   // get filter data from session upon page refresh
   useEffect(() => {
-    const accountFilters = SessionStorage.getItem(
-      SESSION_ACCOUNT_FILTERS,
-    ) as AccountFilters;
+    const accountFilters = SessionStorage.getItem(SESSION_ACCOUNT_FILTERS) as AccountFilters;
     if (isAccountFilterApplied(accountFilters)) {
       accountsDispatch(setAccountsFilter('', '', accountsList));
     }
@@ -123,37 +85,23 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
 
   const { accountFilters, displayAccountsList } = accountsState;
 
-  const isFilterApplied = useMemo(
-    () => isAccountFilterApplied(accountFilters),
-    [accountFilters],
-  );
+  const isFilterApplied = useMemo(() => isAccountFilterApplied(accountFilters), [accountFilters]);
 
-  const filtersCurrentlyApplied = useMemo(
-    () => getFiltersCurrentlyApplied(accountFilters),
-    [accountFilters],
-  );
+  const filtersCurrentlyApplied = useMemo(() => getFiltersCurrentlyApplied(accountFilters), [accountFilters]);
 
   const onChangeFilter = useCallback(
     (selected: string, selectedFilter: string) =>
-      accountsDispatch(
-        setAccountsFilter(selectedFilter, selected, accountsList),
-      ),
+      accountsDispatch(setAccountsFilter(selectedFilter, selected, accountsList)),
     [accountsList],
   );
 
   const accountsToDisplay = useMemo(
-    () =>
-      getDisplayAccounts(isFilterApplied, displayAccountsList, accountsList),
+    () => getDisplayAccounts(isFilterApplied, displayAccountsList, accountsList),
     [isFilterApplied, displayAccountsList, accountsList],
   );
 
   const filterOptions = useCallback(
-    (
-      filterType: string,
-      filterLabel: string,
-      filterValue: string,
-      filterOptions: SelectOptionProps[],
-    ) => (
+    (filterType: string, filterLabel: string, filterValue: string, filterOptions: SelectOptionProps[]) => (
       <Select
         className="u-full-width"
         id={`filter-account-select-${filterType}`}
@@ -166,22 +114,16 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
     [onChangeFilter],
   );
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToAccount = useCallback(
     (id: string) => {
-      return history.push(`/account/${id}`);
+      return navigate(`/account/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const tableHeaders = useMemo(
-    () => [
-      'Bank Name',
-      'Account Type',
-      'Account Name',
-      'Opening Balance',
-      'Current Balance',
-    ],
+    () => ['Bank Name', 'Account Type', 'Account Name', 'Opening Balance', 'Current Balance'],
     [],
   );
 
@@ -198,14 +140,8 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
             onClick={() => onClickToAccount(x.id)}
           />
         ),
-        openingBalance: numberDollarFormat(
-          +x.openingBalance,
-          x.refAccountType.id,
-        ),
-        currentBalance: numberDollarFormat(
-          +x.currentBalance,
-          x.refAccountType.id,
-        ),
+        openingBalance: numberDollarFormat(+x.openingBalance, x.refAccountType.id),
+        currentBalance: numberDollarFormat(+x.currentBalance, x.refAccountType.id),
       };
     });
   }, [accountsToDisplay, onClickToAccount]);
@@ -250,12 +186,7 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
             </div>
             <div className="four columns">
               <DisplayCardRow>
-                {filterOptions(
-                  'status',
-                  'Account Status',
-                  accountFilters?.status || '',
-                  filterAccountStatusOptions(),
-                )}
+                {filterOptions('status', 'Account Status', accountFilters?.status || '', filterAccountStatusOptions())}
               </DisplayCardRow>
             </div>
           </div>
@@ -275,9 +206,7 @@ const Accounts = (props: AccountsProps): React.ReactElement => {
   const showFiltersApplied = () => (
     <DisplayCardWrapper id="accounts-filter-applied">
       <DisplayCardBody>
-        <DisplayCardRow fontWeight="bold">
-          {filtersCurrentlyApplied}
-        </DisplayCardRow>
+        <DisplayCardRow fontWeight="bold">{filtersCurrentlyApplied}</DisplayCardRow>
         <DisplayCardRow borderTop>
           <HrefLink
             id="accounts-clear-filters"

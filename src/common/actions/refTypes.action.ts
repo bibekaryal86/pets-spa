@@ -1,3 +1,4 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
 import { getEndpoint } from '../../home/utils/endpoint';
 import {
@@ -62,8 +63,7 @@ export const getRefTypes = (username: string, types: string[] = []) => {
         username,
         isGetAll || types.includes('ref_transaction_types'),
       )) as RefTransactionTypesResponse;
-      refTransactionTypes =
-        refTransactionTypesResponse.refTransactionTypes || [];
+      refTransactionTypes = refTransactionTypesResponse.refTransactionTypes || [];
 
       const refTypes: RefTypesState = {
         error: '',
@@ -105,50 +105,26 @@ const refTypesComplete = () => ({
   type: REF_TYPES_COMPLETE,
 });
 
-async function getRefAccountTypes(
-  username: string,
-  isGetThisType: boolean,
-): Promise<unknown> {
-  const urlPath = getEndpoint([
-    process.env.BASE_URL as string,
-    process.env.REF_ACCOUNT_TYPES_ENDPOINT as string,
-  ]);
+async function getRefAccountTypes(username: string, isGetThisType: boolean): Promise<unknown> {
+  const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.REF_ACCOUNT_TYPES_ENDPOINT as string]);
   const options: Partial<FetchOptions> = { pathParams: { username } };
   return isGetThisType && prefetch(urlPath, options);
 }
 
-async function getRefBanks(
-  username: string,
-  isGetThisType: boolean,
-): Promise<unknown> {
-  const urlPath = getEndpoint([
-    process.env.BASE_URL as string,
-    process.env.REF_BANKS_ENDPOINT as string,
-  ]);
+async function getRefBanks(username: string, isGetThisType: boolean): Promise<unknown> {
+  const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.REF_BANKS_ENDPOINT as string]);
   const options: Partial<FetchOptions> = { pathParams: { username } };
   return isGetThisType && prefetch(urlPath, options);
 }
 
-async function getRefCategoryTypes(
-  username: string,
-  isGetThisType: boolean,
-): Promise<unknown> {
-  const urlPath = getEndpoint([
-    process.env.BASE_URL as string,
-    process.env.REF_CATEGORY_TYPES_ENDPOINT as string,
-  ]);
+async function getRefCategoryTypes(username: string, isGetThisType: boolean): Promise<unknown> {
+  const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.REF_CATEGORY_TYPES_ENDPOINT as string]);
   const options: Partial<FetchOptions> = { pathParams: { username } };
   return isGetThisType && prefetch(urlPath, options);
 }
 
-async function getRefCategories(
-  username: string,
-  isGetThisType: boolean,
-): Promise<unknown> {
-  const urlPath = getEndpoint([
-    process.env.BASE_URL as string,
-    process.env.REF_CATEGORIES_ENDPOINT as string,
-  ]);
+async function getRefCategories(username: string, isGetThisType: boolean): Promise<unknown> {
+  const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.REF_CATEGORIES_ENDPOINT as string]);
   const options: Partial<FetchOptions> = {
     method: 'POST',
     pathParams: { username },
@@ -156,14 +132,8 @@ async function getRefCategories(
   return isGetThisType && prefetch(urlPath, options);
 }
 
-async function getRefTransactionTypes(
-  username: string,
-  isGetThisType: boolean,
-): Promise<unknown> {
-  const urlPath = getEndpoint([
-    process.env.BASE_URL as string,
-    process.env.REF_TRANSACTION_TYPES_ENDPOINT as string,
-  ]);
+async function getRefTransactionTypes(username: string, isGetThisType: boolean): Promise<unknown> {
+  const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.REF_TRANSACTION_TYPES_ENDPOINT as string]);
   const options: Partial<FetchOptions> = { pathParams: { username } };
   return isGetThisType && prefetch(urlPath, options);
 }

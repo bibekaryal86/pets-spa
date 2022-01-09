@@ -1,36 +1,16 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
-import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
 import HrefLink from '../../common/forms/HrefLink';
 import Input, { InputType } from '../../common/forms/Input';
 import Select from '../../common/forms/Select';
-import {
-  RefAccountType,
-  RefBank,
-} from '../../common/types/refTypes.data.types';
-import {
-  ALERT_TYPE_FAILURE,
-  ALERT_TYPE_SUCCESS,
-} from '../../common/utils/constants';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { RefAccountType, RefBank } from '../../common/types/refTypes.data.types';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_SUCCESS } from '../../common/utils/constants';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import TransactionsList from '../../transactions/components/TransactionsList';
-import {
-  Transaction,
-  TransactionFilters,
-} from '../../transactions/types/transactions.data.types';
+import { Transaction, TransactionFilters } from '../../transactions/types/transactions.data.types';
 import oneAccount from '../reducers/oneAccount.reducer';
 import { Account, DefaultAccount } from '../types/accounts.data.types';
 import {
@@ -51,25 +31,13 @@ export interface OneAccountProps {
   accountTypes: RefAccountType[];
   banks: RefBank[];
   getAccounts: (username: string, selectedAccountId: string) => void;
-  updateAccount: (
-    username: string,
-    id: string,
-    account: Account,
-    method: string,
-  ) => void;
+  updateAccount: (username: string, id: string, account: Account, method: string) => void;
   deleteAccount: (username: string, id: string) => void;
   setAlert: (type: string, messageKey: string) => void;
   resetAlert: () => void;
   resetOnPageLeave: () => void;
-  getTransactions: (
-    username: string,
-    transactionFilters: Partial<TransactionFilters>,
-  ) => void;
+  getTransactions: (username: string, transactionFilters: Partial<TransactionFilters>) => void;
   deleteTransaction: (username: string, id: string) => void;
-}
-
-interface RouteParams {
-  id: string;
 }
 
 const OneAccount = (props: OneAccountProps): React.ReactElement => {
@@ -102,8 +70,8 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
   const [accountData, setAccountData] = useReducer(oneAccount, DefaultAccount);
   const [isValidId, setIsValidId] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const { id } = useParams<RouteParams>();
-  const history = useHistory();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id && id !== ':id') {
@@ -115,18 +83,10 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
 
   useEffect(() => {
     if (username && isValidId) {
-      getAccounts(username, id);
+      getAccounts(username, id || '');
       getTransactions(username, { accountId: id });
     }
-  }, [
-    getAccounts,
-    getTransactions,
-    id,
-    username,
-    accountsList,
-    isValidId,
-    selectedAccountTransactions.length,
-  ]);
+  }, [getAccounts, getTransactions, id, username, accountsList, isValidId, selectedAccountTransactions.length]);
 
   useEffect(() => {
     setAccountData({ account: selectedAccount });
@@ -148,17 +108,17 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
   const showAllAccounts = useCallback(() => {
     resetAlert();
     resetOnPageLeave();
-    return history.push('/accounts');
-  }, [history, resetAlert, resetOnPageLeave]);
+    return navigate('/accounts');
+  }, [navigate, resetAlert, resetOnPageLeave]);
 
   const showAllTransactions = useCallback(() => {
-    return history.push('/transactions');
-  }, [history]);
+    return navigate('/transactions');
+  }, [navigate]);
 
   const showAddNewTransaction = useCallback(() => {
     const url = `/transaction/?accountId=${id}`;
-    return history.push(url);
-  }, [history, id]);
+    return navigate(url);
+  }, [id, navigate]);
 
   const showBodyHeader = () => (
     <DisplayCardWrapper id="one-account-body-header">
@@ -182,9 +142,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
       className="u-full-width"
       id="one-account-name-input"
       label="Account Name"
-      onChange={(event) =>
-        handleOneAccountFieldChange(event, 'name', accountData, setAccountData)
-      }
+      onChange={(event) => handleOneAccountFieldChange(event, 'name', accountData, setAccountData)}
       value={accountData.description}
       maxLength={25}
       required
@@ -197,19 +155,8 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
       id="one-account-opening-balance-input"
       label="Opening Balance (USD)"
       type={InputType.number}
-      onChange={(event) =>
-        handleOneAccountFieldChange(
-          event,
-          'opening',
-          accountData,
-          setAccountData,
-        )
-      }
-      value={numberDollarFormat(
-        +accountData.openingBalance,
-        accountData.refAccountType.id,
-        true,
-      )}
+      onChange={(event) => handleOneAccountFieldChange(event, 'opening', accountData, setAccountData)}
+      value={numberDollarFormat(+accountData.openingBalance, accountData.refAccountType.id, true)}
       maxLength={10}
       required
     />
@@ -222,11 +169,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
         id="one-account-current-balance-input"
         label="Current Balance (USD)"
         onChange={() => null}
-        value={numberDollarFormat(
-          +accountData.currentBalance,
-          accountData.refAccountType.id,
-          true,
-        )}
+        value={numberDollarFormat(+accountData.currentBalance, accountData.refAccountType.id, true)}
         disabled
       />
     ),
@@ -238,9 +181,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
       className="u-full-width"
       id="one-account-type-select"
       label="Account Type"
-      onChange={(event) =>
-        handleOneAccountFieldChange(event, 'type', accountData, setAccountData)
-      }
+      onChange={(event) => handleOneAccountFieldChange(event, 'type', accountData, setAccountData)}
       value={accountData.refAccountType.id}
       options={filterAccountTypeOptions(props.accountTypes)}
       required
@@ -252,9 +193,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
       className="u-full-width"
       id="one-account-bank-select"
       label="Bank Name"
-      onChange={(event) =>
-        handleOneAccountFieldChange(event, 'bank', accountData, setAccountData)
-      }
+      onChange={(event) => handleOneAccountFieldChange(event, 'bank', accountData, setAccountData)}
       value={accountData.refBank.id}
       options={filterAccountBankOptions(props.banks)}
       required
@@ -266,14 +205,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
       className="u-full-width"
       id="one-account-status-select"
       label="Account Status"
-      onChange={(event) =>
-        handleOneAccountFieldChange(
-          event,
-          'status',
-          accountData,
-          setAccountData,
-        )
-      }
+      onChange={(event) => handleOneAccountFieldChange(event, 'status', accountData, setAccountData)}
       value={accountData.status}
       options={filterAccountStatusOptions()}
       required
@@ -283,10 +215,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
   const updateAccountAction = (method: string) => {
     const isInvalid = validateAccount(accountData);
     if (isInvalid) {
-      const errMsg =
-        'Invalid Input! Required field ' +
-        isInvalid +
-        ' not provided!! Please Try Again!!!';
+      const errMsg = 'Invalid Input! Required field ' + isInvalid + ' not provided!! Please Try Again!!!';
       setAlert(ALERT_TYPE_FAILURE, errMsg);
     } else {
       resetAlert();
@@ -309,9 +238,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
 
   const deleteModalBody = () => (
     <>
-      <p>
-        Are you sure you want to delete the account: {accountData.description}?
-      </p>
+      <p>Are you sure you want to delete the account: {accountData.description}?</p>
       <p>This will also delete all transactions for this account!!</p>
       <p>This action cannot be undone!!!</p>
     </>
@@ -439,9 +366,7 @@ const OneAccount = (props: OneAccountProps): React.ReactElement => {
           </DisplayCardRow>
           <DisplayCardRow>
             <div className="row">
-              <div className="twelve columns">
-                {isValidId ? updateButtons() : addButtons()}
-              </div>
+              <div className="twelve columns">{isValidId ? updateButtons() : addButtons()}</div>
             </div>
           </DisplayCardRow>
           <DisplayCardRow>

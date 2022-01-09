@@ -1,8 +1,5 @@
 import { Status } from '../../common/types/common.data.types';
-import {
-  RefCategory,
-  RefCategoryType,
-} from '../../common/types/refTypes.data.types';
+import { RefCategory, RefCategoryType } from '../../common/types/refTypes.data.types';
 
 export interface ReportCurrentBalances {
   totalCash: BigInt;

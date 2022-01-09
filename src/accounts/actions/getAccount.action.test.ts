@@ -25,9 +25,7 @@ describe('get account', () => {
   };
 
   const getAccountsFromStore = {
-    accountsList: ACCOUNTS_SAMPLE_DATA.filter(
-      (account) => account.refAccountType.id === '5ede4cf30525eb78290332e7',
-    ),
+    accountsList: ACCOUNTS_SAMPLE_DATA.filter((account) => account.refAccountType.id === '5ede4cf30525eb78290332e7'),
   };
 
   const getAccountsResponseFailure = {
@@ -72,16 +70,13 @@ describe('get account', () => {
   it('calls prefetch when no accounts in store', (done) => {
     getAccounts(username)(dispatchSpy, getStoreSpyEmpty)
       .then(() =>
-        expect(mockPrefetch).toHaveBeenCalledWith(
-          'www.get-account-endpoint.com',
-          {
-            method: 'POST',
-            pathParams: {
-              username: 'user-name',
-            },
-            requestBody: null,
+        expect(mockPrefetch).toHaveBeenCalledWith('www.get-account-endpoint.com', {
+          method: 'POST',
+          pathParams: {
+            username: 'user-name',
           },
-        ),
+          requestBody: null,
+        }),
       )
       .then(done);
   });
@@ -100,16 +95,13 @@ describe('get account', () => {
       true,
     )(dispatchSpy, getStoreSpyWithAccounts)
       .then(() =>
-        expect(mockPrefetch).toHaveBeenCalledWith(
-          'www.get-account-endpoint.com',
-          {
-            method: 'POST',
-            pathParams: {
-              username: 'user-name',
-            },
-            requestBody: null,
+        expect(mockPrefetch).toHaveBeenCalledWith('www.get-account-endpoint.com', {
+          method: 'POST',
+          pathParams: {
+            username: 'user-name',
           },
-        ),
+          requestBody: null,
+        }),
       )
       .then(done);
   });

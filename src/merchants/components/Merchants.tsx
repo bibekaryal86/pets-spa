@@ -1,26 +1,13 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../app/context/AuthContext';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
 import HrefLink from '../../common/forms/HrefLink';
 import Input from '../../common/forms/Input';
 import Table from '../../common/forms/Table';
-import {
-  ALERT_TYPE_FAILURE,
-  ALERT_TYPE_SUCCESS,
-} from '../../common/utils/constants';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_SUCCESS } from '../../common/utils/constants';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import {
   clearMerchantsFilter,
   closeModals,
@@ -32,10 +19,7 @@ import {
   setModalInputs,
 } from '../actions/merchants.state.action';
 import merchantsStateReducer from '../reducers/merchants.state.reducer';
-import {
-  DefaultMerchantsReducerState,
-  Merchant,
-} from '../types/merchants.data.types';
+import { DefaultMerchantsReducerState, Merchant } from '../types/merchants.data.types';
 
 interface MerchantsProps {
   error: string;
@@ -52,10 +36,7 @@ interface MerchantsProps {
 }
 
 const Merchants = (props: MerchantsProps): React.ReactElement => {
-  const [merchantState, merchantsDispatch] = useReducer(
-    merchantsStateReducer,
-    DefaultMerchantsReducerState,
-  );
+  const [merchantState, merchantsDispatch] = useReducer(merchantsStateReducer, DefaultMerchantsReducerState);
 
   const {
     error,
@@ -120,14 +101,10 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
   }, [resetAlert, resetOnPageLeave]);
 
   const filterMerchantsNameBeginsWith = (firstChar: string) =>
-    merchantsDispatch(
-      setMerchantNameBeginsWithFilter(firstChar, merchantsList),
-    );
+    merchantsDispatch(setMerchantNameBeginsWithFilter(firstChar, merchantsList));
 
   const filterMerchantsNotUsedInTxnsOnly = () =>
-    merchantsDispatch(
-      setMerchantsNotUsedInTxnsOnly(merchantsNotUsedInTxnsList),
-    );
+    merchantsDispatch(setMerchantsNotUsedInTxnsOnly(merchantsNotUsedInTxnsList));
 
   const getMerchantsNameBeginsWith = () =>
     merchantsFiltersList.map((merchantsFilter) => {
@@ -151,11 +128,9 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
     />
   );
 
-  const setIsUpdateModalOpen = (isOpen: boolean) =>
-    merchantsDispatch(setIsUpdateModal(isOpen));
+  const setIsUpdateModalOpen = (isOpen: boolean) => merchantsDispatch(setIsUpdateModal(isOpen));
 
-  const setIsDeleteModalOpen = (isOpen: boolean) =>
-    merchantsDispatch(setIsDeleteModal(isOpen));
+  const setIsDeleteModalOpen = (isOpen: boolean) => merchantsDispatch(setIsDeleteModal(isOpen));
 
   const buttons = (id: string, description: string, notEditable: boolean) => (
     <>
@@ -201,9 +176,7 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
   );
 
   const merchantsListToDisplay: Merchant[] =
-    merchantNameBeginsWith || showNotUsedInTxnsOnly
-      ? displayMerchantsList
-      : merchantsList;
+    merchantNameBeginsWith || showNotUsedInTxnsOnly ? displayMerchantsList : merchantsList;
 
   const filtersCurrentlyApplied = () => {
     const filterText = merchantNameBeginsWith
@@ -218,32 +191,24 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
     }
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const onClickToMerchant = useCallback(
     (id: string) => {
-      return history.push(`/merchant/${id}`);
+      return navigate(`/merchant/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const headers = ['Merchant Name', 'Actions'];
   const footer = `Number of Records: ${merchantsListToDisplay.length}`;
   const data = Array.from(merchantsListToDisplay, (x) => {
     return {
-      description: (
-        <HrefLink
-          id={x.id}
-          linkTo="#"
-          title={x.description}
-          onClick={() => onClickToMerchant(x.id)}
-        />
-      ),
+      description: <HrefLink id={x.id} linkTo="#" title={x.description} onClick={() => onClickToMerchant(x.id)} />,
       actions: buttons(x.id, x.description, x.notEditable),
     };
   });
 
-  const setModalInput = (value: string) =>
-    merchantsDispatch(setModalInputs(value));
+  const setModalInput = (value: string) => merchantsDispatch(setModalInputs(value));
 
   const updateModalBody = () => (
     <>
@@ -262,9 +227,7 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
       header="Warning"
       body={updateModalBody()}
       primaryButton="Rename"
-      primaryButtonAction={() =>
-        doUpdateMerchant(merchantInActionId, modalInput)
-      }
+      primaryButtonAction={() => doUpdateMerchant(merchantInActionId, modalInput)}
       secondaryButton="Cancel"
       secondaryButtonAction={closeModal}
     />
@@ -296,12 +259,8 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
         <DisplayCardRow borderBtm fontWeight="bold">
           Merchants Name Begins With
         </DisplayCardRow>
-        <DisplayCardRow borderTop>
-          {getMerchantsNameBeginsWith()}
-        </DisplayCardRow>
-        <DisplayCardRow borderTop>
-          {getMerchantsNotUsedInTransactions()}
-        </DisplayCardRow>
+        <DisplayCardRow borderTop>{getMerchantsNameBeginsWith()}</DisplayCardRow>
+        <DisplayCardRow borderTop>{getMerchantsNotUsedInTransactions()}</DisplayCardRow>
       </DisplayCardBody>
     </DisplayCardWrapper>
   );
@@ -309,9 +268,7 @@ const Merchants = (props: MerchantsProps): React.ReactElement => {
   const showFiltersApplied = () => (
     <DisplayCardWrapper>
       <DisplayCardBody>
-        <DisplayCardRow fontWeight="bold">
-          {filtersCurrentlyApplied()}
-        </DisplayCardRow>
+        <DisplayCardRow fontWeight="bold">{filtersCurrentlyApplied()}</DisplayCardRow>
         <DisplayCardRow borderTop>
           <HrefLink
             id="merchants-clear-filters"

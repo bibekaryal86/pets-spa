@@ -6,10 +6,7 @@ const initialState: AlertState = {
   messageText: '',
 };
 
-export default function alert(
-  state = initialState,
-  action: AlertAction,
-): AlertState {
+export default function alert(state = initialState, action: AlertAction): AlertState {
   switch (action.type) {
     case SET_ALERT:
       return {

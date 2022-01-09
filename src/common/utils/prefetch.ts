@@ -32,9 +32,7 @@ const dispatchActions = (fetchResponse: Promise<FetchResponse>): void => {
         prefetch: SessionInvalid,
       });
     } else {
-      const refreshTokenPromise = fetchResponse.then(
-        (value) => value.refreshToken,
-      );
+      const refreshTokenPromise = fetchResponse.then((value) => value.refreshToken);
       refreshTokenPromise.then((value) => {
         if (value === true) {
           console.log('Dispatching Request to Refresh Tokens');
@@ -48,11 +46,7 @@ const dispatchActions = (fetchResponse: Promise<FetchResponse>): void => {
   });
 };
 
-export const prefetch = (
-  urlPath: string,
-  options: Partial<FetchOptions>,
-  isLoginAction?: boolean,
-): unknown => {
+export const prefetch = (urlPath: string, options: Partial<FetchOptions>, isLoginAction?: boolean): unknown => {
   const fetchResponse: Promise<FetchResponse> = Async.fetch(urlPath, options);
 
   if (isLoginAction) {

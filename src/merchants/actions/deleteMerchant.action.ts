@@ -1,8 +1,6 @@
+import React from 'react';
 import { GlobalDispatch } from '../../app/store/redux';
-import {
-  MSG_KEY_DELETE_MERCHANT_FAIL,
-  MSG_KEY_EDIT_MERCHANT_SUCCESS,
-} from '../../common/utils/constants';
+import { MSG_KEY_DELETE_MERCHANT_FAIL, MSG_KEY_EDIT_MERCHANT_SUCCESS } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
@@ -19,19 +17,13 @@ export const deleteMerchant = (username: string, id: string) => {
     dispatch(deleteMerchantRequest());
 
     try {
-      const urlPath = getEndpoint([
-        process.env.BASE_URL as string,
-        process.env.EDIT_MERCHANT_ENDPOINT as string,
-      ]);
+      const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.EDIT_MERCHANT_ENDPOINT as string]);
       const options: Partial<FetchOptions> = {
         method: 'DELETE',
         pathParams: { username },
         queryParams: { id },
       };
-      const deleteMerchantResponse = (await prefetch(
-        urlPath,
-        options,
-      )) as MerchantsResponse;
+      const deleteMerchantResponse = (await prefetch(urlPath, options)) as MerchantsResponse;
 
       if (deleteMerchantResponse && !deleteMerchantResponse.status) {
         dispatch(deleteMerchantSuccess());

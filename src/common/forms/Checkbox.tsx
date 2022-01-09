@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Button from './Button';
 
@@ -41,10 +41,7 @@ interface CheckboxProps {
   checkedValues?: string[];
   setCheckboxValues?: (checkedValues: string[]) => void;
 
-  onClick(
-    selectedValue: string,
-    event?: React.MouseEvent<HTMLInputElement, MouseEvent>,
-  ): void;
+  onClick(selectedValue: string, event?: React.MouseEvent<HTMLInputElement, MouseEvent>): void;
 
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
 }
@@ -60,9 +57,7 @@ interface CheckboxesPropsExtra {
   setFocus: (focus: boolean) => void;
 }
 
-const Checkboxes = (
-  props: CheckboxesProps & Partial<CheckboxProps> & CheckboxesPropsExtra,
-): React.ReactElement => {
+const Checkboxes = (props: CheckboxesProps & Partial<CheckboxProps> & CheckboxesPropsExtra): React.ReactElement => {
   const onClick = useCallback(
     (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
       if (!props.disabled) {
@@ -110,8 +105,7 @@ const Checkboxes = (
 const Checkbox = (props: CheckboxProps): React.ReactElement => {
   const [focus, setFocus] = useState(false);
 
-  const formLabel = (label: string, required?: boolean): string =>
-    required ? label + ' *' : label;
+  const formLabel = (label: string, required?: boolean): string => (required ? label + ' *' : label);
 
   const onSelectAll = useCallback(() => {
     const newArray = props.checkboxes.map((checkbox) => checkbox.value);
@@ -122,14 +116,8 @@ const Checkbox = (props: CheckboxProps): React.ReactElement => {
   }, [props]);
 
   return (
-    <CheckboxWrapper
-      required={props.required}
-      focus={focus}
-      showSideBySide={props.showSideBySide}
-    >
-      <FormLabel htmlFor={props.id}>
-        {formLabel(props.title, props.required)}
-      </FormLabel>
+    <CheckboxWrapper required={props.required} focus={focus} showSideBySide={props.showSideBySide}>
+      <FormLabel htmlFor={props.id}>{formLabel(props.title, props.required)}</FormLabel>
       {props.checkboxes.map((checkbox) => (
         <Checkboxes
           key={checkbox.value}
@@ -145,18 +133,8 @@ const Checkbox = (props: CheckboxProps): React.ReactElement => {
       ))}
       {props.includeButtons && (
         <>
-          <Button
-            id={props.id + '-selectAll'}
-            title="Select All"
-            onClick={onSelectAll}
-            includeBorder
-          />
-          <Button
-            id={props.id + '-selectNone'}
-            title="Select None"
-            onClick={onSelectNone}
-            includeBorder
-          />
+          <Button id={props.id + '-selectAll'} title="Select All" onClick={onSelectAll} includeBorder />
+          <Button id={props.id + '-selectNone'} title="Select None" onClick={onSelectNone} includeBorder />
         </>
       )}
     </CheckboxWrapper>

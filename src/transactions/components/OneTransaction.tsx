@@ -1,11 +1,5 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { Account } from '../../accounts/types/accounts.data.types';
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import { AuthContext } from '../../app/context/AuthContext';
@@ -16,11 +10,7 @@ import Input, { InputType } from '../../common/forms/Input';
 import RadioButton from '../../common/forms/RadioButton';
 import Select from '../../common/forms/Select';
 import TextArea from '../../common/forms/TextArea';
-import {
-  RefCategory,
-  RefCategoryType,
-  RefTransactionType,
-} from '../../common/types/refTypes.data.types';
+import { RefCategory, RefCategoryType, RefTransactionType } from '../../common/types/refTypes.data.types';
 import {
   ALERT_TYPE_FAILURE,
   ALERT_TYPE_SUCCESS,
@@ -32,11 +22,7 @@ import {
   TRANSACTION_TYPE_ID_TRANSFER,
 } from '../../common/utils/constants';
 import { Merchant } from '../../merchants/types/merchants.data.types';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import oneTransaction from '../reducers/oneTransaction.reducer';
 import {
   DefaultOneTransactionOne,
@@ -69,26 +55,13 @@ interface OneTransactionProps {
   accountsList: Account[];
   merchantsList: Merchant[];
   getTransactions: (username: string, selectedTransactionId: string) => void;
-  updateTransaction: (
-    username: string,
-    id: string,
-    transactionsRequest: TransactionsRequest,
-    method: string,
-  ) => void;
+  updateTransaction: (username: string, id: string, transactionsRequest: TransactionsRequest, method: string) => void;
   deleteTransaction: (username: string, id: string) => void;
   getAccounts: (username: string) => void;
   getMerchants: (username: string) => void;
-  setAlert: (
-    type: string,
-    messageKey: string,
-    messageBody?: JSX.Element,
-  ) => void;
+  setAlert: (type: string, messageKey: string, messageBody?: JSX.Element) => void;
   resetAlert: () => void;
   resetOnPageLeave: () => void;
-}
-
-interface RouteParams {
-  id: string;
 }
 
 interface QueryParams {
@@ -129,15 +102,12 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
     setAlert,
   } = props;
 
-  const [transactionData, setTransactionData] = useReducer(
-    oneTransaction,
-    DefaultOneTransactionOne,
-  );
+  const [transactionData, setTransactionData] = useReducer(oneTransaction, DefaultOneTransactionOne);
   const [isValidId, setIsValidId] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [queryParamsValue, setQueryParamsValue] = useState(DefaultQueryParams);
-  const { id } = useParams<RouteParams>();
-  const history = useHistory();
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id && id !== ':id') {
@@ -149,7 +119,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
   useEffect(() => {
     if (username && isValidId) {
-      getTransactions(username, id);
+      getTransactions(username, id || '');
     }
   }, [getTransactions, id, isValidId, transactionsList, username]);
 
@@ -165,10 +135,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
     }
   }, [getMerchants, merchantsList, username]);
 
-  const oneTransactionFromTransaction = (
-    transaction: Transaction,
-    queryParams: QueryParams,
-  ): OneTransactionOne => {
+  const oneTransactionFromTransaction = (transaction: Transaction, queryParams: QueryParams): OneTransactionOne => {
     return {
       id: transaction.id,
       description: transaction.description,
@@ -182,18 +149,8 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
       newMerchant: '',
       transactionTypeId: transaction.refTransactionType.id,
       username: transaction.user.username,
-      necessary:
-        transaction.necessary === undefined
-          ? ''
-          : transaction.necessary
-          ? 'YES'
-          : 'NO',
-      regular:
-        transaction.regular === undefined
-          ? ''
-          : transaction.regular
-          ? 'YES'
-          : 'NO',
+      necessary: transaction.necessary === undefined ? '' : transaction.necessary ? 'YES' : 'NO',
+      regular: transaction.regular === undefined ? '' : transaction.regular ? 'YES' : 'NO',
     };
   };
 
@@ -228,10 +185,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
   useEffect(() => {
     setTransactionData({
-      oneTransaction: oneTransactionFromTransaction(
-        selectedTransaction,
-        queryParamsValue,
-      ),
+      oneTransaction: oneTransactionFromTransaction(selectedTransaction, queryParamsValue),
     });
   }, [queryParamsValue, selectedTransaction]);
 
@@ -243,8 +197,8 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
   const showAllTransactions = useCallback(() => {
     resetAlert();
     resetOnPageLeave();
-    return history.push('/transactions');
-  }, [history, resetAlert, resetOnPageLeave]);
+    return navigate('/transactions');
+  }, [navigate, resetAlert, resetOnPageLeave]);
 
   // clear message when leaving the page
   useEffect(() => {
@@ -256,10 +210,8 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
   const handleFieldChange = useCallback(
     (input: string, name: string) => {
-      const setInputFieldValue = (
-        inputValue: string | undefined,
-        defaultValue: string,
-      ) => (inputValue === undefined ? defaultValue : inputValue);
+      const setInputFieldValue = (inputValue: string | undefined, defaultValue: string) =>
+        inputValue === undefined ? defaultValue : inputValue;
 
       const getChangedTransaction = ({
         transactionTypeId,
@@ -277,42 +229,18 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
       }: Partial<OneTransactionOne>): OneTransactionOne => {
         return {
           id: transactionData.id,
-          transactionTypeId: setInputFieldValue(
-            transactionTypeId,
-            transactionData.transactionTypeId,
-          ),
-          categoryTypeId: setInputFieldValue(
-            categoryTypeId,
-            transactionData.categoryTypeId,
-          ),
-          categoryId: setInputFieldValue(
-            categoryId,
-            transactionData.categoryId,
-          ),
+          transactionTypeId: setInputFieldValue(transactionTypeId, transactionData.transactionTypeId),
+          categoryTypeId: setInputFieldValue(categoryTypeId, transactionData.categoryTypeId),
+          categoryId: setInputFieldValue(categoryId, transactionData.categoryId),
           accountId: setInputFieldValue(accountId, transactionData.accountId),
-          trfAccountId: setInputFieldValue(
-            trfAccountId,
-            transactionData.trfAccountId,
-          ),
-          merchantId: setInputFieldValue(
-            merchantId,
-            transactionData.merchantId,
-          ),
-          newMerchant: setInputFieldValue(
-            newMerchant,
-            transactionData.newMerchant,
-          ),
+          trfAccountId: setInputFieldValue(trfAccountId, transactionData.trfAccountId),
+          merchantId: setInputFieldValue(merchantId, transactionData.merchantId),
+          newMerchant: setInputFieldValue(newMerchant, transactionData.newMerchant),
           date: setInputFieldValue(date, transactionData.date),
           amount: setInputFieldValue(amount, transactionData.amount),
           regular: setInputFieldValue(regular, transactionData.regular || ''),
-          necessary: setInputFieldValue(
-            necessary,
-            transactionData.necessary || '',
-          ),
-          description: setInputFieldValue(
-            description,
-            transactionData.description,
-          ),
+          necessary: setInputFieldValue(necessary, transactionData.necessary || ''),
+          description: setInputFieldValue(description, transactionData.description),
           username,
         };
       };
@@ -336,9 +264,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
       let changedTransaction;
       switch (name) {
         case 'typeId':
-          changedTransaction = getChangedTransaction(
-            changesForTxnTypeSelection(input),
-          );
+          changedTransaction = getChangedTransaction(changesForTxnTypeSelection(input));
           setTransactionData({ oneTransaction: changedTransaction });
           break;
         case 'catTypeId':
@@ -471,11 +397,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         required
       />
     ),
-    [
-      handleFieldChange,
-      props.transactionTypes,
-      transactionData.transactionTypeId,
-    ],
+    [handleFieldChange, props.transactionTypes, transactionData.transactionTypeId],
   );
 
   const categoryTypeSelect = useCallback(
@@ -501,19 +423,11 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         label="Category Name"
         onChange={(value) => handleFieldChange(value, 'catId')}
         value={transactionData.categoryId}
-        options={filterCategoryOptions(
-          props.categories,
-          transactionData.categoryTypeId,
-        )}
+        options={filterCategoryOptions(props.categories, transactionData.categoryTypeId)}
         required
       />
     ),
-    [
-      handleFieldChange,
-      props.categories,
-      transactionData.categoryId,
-      transactionData.categoryTypeId,
-    ],
+    [handleFieldChange, props.categories, transactionData.categoryId, transactionData.categoryTypeId],
   );
 
   const accountSelect = useCallback(
@@ -543,12 +457,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         disabled={!isTransactionTypeTransfer(transactionData.transactionTypeId)}
       />
     ),
-    [
-      handleFieldChange,
-      props.accountsList,
-      transactionData.transactionTypeId,
-      transactionData.trfAccountId,
-    ],
+    [handleFieldChange, props.accountsList, transactionData.transactionTypeId, transactionData.trfAccountId],
   );
 
   const merchantSelect = useCallback(
@@ -564,12 +473,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         disabled={isTransactionTypeTransfer(transactionData.transactionTypeId)}
       />
     ),
-    [
-      handleFieldChange,
-      props.merchantsList,
-      transactionData.merchantId,
-      transactionData.transactionTypeId,
-    ],
+    [handleFieldChange, props.merchantsList, transactionData.merchantId, transactionData.transactionTypeId],
   );
 
   const newMerchantInput = useCallback(
@@ -584,11 +488,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         disabled={isTransactionTypeTransfer(transactionData.transactionTypeId)}
       />
     ),
-    [
-      handleFieldChange,
-      transactionData.newMerchant,
-      transactionData.transactionTypeId,
-    ],
+    [handleFieldChange, transactionData.newMerchant, transactionData.transactionTypeId],
   );
 
   const transactionDateInput = useCallback(
@@ -670,9 +570,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
     [handleFieldChange, transactionData.description],
   );
 
-  const setValidationMessages = (
-    validationMessages: OneTransactionValidationMessages,
-  ) => (
+  const setValidationMessages = (validationMessages: OneTransactionValidationMessages) => (
     <>
       {validationMessages.requiredFieldsMessages
         ? `Required Fields Missing Error: ${validationMessages.requiredFieldsMessages}`
@@ -682,9 +580,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         ? `Transfer Transaction Type Error: ${validationMessages.txnTypeTransferMessages}`
         : ''}
       <br />
-      {validationMessages.otherMessages
-        ? `Other Error: ${validationMessages.otherMessages}`
-        : ''}
+      {validationMessages.otherMessages ? `Other Error: ${validationMessages.otherMessages}` : ''}
     </>
   );
 
@@ -693,16 +589,14 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
     if (
       txnValidate &&
-      (txnValidate.requiredFieldsMessages ||
-        txnValidate.txnTypeTransferMessages ||
-        txnValidate.otherMessages)
+      (txnValidate.requiredFieldsMessages || txnValidate.txnTypeTransferMessages || txnValidate.otherMessages)
     ) {
       setAlert(ALERT_TYPE_FAILURE, '', setValidationMessages(txnValidate));
     } else {
       resetAlert();
       const transactionsRequest = transactionRequestFromOneTransaction();
       const txnId = isValidId ? id : '';
-      updateTransaction(username, txnId, transactionsRequest, method);
+      updateTransaction(username, txnId || '', transactionsRequest, method);
 
       if (method === 'POST') {
         showAllTransactions();
@@ -716,7 +610,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
 
   const deleteTransactionActionEnd = () => {
     setIsDeleteModalOpen(false);
-    deleteTransaction(username, id);
+    deleteTransaction(username, id || '');
     showAllTransactions();
   };
 
@@ -732,8 +626,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
     />
   );
 
-  const isUpdateResetDisabled = () =>
-    isTransactionDataUpdated(selectedTransaction, transactionData);
+  const isUpdateResetDisabled = () => isTransactionDataUpdated(selectedTransaction, transactionData);
 
   const addTransactionButton = () => (
     <Button
@@ -770,10 +663,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
       title="Revert Changes"
       onClick={() =>
         setTransactionData({
-          oneTransaction: oneTransactionFromTransaction(
-            selectedTransaction,
-            queryParamsValue,
-          ),
+          oneTransaction: oneTransactionFromTransaction(selectedTransaction, queryParamsValue),
         })
       }
       includeBorder
@@ -841,9 +731,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
           </div>
           <DisplayCardRow>
             <div className="row">
-              <div className="twelve columns">
-                {transactionDescriptionInput()}
-              </div>
+              <div className="twelve columns">{transactionDescriptionInput()}</div>
             </div>
           </DisplayCardRow>
           <DisplayCardRow>

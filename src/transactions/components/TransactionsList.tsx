@@ -1,5 +1,5 @@
-import { useCallback, useMemo, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from '../../common/components/Modal';
 import Button from '../../common/forms/Button';
 import HrefLink from '../../common/forms/HrefLink';
@@ -25,23 +25,14 @@ const DefaultDeleteTransaction: DeleteTransaction = {
 };
 
 const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [txnToDelete, setTxnToDelete] = useState(DefaultDeleteTransaction);
 
-  const { transactions, selectedAccountId, username, deleteTransaction } =
-    props;
+  const { transactions, selectedAccountId, username, deleteTransaction } = props;
 
   const tableHeaders = useMemo(
-    () => [
-      'Date',
-      'Category',
-      'Account',
-      'Transfer To',
-      'Merchant',
-      'Amount',
-      'Actions',
-    ],
+    () => ['Date', 'Category', 'Account', 'Transfer To', 'Merchant', 'Amount', 'Actions'],
     [],
   );
 
@@ -49,23 +40,23 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
 
   const onClickToAccount = useCallback(
     (id: string) => {
-      return history.push(`/account/${id}`);
+      return navigate(`/account/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const onClickToMerchant = useCallback(
     (id: string) => {
-      return history.push(`/merchant/${id}`);
+      return navigate(`/merchant/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const onClickToTransaction = useCallback(
     (id: string) => {
-      return history.push(`/transaction/${id}`);
+      return navigate(`/transaction/${id}`);
     },
-    [history],
+    [navigate],
   );
 
   const deleteTransactionModal = () => (
@@ -93,12 +84,7 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
   const buttons = useCallback(
     (id: string, date: string) => (
       <>
-        <Button
-          id={`txn-list-button-view-${id}`}
-          title="View"
-          onClick={() => onClickToTransaction(id)}
-          includeBorder
-        />
+        <Button id={`txn-list-button-view-${id}`} title="View" onClick={() => onClickToTransaction(id)} includeBorder />
         <Button
           id={`txn-list-button-delete-${id}`}
           title="Delete"
@@ -148,13 +134,7 @@ const TransactionsList = (props: TransactionsListProps): React.ReactElement => {
         actions: buttons(x.id, x.date),
       };
     });
-  }, [
-    buttons,
-    onClickToAccount,
-    onClickToMerchant,
-    selectedAccountId,
-    transactions,
-  ]);
+  }, [buttons, onClickToAccount, onClickToMerchant, selectedAccountId, transactions]);
 
   const showTransactionsList = useCallback(
     () => (

@@ -6,10 +6,7 @@ const initialState: PrefetchState = {
   isRefreshTokenRequired: false,
 };
 
-export default function prefetch(
-  state = initialState,
-  action: PrefetchAction,
-): PrefetchState {
+export default function prefetch(state = initialState, action: PrefetchAction): PrefetchState {
   switch (action.type) {
     case PREFETCH_DISPATCH_ACTION:
       return {

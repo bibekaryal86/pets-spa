@@ -14,20 +14,14 @@ import {
   REF_BANKS_SELECT_OPTIONS,
   REF_STATUS_SELECT_OPTIONS,
 } from '../../common/fixtures/refTypes.sample.data';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import HrefLink from '../../common/forms/HrefLink';
 import Table from '../../common/forms/Table';
 
-const mockHistoryPush = jest.fn();
+const mockUseNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...(jest.requireActual('react-router-dom') as any),
-  useHistory: () => ({
-    push: mockHistoryPush,
-  }),
+  useNavigate: () => mockUseNavigate,
 }));
 
 describe('accounts tests', () => {
@@ -37,14 +31,8 @@ describe('accounts tests', () => {
   const setAlert = jest.fn();
   const resetAlert = jest.fn();
   const resetOnPageLeave = jest.fn();
-  const clearAccountsFilterSpy = jest.spyOn(
-    accountsStateAction,
-    'clearAccountsFilter',
-  );
-  const setAccountsFilterSpy = jest.spyOn(
-    accountsStateAction,
-    'setAccountsFilter',
-  );
+  const clearAccountsFilterSpy = jest.spyOn(accountsStateAction, 'clearAccountsFilter');
+  const setAccountsFilterSpy = jest.spyOn(accountsStateAction, 'setAccountsFilter');
 
   const accountProps = {
     error: '',
@@ -151,8 +139,8 @@ describe('accounts tests', () => {
       expect(ahref.text()).toEqual('To Add a New Account Click Here');
 
       ahref.simulate('click');
-      expect(mockHistoryPush).toHaveBeenCalledTimes(1);
-      expect(mockHistoryPush).toHaveBeenCalledWith('/account/');
+      expect(mockUseNavigate).toHaveBeenCalledTimes(1);
+      expect(mockUseNavigate).toHaveBeenCalledWith('/account/');
     });
 
     it('filter dropdowns', () => {
@@ -170,9 +158,7 @@ describe('accounts tests', () => {
     it('filter dropdown options', () => {
       const selects = output.find(Select);
 
-      expect(selects.at(0).prop('options')).toEqual(
-        REF_ACCOUNT_TYPES_SELECT_OPTIONS,
-      );
+      expect(selects.at(0).prop('options')).toEqual(REF_ACCOUNT_TYPES_SELECT_OPTIONS);
       expect(selects.at(1).prop('options')).toEqual(REF_BANKS_SELECT_OPTIONS);
       expect(selects.at(2).prop('options')).toEqual(REF_STATUS_SELECT_OPTIONS);
     });
@@ -184,19 +170,13 @@ describe('accounts tests', () => {
         target: { value: 'ACTIVE' },
       });
       expect(setAccountsFilterSpy).toHaveBeenCalledTimes(1);
-      expect(setAccountsFilterSpy).toHaveBeenCalledWith(
-        'status',
-        'ACTIVE',
-        ACCOUNTS_SAMPLE_DATA,
-      );
+      expect(setAccountsFilterSpy).toHaveBeenCalledWith('status', 'ACTIVE', ACCOUNTS_SAMPLE_DATA);
     });
   });
 
   describe('accounts filters applied', () => {
     const output = renderAccounts({ accountsList: ACCOUNTS_SAMPLE_DATA });
-    let clearFiltersLink: any,
-      displayCardWrappers: any,
-      displayCardRowHeader: any;
+    let clearFiltersLink: any, displayCardWrappers: any, displayCardRowHeader: any;
 
     it('does not display selected filter', () => {
       expect(clearAccountsFilterSpy).toHaveBeenCalledTimes(1);
@@ -217,20 +197,13 @@ describe('accounts tests', () => {
       displayCardWrappers = output.find(DisplayCardWrapper);
       expect(displayCardWrappers.length).toEqual(4);
 
-      const displayCardRowHeader = displayCardWrappers
-        .at(2)
-        .find(DisplayCardRow)
-        .at(0);
-      expect(displayCardRowHeader.text()).toEqual(
-        'Filters Currently Applied: [Account Status]',
-      );
+      const displayCardRowHeader = displayCardWrappers.at(2).find(DisplayCardRow).at(0);
+      expect(displayCardRowHeader.text()).toEqual('Filters Currently Applied: [Account Status]');
     });
 
     it('displays clear filter link', () => {
       clearFiltersLink = output.find('#accounts-clear-filters').at(1);
-      expect(clearFiltersLink.text()).toEqual(
-        'Clear Filters and Show All Accounts',
-      );
+      expect(clearFiltersLink.text()).toEqual('Clear Filters and Show All Accounts');
     });
 
     it('displays Account Type as selected filter', () => {
@@ -242,13 +215,8 @@ describe('accounts tests', () => {
       displayCardWrappers = output.find(DisplayCardWrapper);
       expect(displayCardWrappers.length).toEqual(4);
 
-      displayCardRowHeader = displayCardWrappers
-        .at(2)
-        .find(DisplayCardRow)
-        .at(0);
-      expect(displayCardRowHeader.text()).toEqual(
-        'Filters Currently Applied: [Account Type][Account Status]',
-      );
+      displayCardRowHeader = displayCardWrappers.at(2).find(DisplayCardRow).at(0);
+      expect(displayCardRowHeader.text()).toEqual('Filters Currently Applied: [Account Type][Account Status]');
     });
 
     it('displays Bank as selected filter', () => {
@@ -260,13 +228,8 @@ describe('accounts tests', () => {
       displayCardWrappers = output.find(DisplayCardWrapper);
       expect(displayCardWrappers.length).toEqual(4);
 
-      const displayCardRowHeader = displayCardWrappers
-        .at(2)
-        .find(DisplayCardRow)
-        .at(0);
-      expect(displayCardRowHeader.text()).toEqual(
-        'Filters Currently Applied: [Account Type][Bank][Account Status]',
-      );
+      const displayCardRowHeader = displayCardWrappers.at(2).find(DisplayCardRow).at(0);
+      expect(displayCardRowHeader.text()).toEqual('Filters Currently Applied: [Account Type][Bank][Account Status]');
     });
 
     it('clears filters', () => {
@@ -292,9 +255,7 @@ describe('accounts tests', () => {
         const tableHeaders = table.find('thead').find('th');
         expect(tableHeaders.length).toEqual(5);
 
-        const actualTableHeadersText = tableHeaders.map((tableHeader) =>
-          tableHeader.text(),
-        );
+        const actualTableHeadersText = tableHeaders.map((tableHeader) => tableHeader.text());
         const expectedTableHeadersText = [
           'Bank Name',
           'Account Type',
@@ -317,23 +278,11 @@ describe('accounts tests', () => {
         });
 
         it('accounts list table formatted positive balance', () => {
-          const checkingAccountRow = table
-            .find('tbody')
-            .find('tr')
-            .at(2)
-            .find('td');
+          const checkingAccountRow = table.find('tbody').find('tr').at(2).find('td');
           expect(checkingAccountRow.length).toEqual(5);
           // length is same as `account list table header` test above
-          const actualRowTexts = checkingAccountRow.map((tableRowText) =>
-            tableRowText.text(),
-          );
-          const expectedRowTexts = [
-            'BANK OF AMERICA',
-            'CHECKING ACCOUNT',
-            'BOFA-ADV PLUS',
-            '$10,017.06',
-            '$14,362.02',
-          ];
+          const actualRowTexts = checkingAccountRow.map((tableRowText) => tableRowText.text());
+          const expectedRowTexts = ['BANK OF AMERICA', 'CHECKING ACCOUNT', 'BOFA-ADV PLUS', '$10,017.06', '$14,362.02'];
 
           expect(actualRowTexts).toEqual(expectedRowTexts);
         });
@@ -342,38 +291,23 @@ describe('accounts tests', () => {
           const creditCardRow = table.find('tbody').find('tr').at(4).find('td');
           expect(creditCardRow.length).toEqual(5);
           // length is same as `account list table header` test above
-          const actualRowTexts = creditCardRow.map((tableRowText) =>
-            tableRowText.text(),
-          );
-          const expectedRowTexts = [
-            'CHASE BANK',
-            'CREDIT CARD',
-            'CHASE-AMAZON',
-            '-$1.07',
-            '-$14.05',
-          ];
+          const actualRowTexts = creditCardRow.map((tableRowText) => tableRowText.text());
+          const expectedRowTexts = ['CHASE BANK', 'CREDIT CARD', 'CHASE-AMAZON', '-$1.07', '-$14.05'];
 
           expect(actualRowTexts).toEqual(expectedRowTexts);
         });
 
         it('accounts list click to open account details', () => {
-          mockHistoryPush.mockReset();
+          mockUseNavigate.mockReset();
 
-          const accountNameColumn = table
-            .find('tbody')
-            .find('tr')
-            .at(4)
-            .find('td')
-            .at(2);
+          const accountNameColumn = table.find('tbody').find('tr').at(4).find('td').at(2);
           const accountNameLink = accountNameColumn.find(HrefLink);
           expect(accountNameLink.prop('linkTo')).toEqual('#');
           expect(accountNameLink.prop('title')).toEqual('CHASE-AMAZON');
 
           const accountNameLinkHref = accountNameLink.find('a');
           accountNameLinkHref.simulate('click');
-          expect(mockHistoryPush).toHaveBeenCalledWith(
-            '/account/5ede989a2c473171d7464592',
-          );
+          expect(mockUseNavigate).toHaveBeenCalledWith('/account/5ede989a2c473171d7464592');
         });
       });
     });

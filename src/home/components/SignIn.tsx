@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Input, { InputType } from '../../common/forms/Input';
 import Button from '../../common/forms/Button';
 import { validateLogInInput } from '../utils/validate';
@@ -11,13 +11,8 @@ import {
   MSG_KEY_SIGNIN_FIRST,
 } from '../../common/utils/constants';
 import { AuthContext } from '../../app/context/AuthContext';
-import { useHistory, useLocation } from 'react-router';
-import { Redirect } from 'react-router-dom';
-import {
-  DisplayCardBody,
-  DisplayCardRow,
-  DisplayCardWrapper,
-} from '../../styles/styled.card.style';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import { LoginResponse } from '../types/home.data.types';
 
 interface SignInProps {
@@ -60,12 +55,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
   );
 
   const loginSuccessFul = (loginResponse: LoginResponse) =>
-    !!(
-      loginResponse &&
-      loginResponse.token &&
-      loginResponse.userDetails &&
-      loginResponse.userDetails.username
-    );
+    !!(loginResponse && loginResponse.token && loginResponse.userDetails && loginResponse.userDetails.username);
 
   //update context when sign in
   const authContext = useContext(AuthContext);
@@ -115,13 +105,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
           </form>
         </DisplayCardRow>
         <DisplayCardRow textAlign="center">
-          <Button
-            id={'sign-in-submit'}
-            title="Sign In"
-            onClick={handleSubmit}
-            includeBorder
-            color="green"
-          />
+          <Button id={'sign-in-submit'} title="Sign In" onClick={handleSubmit} includeBorder color="green" />
           <Button
             id={'sign-in-create'}
             title="Create Account"
@@ -131,11 +115,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
           />
         </DisplayCardRow>
         <DisplayCardRow borderTop textAlign="center">
-          <Button
-            id={'sign-in-forgot'}
-            title="Forgot Password?"
-            onClick={() => alert('TODO: Currently Unavailable')}
-          />
+          <Button id={'sign-in-forgot'} title="Forgot Password?" onClick={() => alert('TODO: Currently Unavailable')} />
         </DisplayCardRow>
       </DisplayCardBody>
     </DisplayCardWrapper>
@@ -145,7 +125,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
   const location = useLocation();
   const locationState = location.state as { redirect: string };
   const redirectToPage = (locationState && locationState.redirect) || '';
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (redirectToPage) {
@@ -154,9 +134,12 @@ const SignIn = (props: SignInProps): React.ReactElement => {
         setAlert(ALERT_TYPE_FAILURE, MSG_KEY_SIGNIN_FIRST);
       }
 
-      history.replace({ ...history.location, state: { redirect: '' } });
+      navigate('/', {
+        replace: true,
+        state: { redirect: '' },
+      });
     }
-  }, [authContext.auth.isLoggedIn, redirectToPage, setAlert, history]);
+  }, [authContext.auth.isLoggedIn, navigate, redirectToPage, setAlert]);
 
   useEffect(() => {
     return () => setRedirectTo('');
@@ -165,9 +148,9 @@ const SignIn = (props: SignInProps): React.ReactElement => {
   const redirect = useCallback(() => {
     const pageToRedirectTo = redirectToPage || redirectTo;
     if (pageToRedirectTo) {
-      return <Redirect to={pageToRedirectTo} />;
+      return <Navigate to={pageToRedirectTo} />;
     } else {
-      return <Redirect to="/summary" />;
+      return <Navigate to="/summary" />;
     }
   }, [redirectTo, redirectToPage]);
 
@@ -178,9 +161,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
     if (search) {
       const filteredSearch = search.slice(1);
       const arrayedSearch = filteredSearch.split('&');
-      const isInvalidSession = arrayedSearch.some(
-        (param) => param === 'isSessionInvalid=true',
-      );
+      const isInvalidSession = arrayedSearch.some((param) => param === 'isSessionInvalid=true');
 
       if (isInvalidSession) {
         setAlert(ALERT_TYPE_INFO, MSG_KEY_SESSION_INVALID);
@@ -188,8 +169,7 @@ const SignIn = (props: SignInProps): React.ReactElement => {
     }
   }, [search, setAlert]);
 
-  const checkIsLoggedIn = () =>
-    loginSuccessFul(loginResponse) || authContext.auth.isLoggedIn;
+  const checkIsLoggedIn = () => loginSuccessFul(loginResponse) || authContext.auth.isLoggedIn;
 
   return <>{checkIsLoggedIn() ? redirect() : signInForm()}</>;
 };

@@ -1,20 +1,11 @@
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
 import { getEndpoint } from '../../home/utils/endpoint';
-import {
-  DefaultReportsResponse,
-  ReportsResponse,
-} from '../types/reports.data.types';
+import { DefaultReportsResponse, ReportsResponse } from '../types/reports.data.types';
 
-export const getCashFlowsReport = async (
-  username: string,
-  selectedyear: number,
-): Promise<ReportsResponse> => {
+export const getCashFlowsReport = async (username: string, selectedyear: number): Promise<ReportsResponse> => {
   try {
-    const urlPath = getEndpoint([
-      process.env.BASE_URL as string,
-      process.env.REPORT_CASH_FLOWS_ENDPOINT as string,
-    ]);
+    const urlPath = getEndpoint([process.env.BASE_URL as string, process.env.REPORT_CASH_FLOWS_ENDPOINT as string]);
     const options: Partial<FetchOptions> = {
       method: 'GET',
       pathParams: { username },
@@ -28,9 +19,7 @@ export const getCashFlowsReport = async (
   }
 };
 
-const getCashFlowsReportError = (
-  reportsResponse: ReportsResponse,
-): ReportsResponse => {
+const getCashFlowsReportError = (reportsResponse: ReportsResponse): ReportsResponse => {
   return {
     ...reportsResponse,
     status: {

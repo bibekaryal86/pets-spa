@@ -24,11 +24,7 @@ interface CsvReport {
   filename: string;
 }
 
-export function getCsvReport(
-  tableHeaders: string[],
-  tableData: TableData[],
-  tableFilename?: string,
-): CsvReport {
+export function getCsvReport(tableHeaders: string[], tableData: TableData[], tableFilename?: string): CsvReport {
   const tableDataKeys = Object.keys(tableData[0]) as Array<string>;
 
   return {
@@ -38,10 +34,7 @@ export function getCsvReport(
   };
 }
 
-function getHeaders(
-  tableHeaders: string[],
-  tableDataKeys: string[],
-): CsvHeaders[] {
+function getHeaders(tableHeaders: string[], tableDataKeys: string[]): CsvHeaders[] {
   const csvHeaders: CsvHeaders[] = [];
 
   tableHeaders.forEach((header, index) => {
@@ -89,12 +82,7 @@ function getDataItemValue(dataItem: string | JSX.Element): string {
   return dataItemValue;
 }
 
-export function getSortData(
-  currentSortData: SortData,
-  header: string,
-  index: number,
-  tableData: TableData,
-): SortData {
+export function getSortData(currentSortData: SortData, header: string, index: number, tableData: TableData): SortData {
   if (header && tableData) {
     let sortDirection = TABLE_SORT_DIRECTION_ASCENDING;
     let sortedDirection = TABLE_SORTED_ASC_CODE;
@@ -121,23 +109,16 @@ export function getSortData(
   return { sortKey: '', sortedDirection: TABLE_SORTED_NONE_CODE };
 }
 
-export function getSortedData(
-  sortData: SortData,
-  tableData: TableData[],
-): TableData[] {
+export function getSortedData(sortData: SortData, tableData: TableData[]): TableData[] {
   if (sortData && sortData.sortKey && tableData) {
     tableData.sort((a, b) => {
       const first = getSortTableData(a[sortData.sortKey]);
       const second = getSortTableData(b[sortData.sortKey]);
       if (first > second) {
-        return sortData.sortDirection === TABLE_SORT_DIRECTION_ASCENDING
-          ? 1
-          : -1;
+        return sortData.sortDirection === TABLE_SORT_DIRECTION_ASCENDING ? 1 : -1;
       }
       if (first < second) {
-        return sortData.sortDirection === TABLE_SORT_DIRECTION_ASCENDING
-          ? -1
-          : 1;
+        return sortData.sortDirection === TABLE_SORT_DIRECTION_ASCENDING ? -1 : 1;
       }
       return 0;
     });
