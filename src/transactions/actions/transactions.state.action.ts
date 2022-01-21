@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { GlobalDispatch } from '../../app/store/redux';
 import { SESSION_TRANSACTION_FILTERS } from '../../common/utils/constants';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
@@ -98,14 +97,14 @@ export const setTransactionFilters = (
 
   if (transactionFilters.txnDateFrom) {
     displayTransactionsList = displayTransactionsList.filter((transaction) => {
-      return moment(transaction.date).isSameOrAfter(moment(transactionFilters.txnDateFrom));
+      return new Date(transaction.date) >= new Date(transactionFilters.txnDateFrom);
     });
   }
 
   if (transactionFilters.txnDateTo) {
-    displayTransactionsList = displayTransactionsList.filter((transaction) =>
-      moment(transaction.date).isSameOrBefore(moment(transactionFilters.txnDateTo)),
-    );
+    displayTransactionsList = displayTransactionsList.filter((transaction) => {
+      return new Date(transaction.date) <= new Date(transactionFilters.txnDateTo);
+    });
   }
 
   SessionStorage.setItem(SESSION_TRANSACTION_FILTERS, transactionFilters);
