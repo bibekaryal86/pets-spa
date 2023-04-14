@@ -2,25 +2,25 @@ import { Status } from '../../common/types/common.data.types';
 import { RefCategory, RefCategoryType } from '../../common/types/refTypes.data.types';
 
 export interface ReportCurrentBalances {
-  totalCash: BigInt;
+  totalCash: bigint;
   accountTypeCashId: string;
-  totalCheckingAccounts: BigInt;
+  totalCheckingAccounts: bigint;
   accountTypeCheckingAccountsId: string;
-  totalSavingsAccounts: BigInt;
+  totalSavingsAccounts: bigint;
   accountTypeSavingsAccountsId: string;
-  totalInvestmentAccounts: BigInt;
+  totalInvestmentAccounts: bigint;
   accountTypeInvestmentAccountsId: string;
-  totalOtherDepositAccounts: BigInt;
+  totalOtherDepositAccounts: bigint;
   accountTypeOtherDepositAccountsId: string;
-  totalCreditCards: BigInt;
+  totalCreditCards: bigint;
   accountTypeCreditCardsId: string;
-  totalLoansAndMortgages: BigInt;
+  totalLoansAndMortgages: bigint;
   accountTypeLoansAndMortgagesId: string;
-  totalOtherLoanAccounts: BigInt;
+  totalOtherLoanAccounts: bigint;
   accountTypeOtherLoanAccountsId: string;
-  totalAssets: BigInt;
-  totalDebts: BigInt;
-  netWorth: BigInt;
+  totalAssets: bigint;
+  totalDebts: bigint;
+  netWorth: bigint;
 }
 
 export interface ReportCashFlows {
@@ -28,19 +28,19 @@ export interface ReportCashFlows {
   monthToSort: number;
   monthBeginDate: string;
   monthEndDate: string;
-  totalIncomes: BigInt;
-  totalExpenses: BigInt;
-  netSavings: BigInt;
+  totalIncomes: bigint;
+  totalExpenses: bigint;
+  netSavings: bigint;
 }
 
 export interface ReportCategories {
   refCategory: RefCategory;
-  totalRefCategory: BigInt;
+  totalRefCategory: bigint;
 }
 
 export interface ReportCategoryTypes {
   refCategoryType: RefCategoryType;
-  totalRefCategoryType: BigInt;
+  totalRefCategoryType: bigint;
   reportCategories: ReportCategories[];
 }
 

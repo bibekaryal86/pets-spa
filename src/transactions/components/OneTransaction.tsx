@@ -166,9 +166,7 @@ const OneTransaction = (props: OneTransactionProps): React.ReactElement => {
         : transactionData.merchantId,
       newMerchant: toUppercaseRemoveApostrophe(transactionData.newMerchant),
       date: transactionData.date,
-      amount: numberFormatter(+transactionData.amount)
-        .replace('$', '')
-        .replace('-', ''),
+      amount: numberFormatter(+transactionData.amount).replace('$', '').replace('-', ''),
       regular: transactionData.regular === 'YES',
       necessary: transactionData.necessary === 'YES',
       username,
