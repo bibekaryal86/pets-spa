@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ main, petsuispa ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, petsuispa ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -12,21 +12,21 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 16.x ]
+        #node-version: [12.x, 14.x, 16.x]
+        node-version: [ 18.x ]
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Build
+      - name: Install
         run: npm install
       - name: Lint
         run: npm run lint
       - name: Test
-        run: npm test
-      - name: Prod Check
+        run: npm test -- --reporters=default
+      - name: Build
         run: npx webpack --config webpack.prod.config.js
