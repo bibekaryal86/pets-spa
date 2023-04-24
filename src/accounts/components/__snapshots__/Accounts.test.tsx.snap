@@ -99,14 +99,14 @@ exports[`accounts tests matches snapshot 1`] = `
     id="accounts-body-header"
   >
     <div
-      className="sc-hLseeU eSXBKE display-card-wrapper"
+      className="sc-fFGjHI gdyBHe display-card-wrapper"
       id="accounts-body-header"
     >
       <styled.div
         background="darkseagreen"
       >
         <div
-          className="sc-eDDNvR iFgyLc display-card-body"
+          className="sc-dicizt cxzexS display-card-body"
         >
           <h4>
             Accounts
@@ -119,19 +119,19 @@ exports[`accounts tests matches snapshot 1`] = `
     id="accounts-filter-content"
   >
     <div
-      className="sc-hLseeU eSXBKE display-card-wrapper"
+      className="sc-fFGjHI gdyBHe display-card-wrapper"
       id="accounts-filter-content"
     >
       <styled.div>
         <div
-          className="sc-eDDNvR gemRPY display-card-body"
+          className="sc-dicizt gkQcEW display-card-body"
         >
           <styled.div
             borderBtm={true}
             fontWeight="bold"
           >
             <div
-              className="sc-jTrPJq hOkPQS display-card-row"
+              className="sc-iVCKna fDINNh display-card-row"
               fontWeight="bold"
             >
               Account Filters
@@ -148,7 +148,7 @@ exports[`accounts tests matches snapshot 1`] = `
               >
                 <styled.div>
                   <div
-                    className="sc-jTrPJq glCJdv display-card-row"
+                    className="sc-iVCKna fSFIhA display-card-row"
                   >
                     <Select
                       className="u-full-width"
@@ -201,13 +201,13 @@ exports[`accounts tests matches snapshot 1`] = `
                         focus={false}
                       >
                         <div
-                          className="sc-dmqHEX gapTOi select-wrapper"
+                          className="sc-ewnqHT lfPEQV select-wrapper"
                         >
                           <styled.label
                             htmlFor="filter-account-select-type"
                           >
                             <label
-                              className="sc-gueYoa"
+                              className="sc-gTRrQi"
                               htmlFor="filter-account-select-type"
                             >
                               Account Type
@@ -343,7 +343,7 @@ exports[`accounts tests matches snapshot 1`] = `
               >
                 <styled.div>
                   <div
-                    className="sc-jTrPJq glCJdv display-card-row"
+                    className="sc-iVCKna fSFIhA display-card-row"
                   >
                     <Select
                       className="u-full-width"
@@ -388,13 +388,13 @@ exports[`accounts tests matches snapshot 1`] = `
                         focus={false}
                       >
                         <div
-                          className="sc-dmqHEX gapTOi select-wrapper"
+                          className="sc-ewnqHT lfPEQV select-wrapper"
                         >
                           <styled.label
                             htmlFor="filter-account-select-bank"
                           >
                             <label
-                              className="sc-gueYoa"
+                              className="sc-gTRrQi"
                               htmlFor="filter-account-select-bank"
                             >
                               Bank Name
@@ -506,7 +506,7 @@ exports[`accounts tests matches snapshot 1`] = `
               >
                 <styled.div>
                   <div
-                    className="sc-jTrPJq glCJdv display-card-row"
+                    className="sc-iVCKna fSFIhA display-card-row"
                   >
                     <Select
                       className="u-full-width"
@@ -535,13 +535,13 @@ exports[`accounts tests matches snapshot 1`] = `
                         focus={false}
                       >
                         <div
-                          className="sc-dmqHEX gapTOi select-wrapper"
+                          className="sc-ewnqHT lfPEQV select-wrapper"
                         >
                           <styled.label
                             htmlFor="filter-account-select-status"
                           >
                             <label
-                              className="sc-gueYoa"
+                              className="sc-gTRrQi"
                               htmlFor="filter-account-select-status"
                             >
                               Account Status
@@ -606,7 +606,7 @@ exports[`accounts tests matches snapshot 1`] = `
             borderTop={true}
           >
             <div
-              className="sc-jTrPJq jiRqxg display-card-row"
+              className="sc-iVCKna cPlXiL display-card-row"
             >
               <HrefLink
                 id="accounts-add-new-account"
@@ -620,7 +620,7 @@ exports[`accounts tests matches snapshot 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    className="sc-beqWaB gGlqan hreflink-wrapper"
+                    className="sc-bgqQcB hQENut hreflink-wrapper"
                     href="#"
                     id="accounts-add-new-account"
                     onClick={[Function]}
@@ -654,17 +654,17 @@ exports[`accounts tests matches snapshot 1`] = `
   >
     <styled.div>
       <div
-        className="sc-hLseeU eSXBKE display-card-wrapper"
+        className="sc-fFGjHI gdyBHe display-card-wrapper"
       >
         <styled.div>
           <div
-            className="sc-eDDNvR gemRPY display-card-body"
+            className="sc-dicizt gkQcEW display-card-body"
           >
             <styled.div
               fontWeight="bold"
             >
               <div
-                className="sc-jTrPJq cdZMJB display-card-row"
+                className="sc-iVCKna lhiroO display-card-row"
                 fontWeight="bold"
               >
                 List of Accounts
@@ -672,27 +672,27 @@ exports[`accounts tests matches snapshot 1`] = `
             </styled.div>
             <styled.div>
               <div
-                className="sc-jTrPJq glCJdv display-card-row"
+                className="sc-iVCKna fSFIhA display-card-row"
               >
                 <styled.div>
                   <div
-                    className="sc-gLDzan fcmAlh table-max-width-wrapper"
+                    className="sc-gxYJeL pznue table-max-width-wrapper"
                   >
                     <styled.div>
                       <div
-                        className="sc-iAEyYk ejYdtE table-scroll-wrapper"
+                        className="sc-kPTPQs lhLxbL table-scroll-wrapper"
                       >
                         <styled.table>
                           <table
-                            className="sc-fsQiph dLgbxM table-wrapper"
+                            className="sc-ispOId bmqYLd table-wrapper"
                           >
                             <styled.thead>
                               <thead
-                                className="sc-qRumB sHkVW"
+                                className="sc-kcuKUB kJmmRa"
                               >
                                 <styled.tr>
                                   <tr
-                                    className="sc-irTswW gPoDuB"
+                                    className="sc-duSInm lBjcF"
                                   >
                                     <styled.th
                                       isSortAllowed={true}
@@ -700,7 +700,7 @@ exports[`accounts tests matches snapshot 1`] = `
                                       onClick={[Function]}
                                     >
                                       <th
-                                        className="sc-csCMJt kDFZLO"
+                                        className="sc-jrrXlR kzDgxC"
                                         onClick={[Function]}
                                       >
                                         Bank Name
@@ -712,7 +712,7 @@ exports[`accounts tests matches snapshot 1`] = `
                                       onClick={[Function]}
                                     >
                                       <th
-                                        className="sc-csCMJt kDFZLO"
+                                        className="sc-jrrXlR kzDgxC"
                                         onClick={[Function]}
                                       >
                                         Account Type
@@ -724,7 +724,7 @@ exports[`accounts tests matches snapshot 1`] = `
                                       onClick={[Function]}
                                     >
                                       <th
-                                        className="sc-csCMJt kDFZLO"
+                                        className="sc-jrrXlR kzDgxC"
                                         onClick={[Function]}
                                       >
                                         Account Name
@@ -736,7 +736,7 @@ exports[`accounts tests matches snapshot 1`] = `
                                       onClick={[Function]}
                                     >
                                       <th
-                                        className="sc-csCMJt kDFZLO"
+                                        className="sc-jrrXlR kzDgxC"
                                         onClick={[Function]}
                                       >
                                         Opening Balance
@@ -748,7 +748,7 @@ exports[`accounts tests matches snapshot 1`] = `
                                       onClick={[Function]}
                                     >
                                       <th
-                                        className="sc-csCMJt kDFZLO"
+                                        className="sc-jrrXlR kzDgxC"
                                         onClick={[Function]}
                                       >
                                         Current Balance
@@ -760,17 +760,17 @@ exports[`accounts tests matches snapshot 1`] = `
                             </styled.thead>
                             <styled.tbody>
                               <tbody
-                                className="sc-kFuwaP"
+                                className="sc-kuWgmH"
                               >
                                 <styled.tr>
                                   <tr
-                                    className="sc-irTswW gPoDuB"
+                                    className="sc-duSInm lBjcF"
                                   >
                                     <styled.td
                                       colSpan={100}
                                     >
                                       <td
-                                        className="sc-fbJfA cvUGAn"
+                                        className="sc-crozmw iSpOGA"
                                         colSpan={100}
                                       />
                                     </styled.td>
@@ -780,17 +780,17 @@ exports[`accounts tests matches snapshot 1`] = `
                             </styled.tbody>
                             <styled.tfoot>
                               <tfoot
-                                className="sc-jsMahE dwQGdc"
+                                className="sc-dcrmVg dWSptR"
                               >
                                 <styled.tr>
                                   <tr
-                                    className="sc-irTswW gPoDuB"
+                                    className="sc-duSInm lBjcF"
                                   >
                                     <styled.td
                                       colSpan={100}
                                     >
                                       <td
-                                        className="sc-fbJfA cvUGAn"
+                                        className="sc-crozmw iSpOGA"
                                         colSpan={100}
                                       >
                                         Number of Records: 0
