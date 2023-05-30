@@ -729,14 +729,14 @@ exports[`one account tests render matches snapshot 1`] = `
     id="one-account-body-header"
   >
     <div
-      className="sc-jrrXlR bXSoAG display-card-wrapper"
+      className="sc-jlZhew hrIwzp display-card-wrapper"
       id="one-account-body-header"
     >
       <styled.div
         background="darkseagreen"
       >
         <div
-          className="sc-crozmw eQGoiV display-card-body"
+          className="sc-cwHptR hvOuek display-card-body"
         >
           <HrefLink
             color="inherit"
@@ -756,7 +756,7 @@ exports[`one account tests render matches snapshot 1`] = `
               underline={true}
             >
               <a
-                className="sc-kPTPQs dGrhq hreflink-wrapper"
+                className="sc-kAyceB dNQIlR hreflink-wrapper"
                 color="inherit"
                 href="#"
                 id="one-account-all-accounts-link-1"
@@ -778,19 +778,19 @@ exports[`one account tests render matches snapshot 1`] = `
     id="one-account-body-content"
   >
     <div
-      className="sc-jrrXlR bXSoAG display-card-wrapper"
+      className="sc-jlZhew hrIwzp display-card-wrapper"
       id="one-account-body-content"
     >
       <styled.div>
         <div
-          className="sc-crozmw cVCRox display-card-body"
+          className="sc-cwHptR jGHpZE display-card-body"
         >
           <div
             className="container"
           >
             <styled.div>
               <div
-                className="sc-jJTsDX dfZfXb display-card-row"
+                className="sc-jEACwC hCNXPI display-card-row"
               >
                 <div
                   className="row"
@@ -812,14 +812,14 @@ exports[`one account tests render matches snapshot 1`] = `
                         required={true}
                       >
                         <div
-                          className="sc-dcrmVg iDNcSw input-wrapper"
+                          className="sc-dhKdcB bAEkd input-wrapper"
                           required={true}
                         >
                           <styled.label
                             htmlFor="one-account-name-input"
                           >
                             <label
-                              className="sc-ispOId"
+                              className="sc-imWYAI"
                               htmlFor="one-account-name-input"
                             >
                               Account Name *
@@ -838,7 +838,7 @@ exports[`one account tests render matches snapshot 1`] = `
                             value="ACCOUNT CASH"
                           >
                             <input
-                              className="sc-kcuKUB u-full-width"
+                              className="sc-jXbUNg u-full-width"
                               id="one-account-name-input"
                               maxLength={25}
                               name="one-account-name-input"
@@ -872,14 +872,14 @@ exports[`one account tests render matches snapshot 1`] = `
                         required={true}
                       >
                         <div
-                          className="sc-dcrmVg iDNcSw input-wrapper"
+                          className="sc-dhKdcB bAEkd input-wrapper"
                           required={true}
                         >
                           <styled.label
                             htmlFor="one-account-opening-balance-input"
                           >
                             <label
-                              className="sc-ispOId"
+                              className="sc-imWYAI"
                               htmlFor="one-account-opening-balance-input"
                             >
                               Opening Balance (USD) *
@@ -898,7 +898,7 @@ exports[`one account tests render matches snapshot 1`] = `
                             value="11"
                           >
                             <input
-                              className="sc-kcuKUB u-full-width"
+                              className="sc-jXbUNg u-full-width"
                               id="one-account-opening-balance-input"
                               maxLength={10}
                               name="one-account-opening-balance-input"
@@ -929,13 +929,13 @@ exports[`one account tests render matches snapshot 1`] = `
                         focus={false}
                       >
                         <div
-                          className="sc-dcrmVg eAcxZk input-wrapper"
+                          className="sc-dhKdcB cXBFEt input-wrapper"
                         >
                           <styled.label
                             htmlFor="one-account-current-balance-input"
                           >
                             <label
-                              className="sc-ispOId"
+                              className="sc-imWYAI"
                               htmlFor="one-account-current-balance-input"
                             >
                               Current Balance (USD)
@@ -953,7 +953,7 @@ exports[`one account tests render matches snapshot 1`] = `
                             value="21"
                           >
                             <input
-                              className="sc-kcuKUB u-full-width"
+                              className="sc-jXbUNg u-full-width"
                               disabled={true}
                               id="one-account-current-balance-input"
                               name="one-account-current-balance-input"
@@ -973,7 +973,7 @@ exports[`one account tests render matches snapshot 1`] = `
             </styled.div>
             <styled.div>
               <div
-                className="sc-jJTsDX dfZfXb display-card-row"
+                className="sc-jEACwC hCNXPI display-card-row"
               >
                 <div
                   className="row"
@@ -1034,14 +1034,14 @@ exports[`one account tests render matches snapshot 1`] = `
                         required={true}
                       >
                         <div
-                          className="sc-duSInm dmBUfA select-wrapper"
+                          className="sc-dAlyuH hdYcYm select-wrapper"
                           required={true}
                         >
                           <styled.label
                             htmlFor="one-account-type-select"
                           >
                             <label
-                              className="sc-kuWgmH"
+                              className="sc-kpDqfm"
                               htmlFor="one-account-type-select"
                             >
                               Account Type *
@@ -1219,14 +1219,14 @@ exports[`one account tests render matches snapshot 1`] = `
                         required={true}
                       >
                         <div
-                          className="sc-duSInm dmBUfA select-wrapper"
+                          className="sc-dAlyuH hdYcYm select-wrapper"
                           required={true}
                         >
                           <styled.label
                             htmlFor="one-account-bank-select"
                           >
                             <label
-                              className="sc-kuWgmH"
+                              className="sc-kpDqfm"
                               htmlFor="one-account-bank-select"
                             >
                               Bank Name *
@@ -1364,14 +1364,14 @@ exports[`one account tests render matches snapshot 1`] = `
                         required={true}
                       >
                         <div
-                          className="sc-duSInm dmBUfA select-wrapper"
+                          className="sc-dAlyuH hdYcYm select-wrapper"
                           required={true}
                         >
                           <styled.label
                             htmlFor="one-account-status-select"
                           >
                             <label
-                              className="sc-kuWgmH"
+                              className="sc-kpDqfm"
                               htmlFor="one-account-status-select"
                             >
                               Account Status *
@@ -1434,7 +1434,7 @@ exports[`one account tests render matches snapshot 1`] = `
             </styled.div>
             <styled.div>
               <div
-                className="sc-jJTsDX dfZfXb display-card-row"
+                className="sc-jEACwC hCNXPI display-card-row"
               >
                 <div
                   className="row"
@@ -1458,7 +1458,7 @@ exports[`one account tests render matches snapshot 1`] = `
                         type="button"
                       >
                         <button
-                          className="sc-bgqQcB dbraQN button-wrapper"
+                          className="sc-aXZVg fKtcUG button-wrapper"
                           disabled={true}
                           id="one-account-button-update"
                           name="one-account-button-update"
@@ -1483,7 +1483,7 @@ exports[`one account tests render matches snapshot 1`] = `
                         type="button"
                       >
                         <button
-                          className="sc-bgqQcB dbraQN button-wrapper"
+                          className="sc-aXZVg fKtcUG button-wrapper"
                           id="one-account-button-delete"
                           name="one-account-button-delete"
                           onClick={[Function]}
@@ -1509,7 +1509,7 @@ exports[`one account tests render matches snapshot 1`] = `
                         type="button"
                       >
                         <button
-                          className="sc-bgqQcB dbraQN button-wrapper"
+                          className="sc-aXZVg fKtcUG button-wrapper"
                           disabled={true}
                           id="one-account-button-reset"
                           name="one-account-button-reset"
@@ -1526,7 +1526,7 @@ exports[`one account tests render matches snapshot 1`] = `
             </styled.div>
             <styled.div>
               <div
-                className="sc-jJTsDX dfZfXb display-card-row"
+                className="sc-jEACwC hCNXPI display-card-row"
               >
                 <div
                   className="row"
@@ -1548,7 +1548,7 @@ exports[`one account tests render matches snapshot 1`] = `
                         onClick={[Function]}
                       >
                         <a
-                          className="sc-kPTPQs MHmSA hreflink-wrapper"
+                          className="sc-kAyceB fQBSH hreflink-wrapper"
                           href="#"
                           id="one-account-all-accounts-link-2"
                           onClick={[Function]}
@@ -1571,7 +1571,7 @@ exports[`one account tests render matches snapshot 1`] = `
                         onClick={[Function]}
                       >
                         <a
-                          className="sc-kPTPQs MHmSA hreflink-wrapper"
+                          className="sc-kAyceB fQBSH hreflink-wrapper"
                           href="#"
                           id="one-account-add-txn-link"
                           onClick={[Function]}
@@ -1594,7 +1594,7 @@ exports[`one account tests render matches snapshot 1`] = `
                         onClick={[Function]}
                       >
                         <a
-                          className="sc-kPTPQs MHmSA hreflink-wrapper"
+                          className="sc-kAyceB fQBSH hreflink-wrapper"
                           href="#"
                           id="one-account-all-txns-link"
                           onClick={[Function]}
@@ -2065,17 +2065,17 @@ exports[`one account tests render matches snapshot 1`] = `
     >
       <styled.div>
         <div
-          className="sc-jrrXlR bXSoAG display-card-wrapper"
+          className="sc-jlZhew hrIwzp display-card-wrapper"
         >
           <styled.div>
             <div
-              className="sc-crozmw cVCRox display-card-body"
+              className="sc-cwHptR jGHpZE display-card-body"
             >
               <styled.div
                 fontWeight="bold"
               >
                 <div
-                  className="sc-jJTsDX cCusqt display-card-row"
+                  className="sc-jEACwC bKsHHS display-card-row"
                   fontWeight="bold"
                 >
                   List of Transactions
@@ -2083,27 +2083,27 @@ exports[`one account tests render matches snapshot 1`] = `
               </styled.div>
               <styled.div>
                 <div
-                  className="sc-jJTsDX dfZfXb display-card-row"
+                  className="sc-jEACwC hCNXPI display-card-row"
                 >
                   <styled.div>
                     <div
-                      className="sc-cJPUEC jggYtp table-max-width-wrapper"
+                      className="sc-cPiKLX flieBP table-max-width-wrapper"
                     >
                       <styled.div>
                         <div
-                          className="sc-jeCNp cbEcTI table-scroll-wrapper"
+                          className="sc-dLMFU gUDtnV table-scroll-wrapper"
                         >
                           <styled.table>
                             <table
-                              className="sc-eywOmQ eZlOKh table-wrapper"
+                              className="sc-eDPEul iqWBWt table-wrapper"
                             >
                               <styled.thead>
                                 <thead
-                                  className="sc-eAzDjm cxewuq"
+                                  className="sc-eldPxv lnPrfB"
                                 >
                                   <styled.tr>
                                     <tr
-                                      className="sc-hUOJWJ coKfGk"
+                                      className="sc-ikkxIA dbqlRB"
                                     >
                                       <styled.th
                                         isSortAllowed={true}
@@ -2111,7 +2111,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC izlnfb"
+                                          className="sc-dAbbOL ggcFed"
                                           onClick={[Function]}
                                         >
                                           Date
@@ -2123,7 +2123,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC izlnfb"
+                                          className="sc-dAbbOL ggcFed"
                                           onClick={[Function]}
                                         >
                                           Category
@@ -2135,7 +2135,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC izlnfb"
+                                          className="sc-dAbbOL ggcFed"
                                           onClick={[Function]}
                                         >
                                           Account
@@ -2147,7 +2147,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC izlnfb"
+                                          className="sc-dAbbOL ggcFed"
                                           onClick={[Function]}
                                         >
                                           Transfer To
@@ -2159,7 +2159,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC izlnfb"
+                                          className="sc-dAbbOL ggcFed"
                                           onClick={[Function]}
                                         >
                                           Merchant
@@ -2171,7 +2171,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC izlnfb"
+                                          className="sc-dAbbOL ggcFed"
                                           onClick={[Function]}
                                         >
                                           Amount
@@ -2183,7 +2183,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         onClick={[Function]}
                                       >
                                         <th
-                                          className="sc-dPwPAC ioQpqv"
+                                          className="sc-dAbbOL kOtyWt"
                                           onClick={[Function]}
                                         >
                                           Actions
@@ -2195,21 +2195,21 @@ exports[`one account tests render matches snapshot 1`] = `
                               </styled.thead>
                               <styled.tbody>
                                 <tbody
-                                  className="sc-gUMnWI"
+                                  className="sc-gFqAkR"
                                 >
                                   <styled.tr
                                     key="0"
                                     onClick={[Function]}
                                   >
                                     <tr
-                                      className="sc-hUOJWJ coKfGk"
+                                      className="sc-ikkxIA dbqlRB"
                                       onClick={[Function]}
                                     >
                                       <styled.td
                                         key="date"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           2021-01-24
                                         </td>
@@ -2218,7 +2218,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="category"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           GAMES & SHOWS
                                         </td>
@@ -2227,7 +2227,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="account"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="600dc5423961753308ad789d_5ede97c32c473171d746458e"
@@ -2241,7 +2241,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="600dc5423961753308ad789d_5ede97c32c473171d746458e"
                                                 onClick={[Function]}
@@ -2256,7 +2256,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="trfAccount"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="600dc5423961753308ad789d_"
@@ -2270,7 +2270,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="600dc5423961753308ad789d_"
                                                 onClick={[Function]}
@@ -2283,7 +2283,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="merchant"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="600dc5423961753308ad789d_5fb82514d1bd0d507006fc7e"
@@ -2297,7 +2297,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="600dc5423961753308ad789d_5fb82514d1bd0d507006fc7e"
                                                 onClick={[Function]}
@@ -2312,7 +2312,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="amount"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           -$6.00
                                         </td>
@@ -2321,7 +2321,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="actions"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <Button
                                             id="txn-list-button-view-600dc5423961753308ad789d"
@@ -2337,7 +2337,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               type="button"
                                             >
                                               <button
-                                                className="sc-bgqQcB dbraQN button-wrapper"
+                                                className="sc-aXZVg fKtcUG button-wrapper"
                                                 id="txn-list-button-view-600dc5423961753308ad789d"
                                                 name="txn-list-button-view-600dc5423961753308ad789d"
                                                 onClick={[Function]}
@@ -2361,7 +2361,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               type="button"
                                             >
                                               <button
-                                                className="sc-bgqQcB dbraQN button-wrapper"
+                                                className="sc-aXZVg fKtcUG button-wrapper"
                                                 id="txn-list-button-delete-600dc5423961753308ad789d"
                                                 name="txn-list-button-delete-600dc5423961753308ad789d"
                                                 onClick={[Function]}
@@ -2380,14 +2380,14 @@ exports[`one account tests render matches snapshot 1`] = `
                                     onClick={[Function]}
                                   >
                                     <tr
-                                      className="sc-hUOJWJ coKfGk"
+                                      className="sc-ikkxIA dbqlRB"
                                       onClick={[Function]}
                                     >
                                       <styled.td
                                         key="date"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           2021-01-09
                                         </td>
@@ -2396,7 +2396,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="category"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           TRANSFER FOR CASH SPENDING
                                         </td>
@@ -2405,7 +2405,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="account"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="5ffc72fb5b7ea24ddbd8028d_5ede98772c473171d7464591"
@@ -2419,7 +2419,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="5ffc72fb5b7ea24ddbd8028d_5ede98772c473171d7464591"
                                                 onClick={[Function]}
@@ -2434,7 +2434,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="trfAccount"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="5ffc72fb5b7ea24ddbd8028d_5ede97c32c473171d746458e"
@@ -2448,7 +2448,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="5ffc72fb5b7ea24ddbd8028d_5ede97c32c473171d746458e"
                                                 onClick={[Function]}
@@ -2463,7 +2463,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="merchant"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="5ffc72fb5b7ea24ddbd8028d_5f9f861c083c2023ef009a9a"
@@ -2477,7 +2477,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="5ffc72fb5b7ea24ddbd8028d_5f9f861c083c2023ef009a9a"
                                                 onClick={[Function]}
@@ -2492,7 +2492,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="amount"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           $500.00
                                         </td>
@@ -2501,7 +2501,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="actions"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <Button
                                             id="txn-list-button-view-5ffc72fb5b7ea24ddbd8028d"
@@ -2517,7 +2517,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               type="button"
                                             >
                                               <button
-                                                className="sc-bgqQcB dbraQN button-wrapper"
+                                                className="sc-aXZVg fKtcUG button-wrapper"
                                                 id="txn-list-button-view-5ffc72fb5b7ea24ddbd8028d"
                                                 name="txn-list-button-view-5ffc72fb5b7ea24ddbd8028d"
                                                 onClick={[Function]}
@@ -2541,7 +2541,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               type="button"
                                             >
                                               <button
-                                                className="sc-bgqQcB dbraQN button-wrapper"
+                                                className="sc-aXZVg fKtcUG button-wrapper"
                                                 id="txn-list-button-delete-5ffc72fb5b7ea24ddbd8028d"
                                                 name="txn-list-button-delete-5ffc72fb5b7ea24ddbd8028d"
                                                 onClick={[Function]}
@@ -2560,14 +2560,14 @@ exports[`one account tests render matches snapshot 1`] = `
                                     onClick={[Function]}
                                   >
                                     <tr
-                                      className="sc-hUOJWJ coKfGk"
+                                      className="sc-ikkxIA dbqlRB"
                                       onClick={[Function]}
                                     >
                                       <styled.td
                                         key="date"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           2021-01-10
                                         </td>
@@ -2576,7 +2576,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="category"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           INCOME - OTHER
                                         </td>
@@ -2585,7 +2585,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="account"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="5ffc6b2e5b7ea24ddbd80281_5ede97c32c473171d746458e"
@@ -2599,7 +2599,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="5ffc6b2e5b7ea24ddbd80281_5ede97c32c473171d746458e"
                                                 onClick={[Function]}
@@ -2614,7 +2614,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="trfAccount"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="5ffc6b2e5b7ea24ddbd80281_"
@@ -2628,7 +2628,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="5ffc6b2e5b7ea24ddbd80281_"
                                                 onClick={[Function]}
@@ -2641,7 +2641,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="merchant"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <HrefLink
                                             id="5ffc6b2e5b7ea24ddbd80281_5fb82514d1bd0d507006fc7e"
@@ -2655,7 +2655,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               onClick={[Function]}
                                             >
                                               <a
-                                                className="sc-kPTPQs ewnthU hreflink-wrapper"
+                                                className="sc-kAyceB ebfkjT hreflink-wrapper"
                                                 href="#"
                                                 id="5ffc6b2e5b7ea24ddbd80281_5fb82514d1bd0d507006fc7e"
                                                 onClick={[Function]}
@@ -2670,7 +2670,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="amount"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           $20.00
                                         </td>
@@ -2679,7 +2679,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                         key="actions"
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                         >
                                           <Button
                                             id="txn-list-button-view-5ffc6b2e5b7ea24ddbd80281"
@@ -2695,7 +2695,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               type="button"
                                             >
                                               <button
-                                                className="sc-bgqQcB dbraQN button-wrapper"
+                                                className="sc-aXZVg fKtcUG button-wrapper"
                                                 id="txn-list-button-view-5ffc6b2e5b7ea24ddbd80281"
                                                 name="txn-list-button-view-5ffc6b2e5b7ea24ddbd80281"
                                                 onClick={[Function]}
@@ -2719,7 +2719,7 @@ exports[`one account tests render matches snapshot 1`] = `
                                               type="button"
                                             >
                                               <button
-                                                className="sc-bgqQcB dbraQN button-wrapper"
+                                                className="sc-aXZVg fKtcUG button-wrapper"
                                                 id="txn-list-button-delete-5ffc6b2e5b7ea24ddbd80281"
                                                 name="txn-list-button-delete-5ffc6b2e5b7ea24ddbd80281"
                                                 onClick={[Function]}
@@ -2737,17 +2737,17 @@ exports[`one account tests render matches snapshot 1`] = `
                               </styled.tbody>
                               <styled.tfoot>
                                 <tfoot
-                                  className="sc-fABZjn dKqnnX"
+                                  className="sc-fPXMVe fdhWYN"
                                 >
                                   <styled.tr>
                                     <tr
-                                      className="sc-hUOJWJ coKfGk"
+                                      className="sc-ikkxIA dbqlRB"
                                     >
                                       <styled.td
                                         colSpan={100}
                                       >
                                         <td
-                                          className="sc-ePzlA-D bvahgN"
+                                          className="sc-feUZmu eOResP"
                                           colSpan={100}
                                         >
                                           Number of Records: 3
@@ -2763,7 +2763,7 @@ exports[`one account tests render matches snapshot 1`] = `
                       </styled.div>
                       <styled.div>
                         <div
-                          className="sc-gjJAnY fUbpbI csv-link-wrapper"
+                          className="sc-fUnMCh unpJH csv-link-wrapper"
                         >
                           <CSVLink
                             asyncOnClick={false}
