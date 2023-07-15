@@ -1,8 +1,9 @@
 module.exports = {
   verbose: true,
   testEnvironment: 'jsdom',
+  preset: 'ts-jest',
   transform: {
-    '^.+\\.(t|j)sx?$': 'ts-jest',
+    '^.+\\.(t|j)sx?$': ['ts-jest', { diagnostics: false }],
   },
   rootDir: '.',
   roots: ['./src'],
@@ -22,9 +23,4 @@ module.exports = {
       },
     ],
   ],
-  globals: {
-    'ts-jest': {
-      diagnostics: false,
-    },
-  },
 };
