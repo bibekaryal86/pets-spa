@@ -3,7 +3,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import login from '../../home/reducers/login.reducer';
 import alert from '../../common/reducers/alert.reducer';
 import prefetch from '../../common/reducers/prefetch.reducer';
