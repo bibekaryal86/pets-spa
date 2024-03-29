@@ -49,7 +49,7 @@
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.73",
     "@types/react-csv": "^1.1.10",
-    "@types/react-dom": "^18.2.22",
+    "@types/react-dom": "^18.2.23",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.0.7",
     "@types/redux-immutable-state-invariant": "^2.1.4",
