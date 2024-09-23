@@ -4,6 +4,10 @@
   "description": "Personal Expenses Tracking System (SPA)",
   "private": true,
   "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
+  "engineStrict": true,
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.js",
     "build": "webpack --config webpack.prod.config.js",
