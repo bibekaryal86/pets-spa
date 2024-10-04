@@ -1,15 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
+
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
-import { ReportCategoryTypes } from '../types/reports.data.types';
-import { DisplayCardRow } from '../../styles/styled.card.style';
-import Table from '../../common/forms/Table';
-import { reportCategories } from '../utils/reports.utils';
 import HrefLink from '../../common/forms/HrefLink';
+import Table from '../../common/forms/Table';
 import { REPORT_PATH_CATEGORIES, SESSION_TRANSACTION_FILTERS } from '../../common/utils/constants';
-import styled from 'styled-components';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
+import { DisplayCardRow } from '../../styles/styled.card.style';
 import { DefaultTransactionFilters } from '../../transactions/types/transactions.data.types';
+import { ReportCategoryTypes } from '../types/reports.data.types';
+import { reportCategories } from '../utils/reports.utils';
 
 const ReportsSideBySide = styled.div.attrs({
   className: 'reports-side-by-side-wrapper',

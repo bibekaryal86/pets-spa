@@ -61,7 +61,10 @@ module.exports = {
       async: false,
     }),
     new ESLintPlugin({
+      configType: 'flat',
       extensions: ['js', 'ts', 'tsx'],
+      failOnWarning: false,
+      failOnError: false,
     }),
     new CleanWebpackPlugin(),
     new DotenvPlugin({

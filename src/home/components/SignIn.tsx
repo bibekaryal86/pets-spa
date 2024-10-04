@@ -1,7 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import Input, { InputType } from '../../common/forms/Input';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../../app/context/AuthContext';
 import Button from '../../common/forms/Button';
-import { validateLogInInput } from '../utils/validate';
+import Input, { InputType } from '../../common/forms/Input';
 import {
   ALERT_TYPE_FAILURE,
   ALERT_TYPE_INFO,
@@ -10,10 +12,9 @@ import {
   MSG_KEY_SESSION_INVALID,
   MSG_KEY_SIGNIN_FIRST,
 } from '../../common/utils/constants';
-import { AuthContext } from '../../app/context/AuthContext';
-import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { DisplayCardBody, DisplayCardRow, DisplayCardWrapper } from '../../styles/styled.card.style';
 import { LoginResponse } from '../types/home.data.types';
+import { validateLogInInput } from '../utils/validate';
 
 interface SignInProps {
   error: string;

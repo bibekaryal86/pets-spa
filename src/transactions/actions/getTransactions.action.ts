@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ACCOUNTS_SELECT_ACCOUNT_TRANSACTIONS } from '../../accounts/types/accounts.action.types';
 import { AccountsAction, DefaultAccountsState } from '../../accounts/types/accounts.data.types';
 import { GlobalDispatch, GlobalState } from '../../app/store/redux';

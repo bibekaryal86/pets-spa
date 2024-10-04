@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+
+import OneAccount from './OneAccount';
 import { GlobalState } from '../../app/store/redux';
 import { resetAlert, setAlert } from '../../common/utils/alerts';
 import { deleteTransaction } from '../../transactions/actions/deleteTransaction.action';
@@ -9,7 +11,6 @@ import { deleteAccount } from '../actions/deleteAccount.action';
 import { getAccounts } from '../actions/getAccounts.action';
 import { updateAccount } from '../actions/updateAccount.action';
 import { Account } from '../types/accounts.data.types';
-import OneAccount from './OneAccount';
 
 const mapStateToProps = ({ accounts, refTypes }: GlobalState) => {
   return {

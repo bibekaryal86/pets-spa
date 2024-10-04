@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
-import { AlertState, resetAlert } from '../utils/alerts';
+import { css, styled } from 'styled-components';
+
 import { GlobalState } from '../../app/store/redux';
+import { AlertState, resetAlert } from '../utils/alerts';
 import { MSG_KEY_SESSION_INVALID } from '../utils/constants';
 
 const AlertWrapper = styled.div.attrs({

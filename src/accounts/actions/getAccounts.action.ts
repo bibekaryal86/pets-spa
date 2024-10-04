@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { GlobalDispatch, GlobalState } from '../../app/store/redux';
 import { MSG_KEY_GET_ACCOUNT_FAIL } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';

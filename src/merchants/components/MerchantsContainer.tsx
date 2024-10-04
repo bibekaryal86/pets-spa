@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
+
+import Merchants from './Merchants';
 import { GlobalState } from '../../app/store/redux';
 import { resetAlert, setAlert } from '../../common/utils/alerts';
 import { deleteMerchant } from '../actions/deleteMerchant.action';
 import { getMerchants } from '../actions/getMerchants.action';
 import { resetOnPageLeave } from '../actions/merchants.state.action';
 import { updateMerchant } from '../actions/updateMerchant.action';
-import Merchants from './Merchants';
 
 const mapStateToProps = ({ merchants }: GlobalState) => {
   return {

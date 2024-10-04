@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ReportCurrentBalances } from '../types/reports.data.types';
-import Table from '../../common/forms/Table';
+
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
 import HrefLink from '../../common/forms/HrefLink';
-import { SessionStorage } from '../../common/utils/sessionStorageHelper';
+import Table from '../../common/forms/Table';
 import { SESSION_ACCOUNT_FILTERS } from '../../common/utils/constants';
+import { SessionStorage } from '../../common/utils/sessionStorageHelper';
+import { ReportCurrentBalances } from '../types/reports.data.types';
 
 interface ReportCurrentBalancesProps {
   report: ReportCurrentBalances[];

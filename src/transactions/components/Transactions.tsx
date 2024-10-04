@@ -1,6 +1,8 @@
 import React, { useCallback, useContext, useEffect, useMemo, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
+
+import TransactionsList from './TransactionsList';
 import { Account } from '../../accounts/types/accounts.data.types';
 import { AuthContext } from '../../app/context/AuthContext';
 import Checkbox from '../../common/forms/Checkbox';
@@ -35,7 +37,6 @@ import {
   getTransactionFilters,
   isTransactionFilterApplied,
 } from '../utils/transactions.utils';
-import TransactionsList from './TransactionsList';
 
 // <div style={{  display: 'inline-flex',  flexWrap: 'wrap',  gap: '12px',}}>
 const TransactionFilterStyle = styled.div`
