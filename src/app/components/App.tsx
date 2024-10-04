@@ -1,21 +1,22 @@
 import React, { useCallback, useEffect, useReducer } from 'react';
 import { connect } from 'react-redux';
-import AllGlobalStyles from '../../styles/AllGlobalStyles';
-import Header from './Header';
-import Alert from '../../common/components/Alert';
+
 import Body from './Body';
 import Footer from './Footer';
-import { AuthContext, AuthState, DefaultAuthState } from '../context/AuthContext';
-import { UserDetails } from '../../home/types/home.data.types';
+import Header from './Header';
+import { getRefTypes } from '../../common/actions/refTypes.action';
+import Alert from '../../common/components/Alert';
+import Spinner from '../../common/components/Spinner';
+import { setAlert } from '../../common/utils/alerts';
+import { ALERT_TYPE_FAILURE, ALERT_TYPE_INFO, MSG_KEY_SESSION_INVALID } from '../../common/utils/constants';
 import { LocalStorage } from '../../common/utils/localStorageHelper';
 import { PrefetchState } from '../../common/utils/prefetch';
 import { userLogout } from '../../home/actions/logout.action';
+import { UserDetails } from '../../home/types/home.data.types';
+import AllGlobalStyles from '../../styles/AllGlobalStyles';
+import { AuthContext, AuthState, DefaultAuthState } from '../context/AuthContext';
 import authReducer from '../reducers/auth.reducer';
 import { GlobalState } from '../store/redux';
-import Spinner from '../../common/components/Spinner';
-import { getRefTypes } from '../../common/actions/refTypes.action';
-import { setAlert } from '../../common/utils/alerts';
-import { ALERT_TYPE_FAILURE, ALERT_TYPE_INFO, MSG_KEY_SESSION_INVALID } from '../../common/utils/constants';
 
 interface AppProps extends PrefetchState {
   appError: string;

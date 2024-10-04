@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { numberFormatter } from '../../accounts/utils/accounts.utils';
-import { ReportCashFlows } from '../types/reports.data.types';
-import { DisplayCardRow } from '../../styles/styled.card.style';
-import Table from '../../common/forms/Table';
 import HrefLink from '../../common/forms/HrefLink';
+import Table from '../../common/forms/Table';
 import { REPORT_PATH_CASH_FLOWS, SESSION_TRANSACTION_FILTERS } from '../../common/utils/constants';
 import { SessionStorage } from '../../common/utils/sessionStorageHelper';
+import { DisplayCardRow } from '../../styles/styled.card.style';
 import { DefaultTransactionFilters } from '../../transactions/types/transactions.data.types';
+import { ReportCashFlows } from '../types/reports.data.types';
 
 interface ReportCashFlowsProps {
   report: ReportCashFlows[];

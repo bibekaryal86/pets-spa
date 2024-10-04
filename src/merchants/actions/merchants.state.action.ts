@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { GlobalDispatch } from '../../app/store/redux';
 import {
   MERCHANTS_CLEAR_FILTER,
   MERCHANTS_DELETE_MODAL_ACTION,
@@ -10,7 +12,6 @@ import {
   MERCHANTS_UNMOUNT,
   MERCHANTS_UPDATE_MODAL_ACTION,
 } from '../types/merchants.action.types';
-import { GlobalDispatch } from '../../app/store/redux';
 import { Merchant, MerchantsReducerAction } from '../types/merchants.data.types';
 
 export const resetOnPageLeave = () => {

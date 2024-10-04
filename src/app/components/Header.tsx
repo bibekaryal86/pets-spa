@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
+
+// eslint-disable-next-line import/no-unresolved
 import PetsLogo from '/public/images/petslogo.gif';
+
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { AuthContext } from '../context/AuthContext';
-import { UserDetails } from '../../home/types/home.data.types';
+import { styled } from 'styled-components';
+
 import { protectedRoutes } from './AppRoutes';
+import { UserDetails } from '../../home/types/home.data.types';
+import { AuthContext } from '../context/AuthContext';
 
 const StyledHeader = styled.header.attrs({
   className: 'styled-header',

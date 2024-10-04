@@ -1,6 +1,6 @@
+import { Async, FetchOptions, FetchResponse } from './fetch';
 import store from '../../app/store/redux';
 import { PREFETCH_DISPATCH_ACTION } from '../types/common.action.types';
-import { Async, FetchOptions, FetchResponse } from './fetch';
 
 export interface PrefetchState {
   isSessionInvalid: boolean;

@@ -1,4 +1,3 @@
-import { SortData, TableData } from '../forms/Table';
 import {
   CURRENCY_FORMAT_MATCHER_REGEX,
   DATE_FORMAT_MATCHER_REGEX,
@@ -10,6 +9,7 @@ import {
   TABLE_SORTED_DESC_CODE,
   TABLE_SORTED_NONE_CODE,
 } from './constants';
+import { SortData, TableData } from '../forms/Table';
 
 interface CsvHeaders {
   label: string;

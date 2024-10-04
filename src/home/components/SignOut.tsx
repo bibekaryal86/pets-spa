@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+
 import { AuthContext } from '../../app/context/AuthContext';
 import { DefaultUserDetails } from '../types/home.data.types';
 

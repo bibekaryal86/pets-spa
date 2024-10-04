@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { GlobalDispatch } from '../../app/store/redux';
 import { MSG_KEY_DELETE_MERCHANT_FAIL, MSG_KEY_EDIT_MERCHANT_SUCCESS } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';

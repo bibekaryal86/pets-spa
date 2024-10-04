@@ -1,10 +1,10 @@
+import { isTransactionTypeTransfer } from './transactions.utils';
 import {
   CATEGORY_TYPE_ID_TRANSFER,
   INPUT_REGEX_PATTERN,
   TRANSACTION_TYPE_ID_TRANSFER,
 } from '../../common/utils/constants';
 import { OneTransactionOne, OneTransactionValidationMessages } from '../types/transactions.data.types';
-import { isTransactionTypeTransfer } from './transactions.utils';
 
 export const validateTransaction = (oneTransactionOne: OneTransactionOne): OneTransactionValidationMessages => {
   let requiredFieldsMessages = '';

@@ -1,16 +1,9 @@
 import React from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { LocalStorage } from '../../common/utils/localStorageHelper';
+
 import NotFound from './NotFound';
-import SignInContainer from '../../home/components/SignInContainer';
-import SignOutContainer from '../../home/components/SignOutContainer';
-import Summary from '../../summary/components/Summary';
-import TransactionsContainer from '../../transactions/components/TransactionsContainer';
-import OneTransactionContainer from '../../transactions/components/OneTransactionContainer';
 import AccountsContainer from '../../accounts/components/AccountsContainer';
 import OneAccountContainer from '../../accounts/components/OneAccountContainer';
-import MerchantsContainer from '../../merchants/components/MerchantsContainer';
-import OneMerchantContainer from '../../merchants/components/OneMerchantContainer';
 import {
   REPORT_NAME_CASH_FLOWS,
   REPORT_NAME_CATEGORIES,
@@ -20,7 +13,15 @@ import {
   REPORT_PATH_CATEGORIES,
   REPORT_PATH_CURRENT_BALANCES,
 } from '../../common/utils/constants';
+import { LocalStorage } from '../../common/utils/localStorageHelper';
+import SignInContainer from '../../home/components/SignInContainer';
+import SignOutContainer from '../../home/components/SignOutContainer';
+import MerchantsContainer from '../../merchants/components/MerchantsContainer';
+import OneMerchantContainer from '../../merchants/components/OneMerchantContainer';
 import ReportsContainer from '../../reports/components/ReportsContainer';
+import Summary from '../../summary/components/Summary';
+import OneTransactionContainer from '../../transactions/components/OneTransactionContainer';
+import TransactionsContainer from '../../transactions/components/TransactionsContainer';
 
 const AppRoutes = (): React.ReactElement => {
   return (

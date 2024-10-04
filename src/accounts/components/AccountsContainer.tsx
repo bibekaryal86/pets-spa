@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+
+import Accounts from './Accounts';
 import { GlobalState } from '../../app/store/redux';
 import { resetAlert, setAlert } from '../../common/utils/alerts';
 import { resetOnPageLeave } from '../actions/accounts.state.action';
 import { getAccounts } from '../actions/getAccounts.action';
-import Accounts from './Accounts';
 
 const mapStateToProps = ({ accounts, refTypes }: GlobalState) => {
   return {

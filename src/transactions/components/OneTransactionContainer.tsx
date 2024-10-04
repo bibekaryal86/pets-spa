@@ -1,4 +1,6 @@
 import { connect } from 'react-redux';
+
+import OneTransaction from './OneTransaction';
 import { getAccounts } from '../../accounts/actions/getAccounts.action';
 import { GlobalState } from '../../app/store/redux';
 import { resetAlert, setAlert } from '../../common/utils/alerts';
@@ -8,7 +10,6 @@ import { getTransactions } from '../actions/getTransactions.action';
 import { resetOnPageLeave } from '../actions/transactions.state.action';
 import { updateTransaction } from '../actions/updateTransaction.action';
 import { TransactionsRequest } from '../types/transactions.data.types';
-import OneTransaction from './OneTransaction';
 
 const mapStateToProps = ({ accounts, merchants, refTypes, transactions }: GlobalState) => {
   return {

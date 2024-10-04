@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  MERCHANTS_COMPLETE,
-  MERCHANTS_EDIT_FAILURE,
-  MERCHANTS_EDIT_REQUEST,
-  MERCHANTS_EDIT_SUCCESS,
-} from '../types/merchants.action.types';
+
 import { GlobalDispatch } from '../../app/store/redux';
 import {
   MSG_KEY_EDIT_MERCHANT_FAIL,
@@ -13,8 +8,14 @@ import {
 } from '../../common/utils/constants';
 import { FetchOptions } from '../../common/utils/fetch';
 import { prefetch } from '../../common/utils/prefetch';
-import { MerchantsRequest, MerchantsResponse } from '../types/merchants.data.types';
 import { getEndpoint } from '../../home/utils/endpoint';
+import {
+  MERCHANTS_COMPLETE,
+  MERCHANTS_EDIT_FAILURE,
+  MERCHANTS_EDIT_REQUEST,
+  MERCHANTS_EDIT_SUCCESS,
+} from '../types/merchants.action.types';
+import { MerchantsRequest, MerchantsResponse } from '../types/merchants.data.types';
 
 const validateMerchant = (newDescription: string): boolean => !!(newDescription && newDescription.trim().length > 2);
 

@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
+
+import SignIn from './SignIn';
 import { GlobalState } from '../../app/store/redux';
 import { resetAlert, setAlert } from '../../common/utils/alerts';
 import { userLogin } from '../actions/login.action';
-import SignIn from './SignIn';
 
 const mapStateToProps = ({ login }: GlobalState) => {
   return {

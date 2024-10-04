@@ -1,5 +1,9 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { CashFlowsReport } from './ReportCashFlows';
+import { CategoriesReport } from './ReportCategories';
+import { CurrentBalancesReport } from './ReportCurrentBalances';
 import { AuthContext } from '../../app/context/AuthContext';
 import HrefLink from '../../common/forms/HrefLink';
 import Select from '../../common/forms/Select';
@@ -19,9 +23,6 @@ import { getCategoriesReport } from '../actions/getCategoriesReport.action';
 import { getCurrentBalancesReport } from '../actions/getCurrentBalancesReport.action';
 import { DefaultReportsResponse } from '../types/reports.data.types';
 import { yearsDropdownForReports } from '../utils/reports.utils';
-import { CashFlowsReport } from './ReportCashFlows';
-import { CategoriesReport } from './ReportCategories';
-import { CurrentBalancesReport } from './ReportCurrentBalances';
 
 interface ReportsProps {
   setAlert: (type: string, messageKey: string) => void;
