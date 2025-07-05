@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 // eslint-disable-next-line import/no-unresolved
 import PetsLogo from '/public/images/petslogo.gif';
-
 import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
 
